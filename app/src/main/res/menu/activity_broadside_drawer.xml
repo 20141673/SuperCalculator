@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" android:title="功能">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_simple"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
+            android:title="简单计算器"/>
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_science"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
+            android:title="科学计算器"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_exchagerate"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
+            android:title="汇率转换"/>
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_houseloan"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:title="房贷计算"/>
+        <item
+            android:id="@+id/nav_personincometax"
+            android:icon="@drawable/ic_menu_share"
+            android:title="个人所得税"/>
+        <item
+            android:id="@+id/nav_relativescall"
+            android:icon="@drawable/ic_menu_send"
+            android:title="亲戚称呼"/>
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
-        </menu>
-    </item>
 
 </menu>
