@@ -82,7 +82,7 @@ public class BroadsideActivity extends AppCompatActivity
 
         if (id == R.id.nav_simple) {
             // Handle the camera action
-            
+
         } else if (id == R.id.nav_science) {
 
         } else if (id == R.id.nav_exchagerate) {
