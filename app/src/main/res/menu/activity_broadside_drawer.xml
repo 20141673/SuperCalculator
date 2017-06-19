@@ -2,14 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single" android:title="功能">
-        <item
-            android:id="@+id/nav_simple"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="简单计算器"/>
-        <item
-            android:id="@+id/nav_science"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="科学计算器"/>
+
         <item
             android:id="@+id/nav_exchagerate"
             android:icon="@drawable/ic_menu_slideshow"
