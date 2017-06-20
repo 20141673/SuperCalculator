@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:text="practice"/>
+    </TableRow>
+
+    <TableRow>
+            <Button
+                android:text="SB"/>
+            <Button/>
+            <Button/>
+        </TableRow>
+        <TableRow>
+            <Button/>
+            <Button/>
+            <Button/>
+        </TableRow>
+        <TableRow>
+            <Button/>
+            <Button/>
+            <Button/>
+        </TableRow>
+
+</TableLayout>
