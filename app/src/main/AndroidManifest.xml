@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ExchageRateActivity">
+        <activity
+            android:name=".ExchageRateActivity"
+            android:parentActivityName=".BroadsideActivity"
+            android:label="汇率转换">
         </activity>
     </application>
 
