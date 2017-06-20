@@ -19,6 +19,14 @@
             android:id="@+id/nav_relativescall"
             android:icon="@drawable/ic_menu_send"
             android:title="亲戚称呼"/>
+        <item
+            android:id="@+id/nav_lengthexchange"
+            android:icon="@drawable/ic_menu_send"
+            android:title="长度换算"/>
+        <item
+            android:id="@+id/nav_temperatureexchange"
+            android:icon="@drawable/ic_menu_send"
+            android:title="温度换算"/>
     </group>
 
 </menu>
