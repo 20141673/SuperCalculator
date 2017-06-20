@@ -2,7 +2,7 @@
 
 使用本项目需要配置本地的下列文件或文件夹：
 
-.gradle
+/.gradle
 
 build.gradle
 
