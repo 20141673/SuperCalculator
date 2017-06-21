@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/skyBlue</item>
         <item name="colorPrimaryDark">@color/skyBlue</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
