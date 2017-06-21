@@ -5,9 +5,10 @@
             android:orientation="horizontal"
             android:rowCount="8"
             android:columnCount="4" >
-    
+
     <Button
         android:layout_weight="1"
+        android:id="@+id/simpleclear"
         android:text="C"/>
     <Button
         android:id="@+id/simplereturn"
