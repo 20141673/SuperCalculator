@@ -21,7 +21,8 @@
             android:id="@android:id/tabs"
             android:layout_width="363dp"
             android:layout_height="wrap_content"
-            android:background="@color/skyBlue"
+            android:background="@color/tabGray"
+
             android:gravity="center"
             tools:layout_editor_absoluteX="-2dp"
             tools:layout_editor_absoluteY="80dp"/>
