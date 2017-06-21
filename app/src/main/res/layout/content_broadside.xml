@@ -19,11 +19,14 @@
         app:layout_constraintLeft_toLeftOf="@+id/lay_root"
         app:layout_constraintRight_toRightOf="@+id/lay_root"
 
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp">
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="342dp"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             tools:layout_editor_absoluteX="-2dp"
             tools:layout_editor_absoluteY="80dp"/>
 

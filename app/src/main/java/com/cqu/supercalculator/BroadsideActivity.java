@@ -106,4 +106,6 @@ public class BroadsideActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

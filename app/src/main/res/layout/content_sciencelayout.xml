@@ -134,7 +134,7 @@
             android:layout_weight="1"
             android:text="@string/lg"/>
         <Button
-            android:id="@+id/science-e"
+            android:id="@+id/sciencee"
             android:layout_weight="1"
             android:text="@string/e"/>
         <Button
