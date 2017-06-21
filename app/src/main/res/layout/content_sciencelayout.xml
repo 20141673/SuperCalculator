@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--科学计算器界面-->
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         <Button
             android:id="@+id/sciencepi"
             android:layout_weight="1"
-            android:text="π"/>
+            android:text="@string/pi"/>
         <Button
             android:id="@+id/scienceleftbracket"
             android:layout_weight="1"

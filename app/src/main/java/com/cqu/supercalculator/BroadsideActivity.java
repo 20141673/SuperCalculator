@@ -46,7 +46,7 @@ public class BroadsideActivity extends AppCompatActivity
         /*************Tab标签****************/
         TabHost tabHost=(TabHost)findViewById(R.id.tabhost);
         tabHost.setup();
-        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("简单",null).setContent(R.id.simplelayout));
+        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("标准",null).setContent(R.id.simplelayout));
         tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("科学",null).setContent(R.id.sciencelayout));
 
 
