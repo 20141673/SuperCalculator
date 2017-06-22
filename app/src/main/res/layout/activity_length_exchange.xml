@@ -9,7 +9,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="160dp"
+            android:layout_height="150dp"
             android:layout_weight="1">
             <Spinner
                 android:id="@+id/lengthupspinner"
@@ -26,13 +26,16 @@
                 android:textSize="50dp"/>
         </LinearLayout>
     </TableRow>
-
+    <TableRow>
+        <TextView
+            android:text="@string/line"/>
+    </TableRow>
     <TableRow
         android:layout_width="match_parent">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="160dp"
+            android:layout_height="150dp"
             android:layout_weight="1">
             <Spinner
                 android:id="@+id/lengthdownspinner"
@@ -57,14 +60,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TableRow>
-                <Button/>
-                <Button/>
-                <Button/>
+                <Button
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_weight="1"/>
             </TableRow>
             <TableRow>
-                <Button/>
-                <Button/>
-                <Button/>
+                <Button
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_weight="1"/>
             </TableRow>
         </TableLayout>
         <GridLayout
@@ -85,18 +94,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TableRow
-                android:layout_width="match_parent">
-                <Button/>
-                <Button/>
-                <Button/>
+                android:layout_width="match_parent"
+                android:layout_gravity="fill_horizontal">
+                <Button
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_weight="1"
+                    android:id="@+id/button2"/>
+                <Button
+                    android:layout_weight="1"/>
             </TableRow>
             <TableRow
                 android:layout_width="match_parent">
                 <Button
-                    android:layout_span="2"/>
-
+                    android:layout_weight="1"/>
                 <Button
-                    />
+                    android:layout_weight="1"/>
             </TableRow>
         </TableLayout>
         <GridLayout
