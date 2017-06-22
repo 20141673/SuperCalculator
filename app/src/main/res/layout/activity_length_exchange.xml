@@ -14,7 +14,7 @@
             android:layout_weight="1">
             <Spinner
                 android:id="@+id/lengthupspinner"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:entries="@array/LengthUnit"/>
             <TextView
@@ -23,14 +23,20 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="fill_horizontal"
                 android:gravity="right|center_vertical"
-
                 android:text="20"
-                android:textSize="50dp"/>
+                android:textSize="50dp"
+                android:ellipsize="start"
+                android:clickable="true"
+                android:onClick="clickText"
+                android:maxLines="2"/>
         </LinearLayout>
     </TableRow>
     <TableRow>
-        <TextView
-            android:text="@string/line"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/skyBlue"
+            android:layout_weight="1"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent">
@@ -41,7 +47,7 @@
             android:layout_weight="1">
             <Spinner
                 android:id="@+id/lengthdownspinner"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:entries="@array/LengthUnit"/>
             <TextView
@@ -51,8 +57,11 @@
                 android:layout_gravity="fill_horizontal"
                 android:gravity="right|center_vertical"
                 android:clickable="true"
+                android:onClick="clickText"
                 android:text="20"
-                android:textSize="50dp"/>
+                android:textSize="50dp"
+                android:ellipsize="start"
+                android:maxLines="2"/>
         </LinearLayout>
     </TableRow>
     <TableRow
@@ -123,14 +132,17 @@
                 <Button
                     android:id="@+id/lengthone"
                     android:layout_weight="1"
+                    android:onClick="clickButton"
                     android:text="1"/>
                 <Button
                     android:layout_weight="1"
                     android:id="@+id/lengthtwo"
+                    android:onClick="clickButton"
                     android:text="2"/>
                 <Button
                     android:id="@+id/lengththree"
                     android:layout_weight="1"
+                    android:onClick="clickButton"
                     android:text="3"/>
             </TableRow>
             <TableRow
@@ -138,10 +150,12 @@
                 <Button
                     android:id="@+id/lengthzero"
                     android:layout_weight="1"
+                    android:onClick="clickButton"
                     android:text="0"/>
                 <Button
                     android:id="@+id/lengthpoint"
                     android:layout_weight="1"
+                    android:onClick="clickButton"
                     android:text="."/>
             </TableRow>
         </TableLayout>
@@ -154,6 +168,7 @@
                 android:id="@+id/lengthreturn"
                 android:layout_rowSpan="2"
                 android:layout_gravity="fill_vertical"
+                android:onClick="clickButton"
                 android:text="@string/returnicon"/>
         </GridLayout>
     </TableRow>

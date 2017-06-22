@@ -1,5 +1,6 @@
 package com.cqu.supercalculator;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ public class LengthExchangeActivity extends AppCompatActivity {
     private Spinner lengthDownSpinner;
     private TextView lengthUpText;
     private TextView lengthDownText;
+    private TextView lengthNowText;  //现在活动的TextView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,20 +27,37 @@ public class LengthExchangeActivity extends AppCompatActivity {
         lengthDownSpinner=(Spinner)findViewById(R.id.lengthdownspinner);
         lengthUpText=(TextView)findViewById(R.id.lengthuptext);
         lengthDownText=(TextView)findViewById(R.id.lengthdowntext);
-        lengthUpText.setText(" ");
-        lengthDownText.setText(" ");
+        lengthUpText.setHighlightColor(Color.BLUE);
+        lengthNowText=lengthUpText;  //默认活动窗口是uptext
     }
 
     public void clickButton(View v){
         int id=v.getId();
-        TextView lengthNowText=lengthUpText;
-
         if(id==R.id.lengthone){
-            lengthNowText.setText("7");
+            lengthNowText.append("1");
         }else if(id==R.id.lengthtwo){
             lengthNowText.append("2");
         }else if(id==R.id.lengththree){
+            lengthNowText.append("3");
+        }else if(id==R.id.lengthfour){
+            lengthNowText.append("4");
+        }else if(id==R.id.lengthfive){
+            lengthNowText.append("5");
+        }
+    }
 
+    public void clickText(View v){
+        int id=v.getId();
+        if(id==R.id.lengthuptext){
+            lengthNowText=lengthUpText;
+            lengthNowText.append("6");
+            lengthUpText.setTextColor(0xFF64C1C9);
+            lengthDownText.setTextColor(Color.BLACK);
+        }else if(id==R.id.lengthdowntext){
+            lengthNowText=lengthDownText;
+            lengthNowText.append("7");
+            lengthUpText.setTextColor(Color.BLACK);
+            lengthDownText.setTextColor(0xFF64C1C9);
         }
     }
 }

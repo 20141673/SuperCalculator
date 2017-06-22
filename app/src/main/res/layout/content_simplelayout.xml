@@ -9,13 +9,6 @@
         android:layout_gravity="fill_horizontal"
         android:text="@string/cos"
         android:gravity="end|center_vertical"/>
-
-    <TextView
-        android:layout_height="66dp"
-        android:layout_gravity="fill_horizontal"
-        android:text="@string/line"
-        android:gravity="end|center_vertical"/>
-
     <TextView
         android:layout_height="66dp"
         android:layout_gravity="fill_horizontal"
