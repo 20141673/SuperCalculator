@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="CurrencyType">
+        <item>人民币</item>
+        <item>港元</item>
+        <item>美元</item>
+        <item>日元</item>
+        <item>台币</item>
+        <item>欧元</item>
+    </string-array>
+    <string-array name="LengthUnit">
+        <item>千米km</item>
+        <item>米m</item>
+        <item>分米dm</item>
+        <item>厘米cm</item>
+        <item>毫米mm</item>
+        <item>微米um</item>
+        <item>纳米nm</item>
+        <item>皮米pm</item>
+    </string-array>
+</resources>

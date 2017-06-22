@@ -20,8 +20,13 @@
         </activity>
         <activity
             android:name=".ExchageRateActivity"
-            android:parentActivityName=".BroadsideActivity"
-            android:label="汇率转换">
+            android:label="汇率转换"
+            android:parentActivityName=".BroadsideActivity">
+        </activity>
+        <activity
+            android:name=".LengthExchangeActivity"
+            android:label="长度转换"
+            android:parentActivityName=".BroadsideActivity">
         </activity>
     </application>
 

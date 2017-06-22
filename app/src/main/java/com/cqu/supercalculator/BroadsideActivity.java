@@ -87,6 +87,12 @@ public class BroadsideActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_relativescall) {
 
+        }else if(id==R.id.nav_lengthexchange){
+            Intent intent=new Intent(BroadsideActivity.this,LengthExchangeActivity.class);
+            BroadsideActivity.this.startActivity(intent);
+
+        }else if(id==R.id.nav_temperatureexchange){
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
