@@ -14,14 +14,18 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER"/><!--这里设置了在桌面上的名称-->
             </intent-filter>
         </activity>
         <activity
             android:name=".ExchageRateActivity"
-            android:parentActivityName=".BroadsideActivity"
-            android:label="汇率转换">
+            android:label="汇率转换"
+            android:parentActivityName=".BroadsideActivity">
+        </activity>
+        <activity
+            android:name=".LengthExchangeActivity"
+            android:label="长度转换"
+            android:parentActivityName=".BroadsideActivity">
         </activity>
     </application>
 
