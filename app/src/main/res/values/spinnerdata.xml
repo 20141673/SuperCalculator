@@ -8,7 +8,8 @@
         <item>台币</item>
         <item>欧元</item>
     </string-array>
-    <string-array name="LengthUnit">
+    <string-array name="LengthUnit"
+        >
         <item>千米km</item>
         <item>米m</item>
         <item>分米dm</item>

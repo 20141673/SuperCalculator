@@ -3,35 +3,51 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:gravity="bottom">
+
     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:entries="@array/LengthUnit"/>
-        <TextView
-            android:layout_weight="4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="20"
-            android:gravity="right"/>
+        android:layout_width="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="160dp"
+            android:layout_weight="1">
+            <Spinner
+                android:id="@+id/lengthupspinner"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:entries="@array/LengthUnit"/>
+            <TextView
+                android:id="@+id/lengthuptext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="right|center_vertical"
+                android:text="20"
+                android:textSize="50dp"/>
+        </LinearLayout>
     </TableRow>
+
     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:entries="@array/LengthUnit"/>
-        <TextView
-            android:layout_weight="4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="20"
-            android:gravity="right"/>
+        android:layout_width="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="160dp"
+            android:layout_weight="1">
+            <Spinner
+                android:id="@+id/lengthdownspinner"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:entries="@array/LengthUnit"/>
+            <TextView
+                android:id="@+id/lengthdowntext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="right|center_vertical"
+                android:text="20"
+                android:textSize="50dp"/>
+        </LinearLayout>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -80,7 +96,7 @@
                     android:layout_span="2"/>
 
                 <Button
-                   />
+                    />
             </TableRow>
         </TableLayout>
         <GridLayout
