@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/tools">
+    <string-array name="CurrencyType">
+        <item>人民币</item>
+        <item>港元</item>
+        <item>美元</item>
+        <item>日元</item>
+        <item>台币</item>
+        <item>欧元</item>
+    </string-array>
+</resources>
