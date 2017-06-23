@@ -21,12 +21,13 @@ public class LengthExchangeActivity extends AppCompatActivity {
 
         /******初始化界面的组件*******/
         initView();
-
     }
 
     private void initView(){
         lengthUpSpinner=(Spinner)findViewById(R.id.lengthupspinner);
         lengthDownSpinner=(Spinner)findViewById(R.id.lengthdownspinner);
+        /*需要初始化spinner*/
+
         lengthUpText=(TextView)findViewById(R.id.lengthuptext);
         lengthDownText=(TextView)findViewById(R.id.lengthdowntext);
         lengthUpText.setTextColor(0xFF64C1C9);
@@ -79,6 +80,9 @@ public class LengthExchangeActivity extends AppCompatActivity {
             String str=lengthNowText.getText().toString();
             str=str.substring(0,str.length()-1);
             lengthNowText.setText(str);
+            if(lengthNowText.getText().toString().equals("")){   //防止回退键将字符串设为空值
+                lengthNowText.setText("0");
+            }
         }
         try{
             lengthNowNum =Double.parseDouble(lengthNowText.getText().toString());
@@ -86,16 +90,16 @@ public class LengthExchangeActivity extends AppCompatActivity {
         lengthExchange();                   //对字符处理成数字进行长度转换的运算,对响应窗口进行操作
     }
 
-    public void lengthExchange(){           //*****
-        double test=0;                      //需要消除double类型计算后小数点
+    public void lengthExchange(){           
+        double lastNum=0;                   //需要消除double类型计算后小数点
         TextView lengthLastText;            //设置区别于活动窗口的响应窗口文本域
         if(lengthNowText==lengthUpText){
             lengthLastText=lengthDownText;
         }else{
             lengthLastText=lengthUpText;
         }
-        test=lengthNowNum*2;
-        lengthLastText.setText(String.valueOf(test));
+        lastNum=lengthNowNum*2;
+        lengthLastText.setText(String.valueOf(lastNum));
         String lastText=lengthLastText.getText().toString();
         if(lastText.substring(lastText.length()-2).equals(".0")){
             lengthLastText.setText(lastText.substring(0,lastText.length()-2));
@@ -118,6 +122,5 @@ public class LengthExchangeActivity extends AppCompatActivity {
         try{
             lengthNowNum =Double.parseDouble(lengthNowText.getText().toString());
         }catch(Exception e){}
-
     }
 }
