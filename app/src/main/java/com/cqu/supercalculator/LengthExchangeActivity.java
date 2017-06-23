@@ -13,9 +13,8 @@ public class LengthExchangeActivity extends AppCompatActivity {
     private TextView lengthUpText;
     private TextView lengthDownText;
     private TextView lengthNowText;  //现在活动的TextView
-    private long lengthUpNum;
-    private long lengthDownNum;
-    private long lengthNowNum;
+    private boolean isPoint=false;   //判断是否有小数
+    private double lengthNowNum;     //现在活动的数字
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +32,17 @@ public class LengthExchangeActivity extends AppCompatActivity {
         lengthDownText=(TextView)findViewById(R.id.lengthdowntext);
         lengthUpText.setTextColor(0xFF64C1C9);
         lengthNowText=lengthUpText;  //默认活动窗口是uptext
-
+        lengthNowText.setText("0");
     }
 
     public void clickButton(View v){
+
         int id=v.getId();
-        if(lengthNowText.length()>=8){
+        if(lengthNowText.length()>=10){
             id=0;
+        }
+        if(lengthNowText.getText().toString().equals("0")){  //如果第一位是0，消除第一位
+            lengthNowText.setText("");
         }
         if(id==R.id.lengthone){
             lengthNowText.append("1");
@@ -51,6 +54,50 @@ public class LengthExchangeActivity extends AppCompatActivity {
             lengthNowText.append("4");
         }else if(id==R.id.lengthfive){
             lengthNowText.append("5");
+        }else if(id==R.id.lengthsix){
+            lengthNowText.append("6");
+        }else if(id==R.id.lengthseven){
+            lengthNowText.append("2");
+        }else if(id==R.id.lengtheight){
+            lengthNowText.append("2");
+        }else if(id==R.id.lengthnine){
+            lengthNowText.append("2");
+        }else if(id==R.id.lengthzero){  //zero需要特殊处理
+            if(!lengthNowText.getText().equals("0")){
+                lengthNowText.append("0");
+            }
+        }else if(id==R.id.lengthac){
+            lengthNowText.setText("0");
+        }else if(id==R.id.lengthpoint){ //point需要特殊处理
+            int i=-2;
+            i=lengthNowText.getText().toString().indexOf(".");
+            if(i<0){
+                lengthNowText.append(".");
+            }
+        }else if(id==R.id.lengthreturn){
+           /*符串的回退处理*/
+        }
+        try{
+            lengthNowNum =Double.parseDouble(lengthNowText.getText().toString());
+        }catch(Exception e){}
+        lengthExchange();                   //对字符处理成数字进行长度转换的运算,对响应窗口进行操作
+    }
+
+    public void lengthExchange(){           //*****
+        double test=0;                      //需要消除double类型计算后小数点
+        TextView lengthLastText;            //设置区别于活动窗口的响应窗口文本域
+        if(lengthNowText==lengthUpText){
+            lengthLastText=lengthDownText;
+        }else{
+            lengthLastText=lengthUpText;
+        }
+        test=lengthNowNum*2;
+        lengthLastText.setText(String.valueOf(test));
+        String lastText=lengthLastText.getText().toString();
+        if(lastText.substring(lastText.length()-2).equals(".0")){
+            lengthLastText.setText(lastText.substring(0,lastText.length()-2));
+        }else{
+            lengthLastText.setText(lastText);
         }
     }
 
@@ -65,5 +112,9 @@ public class LengthExchangeActivity extends AppCompatActivity {
             lengthUpText.setTextColor(Color.BLACK);
             lengthDownText.setTextColor(0xFF64C1C9);
         }
+        try{
+            lengthNowNum =Double.parseDouble(lengthNowText.getText().toString());
+        }catch(Exception e){}
+
     }
 }

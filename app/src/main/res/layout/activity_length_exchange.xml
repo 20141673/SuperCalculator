@@ -23,12 +23,12 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="fill_horizontal"
                 android:gravity="right|center_vertical"
-                android:text="20"
-                android:textSize="50dp"
+                android:text="0"
+                android:textSize="35dp"
                 android:ellipsize="start"
                 android:clickable="true"
                 android:onClick="clickText"
-                android:maxLines="2"/>
+                android:maxLines="1"/>
         </LinearLayout>
     </TableRow>
     <TableRow>
@@ -58,10 +58,10 @@
                 android:gravity="right|center_vertical"
                 android:clickable="true"
                 android:onClick="clickText"
-                android:text="20"
-                android:textSize="50dp"
+                android:text="0"
+                android:textSize="35dp"
                 android:ellipsize="start"
-                android:maxLines="2"/>
+                android:maxLines="1"/>
         </LinearLayout>
     </TableRow>
     <TableRow
