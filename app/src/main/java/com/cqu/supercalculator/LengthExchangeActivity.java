@@ -13,7 +13,6 @@ public class LengthExchangeActivity extends AppCompatActivity {
     private TextView lengthUpText;
     private TextView lengthDownText;
     private TextView lengthNowText;  //现在活动的TextView
-    private boolean isPoint=false;   //判断是否有小数
     private double lengthNowNum;     //现在活动的数字
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class LengthExchangeActivity extends AppCompatActivity {
         lengthUpText=(TextView)findViewById(R.id.lengthuptext);
         lengthDownText=(TextView)findViewById(R.id.lengthdowntext);
         lengthUpText.setTextColor(0xFF64C1C9);
-        lengthNowText=lengthUpText;  //默认活动窗口是uptext
+        lengthNowText=lengthUpText;  //默认活动窗口是lengthuptext,上方窗口
         lengthNowText.setText("0");
     }
 
@@ -57,17 +56,18 @@ public class LengthExchangeActivity extends AppCompatActivity {
         }else if(id==R.id.lengthsix){
             lengthNowText.append("6");
         }else if(id==R.id.lengthseven){
-            lengthNowText.append("2");
+            lengthNowText.append("7");
         }else if(id==R.id.lengtheight){
-            lengthNowText.append("2");
+            lengthNowText.append("8");
         }else if(id==R.id.lengthnine){
-            lengthNowText.append("2");
+            lengthNowText.append("9");
         }else if(id==R.id.lengthzero){  //zero需要特殊处理
             if(!lengthNowText.getText().equals("0")){
                 lengthNowText.append("0");
             }
         }else if(id==R.id.lengthac){
-            lengthNowText.setText("0");
+            lengthUpText.setText("0");
+            lengthDownText.setText("0");
         }else if(id==R.id.lengthpoint){ //point需要特殊处理
             int i=-2;
             i=lengthNowText.getText().toString().indexOf(".");
@@ -76,6 +76,9 @@ public class LengthExchangeActivity extends AppCompatActivity {
             }
         }else if(id==R.id.lengthreturn){
            /*符串的回退处理*/
+            String str=lengthNowText.getText().toString();
+            str=str.substring(0,str.length()-1);
+            lengthNowText.setText(str);
         }
         try{
             lengthNowNum =Double.parseDouble(lengthNowText.getText().toString());
