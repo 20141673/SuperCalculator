@@ -1,42 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom">
-    <TableRow>
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="bottom">
+    <TableRow
+        android:layout_width="match_parent">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal">
-    <Spinner
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:id="@+id/spi_CurrencyType1">
-    </Spinner>
-        <TextView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:layout_gravity="right|fill_horizontal"
-            android:gravity="right"
-            android:text="元"
-            />
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_weight="1">
+            <Spinner
+                android:id="@+id/currencyupspinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/currencyuptext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="right|center_vertical"
+                android:clickable="true"
+                android:onClick="clickText"
+                android:text="0"
+                android:textSize="35dp"
+                android:ellipsize="start"
+                android:maxLines="1"/>
         </LinearLayout>
     </TableRow>
-    <TableRow>
-    <Spinner
-        android:layout_width="wrap_content"
-
-        android:id="@+id/spi_CurrencyType2">
-    </Spinner>
-        <TextView />
+    <TableRow><!--中线-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/skyBlue"
+            android:layout_weight="1"/>
     </TableRow>
     <TableRow>
-    <Spinner
-        android:layout_width="wrap_content"
-
-        android:id="@+id/spi_CurrencyType3">
-    </Spinner>
-        <TextView />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_weight="1">
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/currencydownspinner">
+            </Spinner>
+            <TextView
+                android:id="@+id/currencydowntext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="right|center_vertical"
+                android:clickable="true"
+                android:onClick="clickText"
+                android:text="0"
+                android:textSize="35dp"
+                android:ellipsize="start"
+                android:maxLines="1"/>
+        </LinearLayout>
     </TableRow>
     <TableLayout
         android:layout_width="match_parent"
@@ -47,26 +70,26 @@
                 <TableLayout>
                     <TableRow>
                         <Button
-                            android:id="@+id/exchangeRateSeven"
+                            android:id="@+id/currencyseven"
                             android:text="7"/>
                         <Button
-                            android:id="@+id/exchangeRateEight"
+                            android:id="@+id/currencyeight"
                             android:text="8"/>
                         <Button
-                            android:id="@+id/exchangeRateNine"
+                            android:id="@+id/currencynine"
                             android:text="9"
                             />
 
                     </TableRow>
                     <TableRow>
                         <Button
-                            android:id="@+id/exchangeRateFour"
+                            android:id="@+id/currencyfour"
                             android:text="4"/>
                         <Button
-                            android:id="@+id/exchangeRateFive"
+                            android:id="@+id/currencyfive"
                             android:text="5"/>
                         <Button
-                            android:id="@+id/exchangeRateSix"
+                            android:id="@+id/currencysix"
                             android:text="6"/>
                     </TableRow>
                 </TableLayout>
@@ -75,6 +98,7 @@
                     android:columnCount="1"
                     android:layout_height="match_parent">
                     <Button
+                        android:id="@+id/currencyac"
                         android:layout_gravity="fill"
                         android:text="C"
                         android:layout_height="fill_parent"/>
@@ -89,24 +113,24 @@
             <TableLayout>
                 <TableRow>
                     <Button
-                        android:id="@+id/exchangeRateOne"
+                        android:id="@+id/currencyone"
                         android:text="1"/>
                     <Button
-                        android:id="@+id/exchangeRateTwo"
+                        android:id="@+id/currencytwo"
                         android:text="2"/>
                     <Button
-                        android:id="@+id/exchangeRateThree"
+                        android:id="@+id/currencythree"
                         android:text="3"/>
                 </TableRow>
                 <TableRow>
                     <Button
-                        android:id="@+id/exchangeRateZero"
+                        android:id="@+id/currencyzero"
                         android:text="0"/>
                     <Button
-                        android:id="@+id/exchangeRateDoubleZero"
+                        android:id="@+id/currencydoublezero"
                         android:text="00"/>
                     <Button
-                        android:id="@+id/exchangeRatePoint"
+                        android:id="@+id/surrencypoint"
                         android:text="."/>
                 </TableRow>
             </TableLayout>
@@ -115,6 +139,7 @@
                 android:columnCount="1"
                 android:layout_height="match_parent">
                 <Button
+                    android:id="@+id/currencyreturn"
                     android:layout_gravity="fill"
                     android:text="@string/returnicon"
                     android:layout_height="fill_parent"/>

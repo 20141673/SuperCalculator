@@ -1,7 +1,7 @@
 package com.cqu.supercalculator;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
@@ -9,23 +9,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class ExchageRateActivity extends AppCompatActivity {
-    private Spinner exchangeSpinner1;
-    private Spinner exchangeSpinner2;
-    private Spinner exchangeSpinner3;
+    private Spinner currencyupspinner;
+    private Spinner currencydownspinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchangerate);
-        exchangeSpinner1 = (Spinner) findViewById(R.id.spi_CurrencyType1);
-        exchangeSpinner2 = (Spinner) findViewById(R.id.spi_CurrencyType2);
-        exchangeSpinner3 = (Spinner) findViewById(R.id.spi_CurrencyType3);
+        currencyupspinner = (Spinner) findViewById(R.id.currencyupspinner);
+        currencydownspinner = (Spinner) findViewById(R.id.currencydownspinner);
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, getListData(), R.layout.spinneritem, new String[]{"CurrencyPic", "CurrencyText"}, new int[]{R.id.ivCurrency, R.id.tvCurrency});
-        exchangeSpinner1.setAdapter(simpleAdapter);
-        exchangeSpinner2.setAdapter(simpleAdapter);
-        exchangeSpinner3.setAdapter(simpleAdapter);
+        currencyupspinner.setAdapter(simpleAdapter);
+        currencydownspinner.setAdapter(simpleAdapter);
     }
     public List<Map<String,Object>> getListData(){
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -47,5 +43,6 @@ public class ExchageRateActivity extends AppCompatActivity {
         list.add(map3);
         return list;
     }
+
 
 }
