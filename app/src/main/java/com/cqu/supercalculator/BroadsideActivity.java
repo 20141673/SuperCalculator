@@ -10,17 +10,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TabHost;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class BroadsideActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    //简单计算器计算结果字符串
+    private String strSimpleResult="";
+    private String strSimpleResultShow="";
+    private TextView tvSimpleRecord;
+    private TextView tvSimpleResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadside);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        initView();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,6 +112,112 @@ public class BroadsideActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void initView(){
+        tvSimpleRecord=(TextView)findViewById(R.id.simplerecord);
+        tvSimpleResult=(TextView)findViewById(R.id.simpleresult);
+    }
+    String strNum="";
+    String strop="";
+    boolean ifHavaSecond=false;
+    ArrayList num=new ArrayList();
 
+    public void clickButton(View v) {
+        int id = v.getId();
+        //String strTag= (String) v.getTag();
+        strSimpleResultShow+= ((Button) v).getText().toString();
+        tvSimpleRecord.setText(strSimpleResultShow);
 
+        if(v.getTag().equals("number")){
+            strNum+=((Button) v).getText().toString();
+        }
+        if(id==R.id.simplemultiply){
+            num.add(Double.parseDouble(strNum));
+            strNum="";
+            strop+="*";
+        }else if(id==R.id.simpledevide){
+            num.add(Double.parseDouble(strNum));
+            strNum="";
+            strop+="/";
+        }else if(id==R.id.simpleplus){
+            num.add(Double.parseDouble(strNum));
+            strNum="";
+            strop+="+";
+        }else if(id==R.id.simpleminus){
+            num.add(Double.parseDouble(strNum));
+            strNum="";
+            strop+="-";
+        }else if(id==R.id.simpleclear){
+            num.clear();
+            strNum="";
+            strSimpleResultShow="";
+            strop="";
+            tvSimpleResult.setText("");
+           tvSimpleRecord.setText("");
+        }
+        if(id==R.id.simpleequal){
+            num.add(Double.parseDouble(strNum));
+
+            while ((strop.indexOf("+")!=-1)||(strop.indexOf("-")!=-1)||(strop.indexOf("*")!=-1)||(strop.indexOf("/")!=-1)){
+                while ((strop.indexOf("*")!=-1)||(strop.indexOf("/")!=-1)){
+                    if(strop.indexOf("/")==-1){
+                        num.set(strop.indexOf("*"), (Double) num.get(strop.indexOf("*")) * (Double) num.get(strop.indexOf("*") + 1));
+                        num.remove(strop.indexOf("*") + 1);
+                        if (strop.indexOf("*") != 0) {
+                            strop = strop.substring(0, strop.indexOf("*")) + strop.substring(strop.indexOf("*") + 1);
+                        } else strop = strop.substring(strop.indexOf("*") + 1);
+                    }else if(strop.indexOf("*")==-1){
+                        num.set(strop.indexOf("/"), (Double) num.get(strop.indexOf("/")) / (Double) num.get(strop.indexOf("/") + 1));
+                        num.remove(strop.indexOf("/") + 1);
+                        if (strop.indexOf("/") != 0) {
+                            strop = strop.substring(0, strop.indexOf("/")) + strop.substring(strop.indexOf("/") + 1);
+                        } else strop = strop.substring(strop.indexOf("/") + 1);
+                    }
+                    if(strop.indexOf("*")>strop.indexOf("/")&&strop.indexOf("/")!=-1){
+                        num.set(strop.indexOf("/"), (Double) num.get(strop.indexOf("/")) / (Double) num.get(strop.indexOf("/") + 1));
+                        num.remove(strop.indexOf("/") + 1);
+                        if (strop.indexOf("/") != 0) {
+                            strop = strop.substring(0, strop.indexOf("/")) + strop.substring(strop.indexOf("/") + 1);
+                        } else strop = strop.substring(strop.indexOf("/") + 1);
+                    }else if(strop.indexOf("*")<strop.indexOf("/")&&strop.indexOf("*")!=-1){
+                        num.set(strop.indexOf("*"), (Double) num.get(strop.indexOf("*")) * (Double) num.get(strop.indexOf("*") + 1));
+                        num.remove(strop.indexOf("*") + 1);
+                        if (strop.indexOf("*") != 0) {
+                            strop = strop.substring(0, strop.indexOf("*")) + strop.substring(strop.indexOf("*") + 1);
+                        } else strop = strop.substring(strop.indexOf("*") + 1);
+                    }
+
+                }
+                while ((strop.indexOf("+")!=-1)||(strop.indexOf("-")!=-1)){
+                    if(strop.indexOf("-")==-1){
+                        num.set(strop.indexOf("+"), (Double) num.get(strop.indexOf("+")) + (Double) num.get(strop.indexOf("+") + 1));
+                        num.remove(strop.indexOf("+") + 1);
+                        if(strop.indexOf("+")!=0){
+                            strop = strop.substring(0, strop.indexOf("+")) + strop.substring(strop.indexOf("+") + 1);
+                        } else strop = strop.substring(1);
+                    }else if(strop.indexOf("+")==-1){
+                        num.set(strop.indexOf("-"), (Double) num.get(strop.indexOf("-")) - (Double) num.get(strop.indexOf("-") + 1));
+                        num.remove(strop.indexOf("-") + 1);
+                        if (strop.indexOf("-") != 0) {
+                            strop = strop.substring(0, strop.indexOf("-")) + strop.substring(strop.indexOf("-") + 1);
+                        } else strop = strop.substring(strop.indexOf("-") + 1);
+                    }
+                    if(strop.indexOf("+")>strop.indexOf("-")&&strop.indexOf("-")!=-1){
+                        num.set(strop.indexOf("-"), (Double) num.get(strop.indexOf("-")) - (Double) num.get(strop.indexOf("-") + 1));
+                        num.remove(strop.indexOf("-") + 1);
+                        if (strop.indexOf("-") != 0) {
+                            strop = strop.substring(0, strop.indexOf("-")) + strop.substring(strop.indexOf("-") + 1);
+                        } else strop = strop.substring(strop.indexOf("-") + 1);
+                    }else if(strop.indexOf("+")<strop.indexOf("-")&&strop.indexOf("+")!=-1){
+                        num.set(strop.indexOf("+"), (Double) num.get(strop.indexOf("+")) + (Double) num.get(strop.indexOf("+") + 1));
+                        num.remove(strop.indexOf("+") + 1);
+                        if(strop.indexOf("+")!=0){
+                            strop = strop.substring(0, strop.indexOf("+")) + strop.substring(strop.indexOf("+") + 1);
+                        } else strop = strop.substring(1);
+                    }
+
+                }
+            }
+            tvSimpleResult.setText((String)num.get(0).toString());
+        }
+    }
 }
