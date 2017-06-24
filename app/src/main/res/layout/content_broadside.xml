@@ -11,7 +11,6 @@
     tools:showIn="@layout/app_bar_broadside">
 
     <TabHost
-
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -22,7 +21,6 @@
             android:layout_width="363dp"
             android:layout_height="wrap_content"
             android:background="@color/tabGray"
-
             android:gravity="center"
             tools:layout_editor_absoluteX="-2dp"
             tools:layout_editor_absoluteY="80dp"/>
@@ -38,7 +36,6 @@
                 layout="@layout/content_simplelayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-
                 />
 
             <include
