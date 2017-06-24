@@ -93,13 +93,24 @@ public class LengthExchangeActivity extends AppCompatActivity {
 
     public void clickButton(View v){
         int id=v.getId();
-
         if(lengthNowText.getText().toString().equals("0")){  //如果第一位是0，消除第一位
             lengthNowText.setText("");
         }
-        if(id==R.id.lengthac){                 //AC键的特殊判断
+        if(id==R.id.lengthac){                 //AC键和回退键的特殊判断
             lengthUpText.setText("0");
             lengthDownText.setText("0");
+        }else if(id==R.id.lengthreturn){
+           /*字符串的回退处理*/
+           if(lengthNowText.getText().toString().equals("")){
+               lengthNowText.setText("0");
+           }else{
+               String str=lengthNowText.getText().toString();
+               str=str.substring(0,str.length()-1);
+               lengthNowText.setText(str);
+               if(lengthNowText.getText().toString().equals("")){   //防止回退键将字符串设为空值
+                   lengthNowText.setText("0");
+               }
+           }
         }
         if(lengthNowText.length()>=10){
             id=0;
@@ -130,14 +141,6 @@ public class LengthExchangeActivity extends AppCompatActivity {
             i=lengthNowText.getText().toString().indexOf(".");
             if(i<0){
                 lengthNowText.append(".");
-            }
-        }else if(id==R.id.lengthreturn){
-           /*符串的回退处理*/
-            String str=lengthNowText.getText().toString();
-            str=str.substring(0,str.length()-1);
-            lengthNowText.setText(str);
-            if(lengthNowText.getText().toString().equals("")){   //防止回退键将字符串设为空值
-                lengthNowText.setText("0");
             }
         }
         try{
