@@ -22,9 +22,15 @@ public class BroadsideActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     //简单计算器计算结果字符串
     private String strSimpleResult="";
+    //保存
     private String strSimpleResultShow="";
     private TextView tvSimpleRecord;
     private TextView tvSimpleResult;
+    String strNum="";
+    String strNumTemp="";
+    String strop="";
+    ArrayList num=new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,10 +122,6 @@ public class BroadsideActivity extends AppCompatActivity
         tvSimpleRecord=(TextView)findViewById(R.id.simplerecord);
         tvSimpleResult=(TextView)findViewById(R.id.simpleresult);
     }
-    String strNum="";
-    String strop="";
-    boolean ifHavaSecond=false;
-    ArrayList num=new ArrayList();
 
     public void clickButton(View v) {
         int id = v.getId();
@@ -127,23 +129,44 @@ public class BroadsideActivity extends AppCompatActivity
         strSimpleResultShow+= ((Button) v).getText().toString();
         tvSimpleRecord.setText(strSimpleResultShow);
 
+
         if(v.getTag().equals("number")){
             strNum+=((Button) v).getText().toString();
+        }else if(v.getTag().equals("percent")){
+            Double dtemp=Double.parseDouble(strNum)*0.01;
+            strNum=dtemp.toString();
+        }else if(v.getTag().equals("return")){
+            String strBeDeleted=strSimpleResultShow.substring(strSimpleResultShow.length()-3,strSimpleResultShow.length()-2);
+            strSimpleResultShow=strSimpleResultShow.substring(0,strSimpleResultShow.length()-3);
+            tvSimpleRecord.setText(strSimpleResultShow);
+            if(strBeDeleted.equals("+")||strBeDeleted.equals("-")||strBeDeleted.equals("÷")||strBeDeleted.equals("×")){
+                strop=strop.substring(0,strop.length()-1);
+                strNum=strNumTemp;
+                num.remove(num.size()-1);
+                tvSimpleResult.setText(strNum);
+            } else {
+                strNum = strNum.substring(0, strNum.length() - 1);
+            }
+
         }
         if(id==R.id.simplemultiply){
             num.add(Double.parseDouble(strNum));
+            strNumTemp=strNum;
             strNum="";
             strop+="*";
         }else if(id==R.id.simpledevide){
             num.add(Double.parseDouble(strNum));
+            strNumTemp=strNum;
             strNum="";
             strop+="/";
         }else if(id==R.id.simpleplus){
             num.add(Double.parseDouble(strNum));
+            strNumTemp=strNum;
             strNum="";
             strop+="+";
         }else if(id==R.id.simpleminus){
             num.add(Double.parseDouble(strNum));
+            strNumTemp=strNum;
             strNum="";
             strop+="-";
         }else if(id==R.id.simpleclear){
@@ -152,7 +175,7 @@ public class BroadsideActivity extends AppCompatActivity
             strSimpleResultShow="";
             strop="";
             tvSimpleResult.setText("");
-           tvSimpleRecord.setText("");
+            tvSimpleRecord.setText("");
         }
         if(id==R.id.simpleequal){
             num.add(Double.parseDouble(strNum));
@@ -218,6 +241,12 @@ public class BroadsideActivity extends AppCompatActivity
                 }
             }
             tvSimpleResult.setText((String)num.get(0).toString());
+
+            num.clear();
+            strNum="";
+            strSimpleResultShow="";
+            strop="";
+
         }
     }
 }
