@@ -25,7 +25,7 @@
     <TableRow>
     <Spinner
         android:layout_width="wrap_content"
-        android:entries="@array/CurrencyType"
+
         android:id="@+id/spi_CurrencyType2">
     </Spinner>
         <TextView />
@@ -33,7 +33,7 @@
     <TableRow>
     <Spinner
         android:layout_width="wrap_content"
-        android:entries="@array/CurrencyType"
+
         android:id="@+id/spi_CurrencyType3">
     </Spinner>
         <TextView />
