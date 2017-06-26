@@ -14,7 +14,8 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/><!--这里设置了在桌面上的名称-->
+
+                <category android:name="android.intent.category.LAUNCHER"/> <!-- 这里设置了在桌面上的名称 -->
             </intent-filter>
         </activity>
         <activity
@@ -25,6 +26,10 @@
         <activity
             android:name=".LengthExchangeActivity"
             android:label="长度转换"
+            android:parentActivityName=".BroadsideActivity">
+        </activity>
+        <activity android:name=".RelativesCallActivity"
+            android:label="亲戚称呼"
             android:parentActivityName=".BroadsideActivity">
         </activity>
     </application>

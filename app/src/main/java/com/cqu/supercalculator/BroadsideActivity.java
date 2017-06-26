@@ -16,7 +16,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class BroadsideActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -112,7 +111,8 @@ public class BroadsideActivity extends AppCompatActivity
         } else if (id == R.id.nav_personincometax) {
 
         } else if (id == R.id.nav_relativescall) {
-
+            Intent intent=new Intent(BroadsideActivity.this,RelativesCallActivity.class);
+            BroadsideActivity.this.startActivity(intent);
         }else if(id==R.id.nav_lengthexchange){
             Intent intent=new Intent(BroadsideActivity.this,LengthExchangeActivity.class);
             BroadsideActivity.this.startActivity(intent);
