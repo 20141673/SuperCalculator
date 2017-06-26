@@ -2,6 +2,7 @@ package com.cqu.supercalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
@@ -44,5 +45,7 @@ public class ExchageRateActivity extends AppCompatActivity {
         return list;
     }
 
+    public void clickText(View v){
 
+    }
 }
