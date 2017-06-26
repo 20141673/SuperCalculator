@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/science"
+            android:id="@+id/sciencerecord"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="practice"
@@ -20,7 +20,7 @@
 
     <TableRow>
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/scienceresult"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="right"
@@ -35,18 +35,22 @@
             android:text="@string/pi"/>
         <Button
             android:id="@+id/scienceleftbracket"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="("/>
         <Button
             android:id="@+id/sciencerightbracket"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text=")"/>
         <Button
             android:id="@+id/sciencepercent"
+            android:tag="SciencePercent"
             android:layout_weight="1"
             android:text="%"/>
         <Button
             android:id="@+id/scienceclear"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="C"/>
 
@@ -54,110 +58,135 @@
     <TableRow>
         <Button
             android:id="@+id/sciencesin"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="@string/sin"/>
         <Button
             android:id="@+id/sciencesquareroot"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="√"/>
         <Button
-            android:id="@+id/sciencesquaretwo"
+            android:id="@+id/sciencesquare"
+            android:tag="ScienceOP"
             android:layout_weight="1"
-            android:text="^2"/>
+            android:text="^"/>
         <Button
-            android:id="@+id/sciencesquarex"
+            android:id="@+id/sciencereturn"
+            android:tag="ScienceReturn"
             android:layout_weight="1"
-            android:text="^x"/>
+            android:text="@string/returnicon"/>
         <Button
             android:id="@+id/sciencedevide"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="/"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/sciencecos"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="@string/cos"/>
         <Button
             android:id="@+id/scienceseven"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="7"/>
         <Button
             android:id="@+id/scienceeight"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="8"/>
         <Button
             android:id="@+id/sciencenine"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="9"/>
         <Button
             android:id="@+id/sciencemultiply"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="*"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/sciencetan"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="@string/tan"/>
         <Button
             android:id="@+id/sciencefour"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="4"/>
         <Button
             android:id="@+id/sciencefive"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="5"/>
         <Button
             android:id="@+id/sciencesix"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="6"/>
         <Button
             android:id="@+id/scienceminus"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="-"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/scienceln"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="@string/ln"/>
         <Button
             android:id="@+id/scienceone"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="1"/>
         <Button
             android:id="@+id/sciencetwo"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="2"/>
         <Button
             android:id="@+id/sciencethree"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="3"/>
         <Button
             android:id="@+id/scienceplus"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="+"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/sciencelg"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="@string/lg"/>
         <Button
             android:id="@+id/sciencee"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="@string/e"/>
         <Button
             android:id="@+id/sciencezero"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="0"/>
         <Button
             android:id="@+id/sciencepoint"
+            android:tag="ScienceNumber"
             android:layout_weight="1"
             android:text="."/>
         <Button
             android:id="@+id/scienceequal"
+            android:tag="ScienceOP"
             android:layout_weight="1"
             android:text="="/>
     </TableRow>

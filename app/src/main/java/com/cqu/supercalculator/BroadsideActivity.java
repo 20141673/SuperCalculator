@@ -37,6 +37,21 @@ public class BroadsideActivity extends AppCompatActivity
     //保存所有操作数的数组
     ArrayList simpleNum=new ArrayList();
 
+    //保存显示结果字符串
+    private String strScienceResultShow="";
+    //显示计算过程
+    private TextView tvScienceRecord;
+    //显示计算结果
+    private TextView tvScienceResult;
+    //保存当时操作数
+    String strScienceNum="";
+    //暂存操作数
+    String strScienceNumTemp="";
+    //保存所有操作符的字符串
+    String strScienceOP="";
+    //保存所有操作数的数组
+    ArrayList ScienceNum=new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +144,8 @@ public class BroadsideActivity extends AppCompatActivity
     public void initView(){
         tvSimpleRecord=(TextView)findViewById(R.id.simplerecord);
         tvSimpleResult=(TextView)findViewById(R.id.simpleresult);
+        tvScienceRecord=(TextView)findViewById(R.id.sciencerecord);
+        tvScienceResult=(TextView)findViewById(R.id.scienceresult);
     }
 //计算器的按键的响应函数
     public void clickButton(View v) {
@@ -138,16 +155,16 @@ public class BroadsideActivity extends AppCompatActivity
         tvSimpleRecord.setText(strSimpleResultShow);
 
 
-        if(v.getTag().equals("number")){
+        if(v.getTag().equals("SimpleNumber")){
             //当按键的标签为number时，把按键的text加入到strSimpleNum
             strSimpleNum+=((Button) v).getText().toString();
-        }else if(v.getTag().equals("percent")){
+        }else if(v.getTag().equals("SimplePercent")){
             if(!strSimpleNum.equals("")) {
                 //当按键的标签为percent时，把strSimpleNum转化为double后乘以0.01后再存入strSimpleNum
                 Double dtemp = Double.parseDouble(strSimpleNum) * 0.01;
                 strSimpleNum = dtemp.toString();
             }
-        }else if(v.getTag().equals("return")){
+        }else if(v.getTag().equals("SimpleReturn")){
             //当按键的标签为return时
             //用strBeDeleted保存被删除的字符
             String strBeDeleted=strSimpleResultShow.substring(strSimpleResultShow.length()-3,strSimpleResultShow.length()-2);
@@ -170,7 +187,7 @@ public class BroadsideActivity extends AppCompatActivity
         }
 
         if(id==R.id.simpleminus){
-            if(simpleNum.isEmpty()) {
+            if(simpleNum.isEmpty()&&strSimpleNum.equals("")) {
                 strSimpleNum+=((Button) v).getText().toString();
             }else{
                 simpleNum.add(Double.parseDouble(strSimpleNum));
@@ -179,7 +196,7 @@ public class BroadsideActivity extends AppCompatActivity
                 strSimpleOP += "-";
             }
         }
-        if(!strSimpleNum.equals("")) {
+        if(!strSimpleResultShow.equals("+")&&!strSimpleResultShow.equals("×")&&!strSimpleResultShow.equals("÷")) {
             if (id == R.id.simplemultiply) {
                 if (!strSimpleNum.equals("")) {
                     //按下乘键时的响应程序
@@ -309,5 +326,4 @@ public class BroadsideActivity extends AppCompatActivity
             tvSimpleRecord.setText(strSimpleResultShow);
         }
     }
-
 }

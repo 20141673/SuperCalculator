@@ -23,7 +23,7 @@
             android:text="C"/>
         <Button
             android:id="@+id/simplereturn"
-            android:tag="return"
+            android:tag="SimpleReturn"
             android:onClick="clickButton"
             android:text="@string/returnicon"/>
         <Button
@@ -34,24 +34,24 @@
 
         <Button
             android:id="@+id/simplemultiply"
-            android:tag="op"
+            android:tag="SimpleOP"
             android:onClick="clickButton"
             android:text="×"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/simpleseven"
-            android:tag="number"
+            android:tag="SimpleNumber"
             android:onClick="clickButton"
             android:text="7"/>
         <Button
             android:id="@+id/simpleeight"
-            android:tag="number"
+            android:tag="SimpleNumber"
             android:onClick="clickButton"
             android:text="8"/>
         <Button
             android:id="@+id/simplenine"
-            android:tag="number"
+            android:tag="SimpleNumber"
             android:onClick="clickButton"
             android:text="9"/>
         <Button
@@ -63,17 +63,17 @@
     <TableRow>
         <Button
             android:id="@+id/simplefour"
-            android:tag="number"
+            android:tag="SimpleNumber"
             android:onClick="clickButton"
             android:text="4"/>
         <Button
             android:id="@+id/simplefive"
-            android:tag="number"
+            android:tag="SimpleNumber"
             android:onClick="clickButton"
             android:text="5"/>
         <Button
             android:id="@+id/simplesix"
-            android:tag="number"
+            android:tag="SimpleNumber"
             android:onClick="clickButton"
             android:text="6"/>
         <Button
@@ -88,17 +88,17 @@
                 <TableRow>
                     <Button
                         android:id="@+id/simpleone"
-                        android:tag="number"
+                        android:tag="SimpleNumber"
                         android:onClick="clickButton"
                         android:text="1"/>
                     <Button
                         android:id="@+id/simpletwo"
-                        android:tag="number"
+                        android:tag="SimpleNumber"
                         android:onClick="clickButton"
                         android:text="2"/>
                     <Button
                         android:id="@+id/simplethree"
-                        android:tag="number"
+                        android:tag="SimpleNumber"
                         android:onClick="clickButton"
                         android:text="3"/>
 
@@ -106,17 +106,17 @@
                 <TableRow>
                     <Button
                         android:id="@+id/simplepercent"
-                        android:tag="percent"
+                        android:tag="SimplePercent"
                         android:onClick="clickButton"
                         android:text="%"/>
                     <Button
                         android:id="@+id/simplezero"
-                        android:tag="number"
+                        android:tag="SimpleNumber"
                         android:onClick="clickButton"
                         android:text="0"/>
                     <Button
                         android:id="@+id/simplepoint"
-                        android:tag="number"
+                        android:tag="SimpleNumber"
                         android:onClick="clickButton"
                         android:text="."/>
                 </TableRow>
