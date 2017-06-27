@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cqu.supercalculator.HouseLoanActivity">
+    <TabHost
+        android:id="@+id/houseloantabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">  <!--LinearLayout用于解决显示重叠的问题-->
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tabGray"/>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                android:id="@+id/commerciallayout"
+                layout="@layout/content_houseloan_commercial"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                />
+            <include
+                android:id="@+id/providentfundlayout"
+                layout="@layout/content_houseloan_providentfund"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                />
+            <include
+                android:id="@+id/mixlayout"
+                layout="@layout/content_houseloan_mix"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                />
+        </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</LinearLayout>

@@ -17,6 +17,6 @@ public class RelativesCallActivity extends AppCompatActivity {
 
     public void clickButton(View v){
         int id=v.getId();
-
+        
     }
 }

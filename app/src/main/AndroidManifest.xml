@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.cqu.supercalculator">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -29,10 +30,21 @@
             android:label="长度转换"
             android:parentActivityName=".BroadsideActivity">
         </activity>
-        <activity android:name=".RelativesCallActivity"
+        <activity
+            android:name=".RelativesCallActivity"
             android:label="亲戚称呼"
             android:parentActivityName=".BroadsideActivity">
         </activity>
+        <activity
+            android:name=".HouseLoanActivity"
+            android:label="房贷计算"
+            android:parentActivityName=".BroadsideActivity">
+        </activity>
+        <activity
+            android:name=".HouseLoanResultActivity"
+            android:label="房贷计算结果"
+            android:parentActivityName=".HouseLoanActivity">
+        </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

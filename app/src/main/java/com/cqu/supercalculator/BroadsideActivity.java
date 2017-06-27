@@ -101,13 +101,13 @@ public class BroadsideActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_exchagerate) {
             // Handle the camera action
             Intent intent=new Intent(BroadsideActivity.this,ExchageRateActivity.class);
             BroadsideActivity.this.startActivity(intent);
         } else if (id == R.id.nav_houseloan) {
-
+            Intent intent=new Intent(BroadsideActivity.this,HouseLoanActivity.class);
+            BroadsideActivity.this.startActivity(intent);
         } else if (id == R.id.nav_personincometax) {
 
         } else if (id == R.id.nav_relativescall) {
