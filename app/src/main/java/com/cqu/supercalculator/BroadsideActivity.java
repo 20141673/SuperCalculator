@@ -359,8 +359,10 @@ public void clickButton(View v) {
     }
     /********************************试验代码02****************************************************/
 }
+//递归解决括号问题
     public String ResolveBracket(String str){
-
+        //判断是否传入的字符串中是否含有括号，如果有则将最里面的括号中的字符串用ResolveJJCC处理得到运算结果字符串，并去掉最里面的括号
+        // 直到字符串中没有字符串则跳出while
         while(str.indexOf("(")!=-1){
             String strTemp=str.substring(str.lastIndexOf("(")+1,str.indexOf(")"));
             str=str.substring(0,str.lastIndexOf("("))+ResolveJJCC(strTemp)+str.substring(str.indexOf(")")+1,str.length());
@@ -369,24 +371,36 @@ public void clickButton(View v) {
        str=ResolveJJCC(str);
         return str;
     }
+    //存储科学计算器的操作数
     ArrayList numList=new ArrayList();
+    //实现运算功能
     public  String ResolveJJCC(String str){
-        String Test="";
+        //保存最终结果
+        String FinalResult="";
+        //保存操作符
         String strop="";
+        //保存操作数字符串
         String strnum="";
+        //记录操作数的起点
         int lastLocation=-1;
+        //调用IsOP函数，得到操作数字符串
         for(int i=0;i<str.length();i++){
             if(IsOP(str.charAt(i))>=0){
                 strop+=str.charAt(i);
             }
         }
+        //得到操作数，并将其保存在numList里
         for(int i=0;i<str.length();i++){
+            //找到被操作符分割的操作数
             if(IsOP(str.charAt(i))>=0){
                 if(IsOP(str.charAt(i))==0) {
+                    //当操作符为双目运算符时
+                    //将操作符之前的操作数的字符串
                     strnum = str.substring(lastLocation + 1, i);
                     try{
-                        numList.add(Double.parseDouble(strnum));
+                        numList.add(Double.parseDouble(strnum));//将字符串转化为Double并存入numList
                     }catch (Exception e){
+                        //如果遇到异常，则判断操作数中是否存在%，或操作数是否是，PI或E
                         if((strnum.charAt(strnum.length()-1))=='%'){
                             strnum=strnum.substring(0,strnum.length()-1);
                             numList.add(Double.parseDouble(strnum)*0.01);
@@ -399,7 +413,7 @@ public void clickButton(View v) {
                 }
                     lastLocation = i;
 
-           }else if(i==str.length()-1){
+           }else if(i==str.length()-1){//找到最后一个操作数
                strnum=str.substring(lastLocation+1,i+1);
                 try{
                     numList.add(Double.parseDouble(strnum));
@@ -416,37 +430,44 @@ public void clickButton(View v) {
            }
         }
 
-
+        /*************************************************************处理运算逻辑************************************************************/
+        //处理sin()逻辑
         while ((strop.indexOf("s") != -1)){
             Double dTemp=Math.sin((Double)numList.get(strop.indexOf("s")));
             numList.set(strop.indexOf("s"),dTemp);
             strop=strop.substring(0,strop.indexOf("s"))+strop.substring(strop.indexOf("s")+1,strop.length());
         }
+        //处理cos()逻辑
         while ((strop.indexOf("c") != -1)){
             Double dTemp=Math.cos((Double)numList.get(strop.indexOf("c")));
             numList.set(strop.indexOf("c"),dTemp);
             strop=strop.substring(0,strop.indexOf("c"))+strop.substring(strop.indexOf("c")+1,strop.length());
         }
+        //处理tan()逻辑
         while ((strop.indexOf("t") != -1)){
             Double dTemp=Math.tan((Double)numList.get(strop.indexOf("t")));
             numList.set(strop.indexOf("t"),dTemp);
             strop=strop.substring(0,strop.indexOf("t"))+strop.substring(strop.indexOf("t")+1,strop.length());
         }
+        //处理ln()逻辑
         while ((strop.indexOf("n") != -1)){
             Double dTemp=Math.log((Double)numList.get(strop.indexOf("n")));
             numList.set(strop.indexOf("n"),dTemp);
             strop=strop.substring(0,strop.indexOf("n"))+strop.substring(strop.indexOf("n")+1,strop.length());
         }
+        //处理lg()逻辑
         while ((strop.indexOf("g") != -1)){
             Double dTemp=Math.log((Double)numList.get(strop.indexOf("g")))/Math.log(10);
             numList.set(strop.indexOf("g"),dTemp);
             strop=strop.substring(0,strop.indexOf("g"))+strop.substring(strop.indexOf("n")+1,strop.length());
         }
+        //处理开平方逻辑
         while ((strop.indexOf("q") != -1)){
             Double dTemp=Math.sqrt((Double)numList.get(strop.indexOf("q")));
             numList.set(strop.indexOf("q"),dTemp);
             strop=strop.substring(0,strop.indexOf("q"))+strop.substring(strop.indexOf("q")+1,strop.length());
         }
+        //处理乘方逻辑
         while ((strop.indexOf("^") != -1)) {
             Double dTemp=1.0;
             for(int i=0;i<(Double)numList.get(strop.indexOf("^")+1);i++){
@@ -456,6 +477,8 @@ public void clickButton(View v) {
             numList.remove(strop.indexOf("^")+1);
             strop=strop.substring(0,strop.indexOf("^"))+strop.substring(strop.indexOf("^")+1,strop.length());
         }
+        //处理四则运算逻辑
+        //先处理乘除逻辑
         while ((strop.indexOf("*") != -1) || (strop.indexOf("/") != -1)) {
           for(int i=0;i<strop.length();i++){
               switch (strop.charAt(i)){
@@ -473,6 +496,7 @@ public void clickButton(View v) {
               }
           }
         }
+        //处理完乘除逻辑后再处理加减逻辑
         while ((strop.indexOf("+") != -1) || (strop.indexOf("-") != -1)) {
             for(int i=0;i<strop.length();i++){
                 switch (strop.charAt(i)){
@@ -490,15 +514,17 @@ public void clickButton(View v) {
                 }
             }
         }
-
-        Test=numList.get(0).toString();
+        //得到最终结果的字符串表示
+        FinalResult=numList.get(0).toString();
         //Test= stringTokenizer.nextToken();
         //Test=((Integer)stringTokenizer.countTokens()).toString();
         //Test=strnum;
         //Test=strop;
+        //清除numList中保存的操作数
         numList.clear();
-        return Test;
+        return FinalResult;
     }
+    //判断是否是操作符，并判断操作符是单目运算符，还是双目运算符
     public int IsOP(char c){
        int judge=-1;
         switch (c){
