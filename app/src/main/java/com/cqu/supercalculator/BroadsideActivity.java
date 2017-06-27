@@ -342,10 +342,10 @@ public void clickButton(View v) {
         tvScienceRecord.setText(strScienceResultShow);
         strScienceResult += v.getTag().toString().replace("Science", "");
         if(id==R.id.scienceequal) {
+            //strScienceResult="2^4";
             //tvScienceResult.setText(strScienceResult);
             tvScienceResult.setText(ResolveBracket(strScienceResult));
         }
-
     }
     /********************************试验代码02****************************************************/
 }
@@ -366,22 +366,48 @@ public void clickButton(View v) {
         String strnum="";
         int lastLocation=-1;
         for(int i=0;i<str.length();i++){
-            if(str.charAt(i)=='*'||str.charAt(i)=='/'||str.charAt(i)=='+'||str.charAt(i)=='-'){
+            if(IsOP(str.charAt(i))>=0){
                 strop+=str.charAt(i);
             }
         }
         for(int i=0;i<str.length();i++){
-            if((str.charAt(i)=='*'||str.charAt(i)=='/')||str.charAt(i)=='+'||str.charAt(i)=='-'){
-                strnum=str.substring(lastLocation+1,i);
-                numList.add(Double.parseDouble(strnum));
-               lastLocation=i;
+            if(IsOP(str.charAt(i))>=0){
+                if(IsOP(str.charAt(i))==0) {
+                    strnum = str.substring(lastLocation + 1, i);
+                    numList.add(Double.parseDouble(strnum));
+                }
+                    lastLocation = i;
+
            }else if(i==str.length()-1){
                strnum=str.substring(lastLocation+1,i+1);
                numList.add(Double.parseDouble(strnum));
            }
         }
+        while ((strop.indexOf("s") != -1)){
+            Double dTemp=Math.sin((Double)numList.get(strop.indexOf("s")));
+            numList.set(strop.indexOf("s"),dTemp);
+            strop=strop.substring(0,strop.indexOf("s"))+strop.substring(strop.indexOf("s")+1,strop.length());
+        }
+        while ((strop.indexOf("c") != -1)){
+            Double dTemp=Math.cos((Double)numList.get(strop.indexOf("c")));
+            numList.set(strop.indexOf("c"),dTemp);
+            strop=strop.substring(0,strop.indexOf("c"))+strop.substring(strop.indexOf("c")+1,strop.length());
+        }
+        while ((strop.indexOf("t") != -1)){
+            Double dTemp=Math.tan((Double)numList.get(strop.indexOf("t")));
+            numList.set(strop.indexOf("t"),dTemp);
+            strop=strop.substring(0,strop.indexOf("t"))+strop.substring(strop.indexOf("t")+1,strop.length());
+        }
 
-
+        while ((strop.indexOf("^") != -1)) {
+            Double dTemp=1.0;
+            for(int i=0;i<(Double)numList.get(strop.indexOf("^")+1);i++){
+                dTemp=dTemp*(Double)numList.get(strop.indexOf("^"));
+            }
+            numList.set(strop.indexOf("^"),dTemp);
+            numList.remove(strop.indexOf("^")+1);
+            strop=strop.substring(0,strop.indexOf("^"))+strop.substring(strop.indexOf("^")+1,strop.length());
+        }
         while ((strop.indexOf("*") != -1) || (strop.indexOf("/") != -1)) {
           for(int i=0;i<strop.length();i++){
               switch (strop.charAt(i)){
@@ -416,6 +442,7 @@ public void clickButton(View v) {
                 }
             }
         }
+
         Test=numList.get(0).toString();
         //Test= stringTokenizer.nextToken();
         //Test=((Integer)stringTokenizer.countTokens()).toString();
@@ -423,5 +450,20 @@ public void clickButton(View v) {
         //Test=strop;
         numList.clear();
         return Test;
+    }
+    public int IsOP(char c){
+       int judge=-1;
+        switch (c){
+            case '+':judge=0;break;
+            case '-':judge=0;break;
+            case '*':judge=0;break;
+            case '/':judge=0;break;
+            case '^':judge=0;break;
+            case 's':judge=1;break;
+            case 'c':judge=1;break;
+            case 't':judge=1;break;
+            case 'n':judge=1;break;
+        }
+        return judge;
     }
 }

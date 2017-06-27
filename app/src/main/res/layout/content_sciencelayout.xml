@@ -31,6 +31,7 @@
     <TableRow>
         <Button
             android:id="@+id/sciencepi"
+            android:tag="Science3.14159"
             android:layout_weight="1"
             android:text="@string/pi"/>
         <Button
@@ -63,7 +64,7 @@
         <Button
             android:id="@+id/sciencesin"
             android:onClick="clickButton"
-            android:tag="ScienceOP"
+            android:tag="Sciences"
             android:layout_weight="1"
             android:text="@string/sin"/>
         <Button
@@ -74,7 +75,7 @@
             android:text="√"/>
         <Button
             android:id="@+id/sciencesquare"
-            android:tag="ScienceOP"
+            android:tag="Science^"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="^"/>
@@ -94,7 +95,7 @@
     <TableRow>
         <Button
             android:id="@+id/sciencecos"
-            android:tag="ScienceOP"
+            android:tag="Sciencec"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="@string/cos"/>
@@ -126,13 +127,13 @@
     <TableRow>
         <Button
             android:id="@+id/sciencetan"
-            android:tag="ScienceOP"
+            android:tag="Sciencet"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="@string/tan"/>
         <Button
             android:id="@+id/sciencefour"
-            android:tag="ScienceNumber"
+            android:tag="Science4"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="4"/>
@@ -158,7 +159,7 @@
     <TableRow>
         <Button
             android:id="@+id/scienceln"
-            android:tag="ScienceOP"
+            android:tag="Sciencen"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="@string/ln"/>
@@ -190,7 +191,7 @@
     <TableRow>
         <Button
             android:id="@+id/sciencelg"
-            android:tag="ScienceOP"
+            android:tag="Scienceg"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="@string/lg"/>
