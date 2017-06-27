@@ -341,7 +341,17 @@ public void clickButton(View v) {
         strScienceResultShow+=((Button)v).getText().toString();
         tvScienceRecord.setText(strScienceResultShow);
         strScienceResult += v.getTag().toString().replace("Science", "");
-        if(id==R.id.scienceequal) {
+        if(id==R.id.sciencereturn){
+            strScienceResultShow=strScienceResultShow.substring(0,strScienceResultShow.length()-3);
+            strScienceResult=strScienceResult.substring(0,strScienceResult.length()-1);
+            tvScienceRecord.setText(strScienceResultShow);
+        }else if(id==R.id.scienceclear){
+            strScienceResultShow="";
+            strScienceResult="";
+            tvScienceResult.setText(strScienceResult);
+            tvScienceRecord.setText(strScienceResultShow);
+            numList.clear();
+        }else if(id==R.id.scienceequal) {
             //strScienceResult="pi";
             //tvScienceResult.setText(strScienceResult);
             tvScienceResult.setText(ResolveBracket(strScienceResult));

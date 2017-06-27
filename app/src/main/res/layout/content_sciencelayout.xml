@@ -82,7 +82,7 @@
             android:text="^"/>
         <Button
             android:id="@+id/sciencereturn"
-            android:tag="ScienceReturn"
+            android:tag="Science"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="@string/returnicon"/>
