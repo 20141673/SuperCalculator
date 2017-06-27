@@ -21,6 +21,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="fill_horizontal"
                 android:gravity="right|center_vertical"
+                android:textColor="@color/skyBlue"
                 android:text="0"
                 android:textSize="35dp"
                 android:ellipsize="start"
@@ -67,12 +68,15 @@
                     <TableRow>
                         <Button
                             android:id="@+id/currencyseven"
+                            android:onClick="clickButton"
                             android:text="7"/>
                         <Button
                             android:id="@+id/currencyeight"
+                            android:onClick="clickButton"
                             android:text="8"/>
                         <Button
                             android:id="@+id/currencynine"
+                            android:onClick="clickButton"
                             android:text="9"
                             />
 
@@ -80,12 +84,15 @@
                     <TableRow>
                         <Button
                             android:id="@+id/currencyfour"
+                            android:onClick="clickButton"
                             android:text="4"/>
                         <Button
                             android:id="@+id/currencyfive"
+                            android:onClick="clickButton"
                             android:text="5"/>
                         <Button
                             android:id="@+id/currencysix"
+                            android:onClick="clickButton"
                             android:text="6"/>
                     </TableRow>
                 </TableLayout>
@@ -110,23 +117,28 @@
                 <TableRow>
                     <Button
                         android:id="@+id/currencyone"
+                        android:onClick="clickButton"
                         android:text="1"/>
                     <Button
                         android:id="@+id/currencytwo"
+                        android:onClick="clickButton"
                         android:text="2"/>
                     <Button
                         android:id="@+id/currencythree"
+                        android:onClick="clickButton"
                         android:text="3"/>
                 </TableRow>
                 <TableRow>
                     <Button
                         android:id="@+id/currencyzero"
+                        android:layout_weight="1"
+                        android:onClick="clickButton"
                         android:text="0"/>
+
                     <Button
-                        android:id="@+id/currencydoublezero"
-                        android:text="00"/>
-                    <Button
-                        android:id="@+id/surrencypoint"
+                        android:id="@+id/currencypoint"
+                        android:layout_weight="1"
+                        android:onClick="clickButton"
                         android:text="."/>
                 </TableRow>
             </TableLayout>
