@@ -15,8 +15,10 @@ import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.StringTokenizer;
 
 public class BroadsideActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,6 +39,8 @@ public class BroadsideActivity extends AppCompatActivity
     //保存所有操作数的数组
     ArrayList simpleNum=new ArrayList();
 
+
+    private String strScienceResult="";
     //保存显示结果字符串
     private String strScienceResultShow="";
     //显示计算过程
@@ -52,6 +56,8 @@ public class BroadsideActivity extends AppCompatActivity
     //保存所有操作数的数组
     ArrayList ScienceNum=new ArrayList();
 
+    int MAXLEN=20;
+    double PI=3.14;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,361 +154,274 @@ public class BroadsideActivity extends AppCompatActivity
         tvScienceResult=(TextView)findViewById(R.id.scienceresult);
     }
 //计算器的按键的响应函数
-    public void clickButton(View v) {
-        int id = v.getId();
-        if(v.getTag().toString().indexOf("Simple")!=-1) {
+public void clickButton(View v) {
+    int id = v.getId();
+    if (v.getTag().toString().indexOf("Simple") != -1) {
 
-            //String strTag= (String) v.getTag();
-            strSimpleResultShow += ((Button) v).getText().toString();
+        //String strTag= (String) v.getTag();
+        strSimpleResultShow += ((Button) v).getText().toString();
+        tvSimpleRecord.setText(strSimpleResultShow);
+
+
+        if (v.getTag().equals("SimpleNumber")) {
+            //当按键的标签为number时，把按键的text加入到strSimpleNum
+            strSimpleNum += ((Button) v).getText().toString();
+        } else if (v.getTag().equals("SimplePercent")) {
+            if (!strSimpleNum.equals("")) {
+                //当按键的标签为percent时，把strSimpleNum转化为double后乘以0.01后再存入strSimpleNum
+                Double dtemp = Double.parseDouble(strSimpleNum) * 0.01;
+                strSimpleNum = dtemp.toString();
+            }
+        } else if (v.getTag().equals("SimpleReturn")) {
+            //当按键的标签为return时
+            //用strBeDeleted保存被删除的字符
+            String strBeDeleted = strSimpleResultShow.substring(strSimpleResultShow.length() - 3, strSimpleResultShow.length() - 2);
+            //显示字符去掉<-，并刷新显示
+            strSimpleResultShow = strSimpleResultShow.substring(0, strSimpleResultShow.length() - 3);
             tvSimpleRecord.setText(strSimpleResultShow);
-
-
-            if (v.getTag().equals("SimpleNumber")) {
-                //当按键的标签为number时，把按键的text加入到strSimpleNum
-                strSimpleNum += ((Button) v).getText().toString();
-            } else if (v.getTag().equals("SimplePercent")) {
-                if (!strSimpleNum.equals("")) {
-                    //当按键的标签为percent时，把strSimpleNum转化为double后乘以0.01后再存入strSimpleNum
-                    Double dtemp = Double.parseDouble(strSimpleNum) * 0.01;
-                    strSimpleNum = dtemp.toString();
-                }
-            } else if (v.getTag().equals("SimpleReturn")) {
-                //当按键的标签为return时
-                //用strBeDeleted保存被删除的字符
-                String strBeDeleted = strSimpleResultShow.substring(strSimpleResultShow.length() - 3, strSimpleResultShow.length() - 2);
-                //显示字符去掉<-，并刷新显示
-                strSimpleResultShow = strSimpleResultShow.substring(0, strSimpleResultShow.length() - 3);
-                tvSimpleRecord.setText(strSimpleResultShow);
-                //判断是删掉的是操作符还是操作数
-                if (strBeDeleted.equals("+") || strBeDeleted.equals("-") || strBeDeleted.equals("÷") || strBeDeleted.equals("×")) {
-                    //当删除的是操作符时，删除操作符，并把已存入num的操作数删除
-                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.length() - 1);
-                    //从strSimpleNumTemp中取出操作数
-                    strSimpleNum = strSimpleNumTemp;
-                    //把已存入simpleNum的操作数删除
-                    simpleNum.remove(simpleNum.size() - 1);
-                } else {
-                    //当删除的是操作数时，删除在strSimpleNum的被删除的数字
-                    strSimpleNum = strSimpleNum.substring(0, strSimpleNum.length() - 1);
-                }
-
+            //判断是删掉的是操作符还是操作数
+            if (strBeDeleted.equals("+") || strBeDeleted.equals("-") || strBeDeleted.equals("÷") || strBeDeleted.equals("×")) {
+                //当删除的是操作符时，删除操作符，并把已存入num的操作数删除
+                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.length() - 1);
+                //从strSimpleNumTemp中取出操作数
+                strSimpleNum = strSimpleNumTemp;
+                //把已存入simpleNum的操作数删除
+                simpleNum.remove(simpleNum.size() - 1);
+            } else {
+                //当删除的是操作数时，删除在strSimpleNum的被删除的数字
+                strSimpleNum = strSimpleNum.substring(0, strSimpleNum.length() - 1);
             }
 
-            if (id == R.id.simpleminus) {
-                if (simpleNum.isEmpty() && strSimpleNum.equals("")) {
-                    strSimpleNum += ((Button) v).getText().toString();
-                } else {
+        }
+
+        if (id == R.id.simpleminus) {
+            if (simpleNum.isEmpty() && strSimpleNum.equals("")) {
+                strSimpleNum += ((Button) v).getText().toString();
+            } else {
+                simpleNum.add(Double.parseDouble(strSimpleNum));
+                strSimpleNumTemp = strSimpleNum;
+                strSimpleNum = "";
+                strSimpleOP += "-";
+            }
+        }
+        if (!strSimpleResultShow.equals("+") && !strSimpleResultShow.equals("×") && !strSimpleResultShow.equals("÷")) {
+            if (id == R.id.simplemultiply) {
+                if (!strSimpleNum.equals("")) {
+                    //按下乘键时的响应程序
+                    //将前一个操作数转化为Double，存入num
+                    simpleNum.add(Double.parseDouble(strSimpleNum));
+                    //用strSimpleNumTemp暂存操作数
+                    strSimpleNumTemp = strSimpleNum;
+                    //清除strSimpleNum
+                    strSimpleNum = "";
+                    //在strSimpleOP中存入“*”
+                    strSimpleOP += "*";
+                }
+            } else if (id == R.id.simpledevide) {
+                if (!strSimpleNum.equals("")) {
                     simpleNum.add(Double.parseDouble(strSimpleNum));
                     strSimpleNumTemp = strSimpleNum;
                     strSimpleNum = "";
-                    strSimpleOP += "-";
+                    strSimpleOP += "/";
                 }
-            }
-            if (!strSimpleResultShow.equals("+") && !strSimpleResultShow.equals("×") && !strSimpleResultShow.equals("÷")) {
-                if (id == R.id.simplemultiply) {
-                    if (!strSimpleNum.equals("")) {
-                        //按下乘键时的响应程序
-                        //将前一个操作数转化为Double，存入num
-                        simpleNum.add(Double.parseDouble(strSimpleNum));
-                        //用strSimpleNumTemp暂存操作数
-                        strSimpleNumTemp = strSimpleNum;
-                        //清除strSimpleNum
-                        strSimpleNum = "";
-                        //在strSimpleOP中存入“*”
-                        strSimpleOP += "*";
-                    }
-                } else if (id == R.id.simpledevide) {
-                    if (!strSimpleNum.equals("")) {
-                        simpleNum.add(Double.parseDouble(strSimpleNum));
-                        strSimpleNumTemp = strSimpleNum;
-                        strSimpleNum = "";
-                        strSimpleOP += "/";
-                    }
-                } else if (id == R.id.simpleplus) {
-                    if (!strSimpleNum.equals("")) {
-                        simpleNum.add(Double.parseDouble(strSimpleNum));
-                        strSimpleNumTemp = strSimpleNum;
-                        strSimpleNum = "";
-                        strSimpleOP += "+";
-                    }
-                } else if (id == R.id.simpleclear) {
-                    //按下清零键的响应程序
-                    //清空num中存储的操作数
-                    simpleNum.clear();
-                    //使strSimpleNum，strSimpleResultShow，strSimpleOP为空
-                    strSimpleNum = "";
-                    strSimpleResultShow = "";
-                    strSimpleOP = "";
-                    //刷新显示
-                    tvSimpleResult.setText("");
-                    tvSimpleRecord.setText("");
-                }
-                if (id == R.id.simpleequal) {
-                    //按下“=”键时的响应程序
-                    //将最后一个操作数存入simpleNum
+            } else if (id == R.id.simpleplus) {
+                if (!strSimpleNum.equals("")) {
                     simpleNum.add(Double.parseDouble(strSimpleNum));
-                    //判断是否存在操作符
-                    while ((strSimpleOP.indexOf("+") != -1) || (strSimpleOP.indexOf("-") != -1) || (strSimpleOP.indexOf("*") != -1) || (strSimpleOP.indexOf("/") != -1)) {
-                        //先计算乘除运算
-                        while ((strSimpleOP.indexOf("*") != -1) || (strSimpleOP.indexOf("/") != -1)) {
-                            if (strSimpleOP.indexOf("/") == -1) {//当不存在除运算时，说明只存在乘运算
-                                //将乘运算符前后的操作数存入前一个操作数的位置
-                                simpleNum.set(strSimpleOP.indexOf("*"), (Double) simpleNum.get(strSimpleOP.indexOf("*")) * (Double) simpleNum.get(strSimpleOP.indexOf("*") + 1));
-                                //移除第二个操作数
-                                simpleNum.remove(strSimpleOP.indexOf("*") + 1);
-                                //移除用过的乘操作符
-                                if (strSimpleOP.indexOf("*") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("*")) + strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
-                                } else
-                                    strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
-                            } else if (strSimpleOP.indexOf("*") == -1) {
-                                simpleNum.set(strSimpleOP.indexOf("/"), (Double) simpleNum.get(strSimpleOP.indexOf("/")) / (Double) simpleNum.get(strSimpleOP.indexOf("/") + 1));
-                                simpleNum.remove(strSimpleOP.indexOf("/") + 1);
-                                if (strSimpleOP.indexOf("/") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("/")) + strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
-                                } else
-                                    strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
-                            }
-                            if (strSimpleOP.indexOf("*") > strSimpleOP.indexOf("/") && strSimpleOP.indexOf("/") != -1) {//如果两个运算符都存在，且除在乘前
-                                //计算除前后两个操作数相除后的结果，并保存在第一个操作数的位置
-                                simpleNum.set(strSimpleOP.indexOf("/"), (Double) simpleNum.get(strSimpleOP.indexOf("/")) / (Double) simpleNum.get(strSimpleOP.indexOf("/") + 1));
-                                //移除第二个操作数
-                                simpleNum.remove(strSimpleOP.indexOf("/") + 1);
-                                //移除用过的除运算符
-                                if (strSimpleOP.indexOf("/") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("/")) + strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
-                                } else
-                                    strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
-                            } else if (strSimpleOP.indexOf("*") < strSimpleOP.indexOf("/") && strSimpleOP.indexOf("*") != -1) {//如果两个运算符都存在，且乘在除前
-                                simpleNum.set(strSimpleOP.indexOf("*"), (Double) simpleNum.get(strSimpleOP.indexOf("*")) * (Double) simpleNum.get(strSimpleOP.indexOf("*") + 1));
-                                simpleNum.remove(strSimpleOP.indexOf("*") + 1);
-                                if (strSimpleOP.indexOf("*") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("*")) + strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
-                                } else
-                                    strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
-                            }
-
-                        }
-                        while ((strSimpleOP.indexOf("+") != -1) || (strSimpleOP.indexOf("-") != -1)) {
-                            if (strSimpleOP.indexOf("-") == -1) {
-                                simpleNum.set(strSimpleOP.indexOf("+"), (Double) simpleNum.get(strSimpleOP.indexOf("+")) + (Double) simpleNum.get(strSimpleOP.indexOf("+") + 1));
-                                simpleNum.remove(strSimpleOP.indexOf("+") + 1);
-                                if (strSimpleOP.indexOf("+") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("+")) + strSimpleOP.substring(strSimpleOP.indexOf("+") + 1);
-                                } else strSimpleOP = strSimpleOP.substring(1);
-                            } else if (strSimpleOP.indexOf("+") == -1) {
-                                simpleNum.set(strSimpleOP.indexOf("-"), (Double) simpleNum.get(strSimpleOP.indexOf("-")) - (Double) simpleNum.get(strSimpleOP.indexOf("-") + 1));
-                                simpleNum.remove(strSimpleOP.indexOf("-") + 1);
-                                if (strSimpleOP.indexOf("-") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("-")) + strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
-                                } else
-                                    strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
-                            }
-                            if (strSimpleOP.indexOf("+") > strSimpleOP.indexOf("-") && strSimpleOP.indexOf("-") != -1) {
-                                simpleNum.set(strSimpleOP.indexOf("-"), (Double) simpleNum.get(strSimpleOP.indexOf("-")) - (Double) simpleNum.get(strSimpleOP.indexOf("-") + 1));
-                                simpleNum.remove(strSimpleOP.indexOf("-") + 1);
-                                if (strSimpleOP.indexOf("-") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("-")) + strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
-                                } else
-                                    strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
-                            } else if (strSimpleOP.indexOf("+") < strSimpleOP.indexOf("-") && strSimpleOP.indexOf("+") != -1) {
-                                simpleNum.set(strSimpleOP.indexOf("+"), (Double) simpleNum.get(strSimpleOP.indexOf("+")) + (Double) simpleNum.get(strSimpleOP.indexOf("+") + 1));
-                                simpleNum.remove(strSimpleOP.indexOf("+") + 1);
-                                if (strSimpleOP.indexOf("+") != 0) {
-                                    strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("+")) + strSimpleOP.substring(strSimpleOP.indexOf("+") + 1);
-                                } else strSimpleOP = strSimpleOP.substring(1);
-                            }
-                        }
-                    }
-                    //显示结果
-                    tvSimpleResult.setText((String) simpleNum.get(0).toString());
-                    //清空数据
-                    simpleNum.clear();
+                    strSimpleNumTemp = strSimpleNum;
                     strSimpleNum = "";
-                    strSimpleResultShow = "";
-                    strSimpleOP = "";
+                    strSimpleOP += "+";
                 }
-            } else {
-                tvSimpleResult.setText("请输入操作数");
+            } else if (id == R.id.simpleclear) {
+                //按下清零键的响应程序
+                //清空num中存储的操作数
+                simpleNum.clear();
+                //使strSimpleNum，strSimpleResultShow，strSimpleOP为空
+                strSimpleNum = "";
                 strSimpleResultShow = "";
-                tvSimpleRecord.setText(strSimpleResultShow);
+                strSimpleOP = "";
+                //刷新显示
+                tvSimpleResult.setText("");
+                tvSimpleRecord.setText("");
             }
-        }else if(v.getTag().toString().indexOf("Science")!=-1) {
-
-            strScienceResultShow += ((Button) v).getText().toString();
-            tvScienceRecord.setText(strScienceResultShow);
-
-
-            if (v.getTag().equals("ScienceNumber")) {
-                //当按键的标签为number时，把按键的text加入到strScienceNum
-                strScienceNum += ((Button) v).getText().toString();
-            } else if (v.getTag().equals("SciencePercent")) {
-                if (!strScienceNum.equals("")) {
-                    //当按键的标签为percent时，把strScienceNum转化为double后乘以0.01后再存入strScienceNum
-                    Double dtemp = Double.parseDouble(strScienceNum) * 0.01;
-                    strScienceNum = dtemp.toString();
-                }
-            } else if (v.getTag().equals("ScienceReturn")) {
-                //当按键的标签为return时
-                //用strBeDeleted保存被删除的字符
-                String strBeDeleted = strScienceResultShow.substring(strScienceResultShow.length() - 3, strScienceResultShow.length() - 2);
-                //显示字符去掉<-，并刷新显示
-                strScienceResultShow = strScienceResultShow.substring(0, strScienceResultShow.length() - 3);
-                tvScienceRecord.setText(strScienceResultShow);
-                //判断是删掉的是操作符还是操作数
-                if (strBeDeleted.equals("+") || strBeDeleted.equals("-") || strBeDeleted.equals("÷") || strBeDeleted.equals("×")) {
-                    //当删除的是操作符时，删除操作符，并把已存入num的操作数删除
-                    strScienceOP = strScienceOP.substring(0, strScienceOP.length() - 1);
-                    //从strScienceNumTemp中取出操作数
-                    strScienceNum = strScienceNumTemp;
-                    //把已存入ScienceNum的操作数删除
-                    ScienceNum.remove(ScienceNum.size() - 1);
-                } else {
-                    //当删除的是操作数时，删除在strScienceNum的被删除的数字
-                    strScienceNum = strScienceNum.substring(0, strScienceNum.length() - 1);
-                }
-
-            }
-
-            if (id == R.id.scienceminus) {
-                if (ScienceNum.isEmpty()&&strScienceNum.equals("")) {
-                    strScienceNum += ((Button) v).getText().toString();
-                } else {
-                    ScienceNum.add(Double.parseDouble(strScienceNum));
-                    strScienceNumTemp = strScienceNum;
-                    strScienceNum = "";
-                    strScienceOP += "-";
-                }
-            }
-            if (!strScienceResultShow.equals("+")&&!strScienceResultShow.equals("÷")&&!strScienceResultShow.equals("×")) {
-                if (id == R.id.sciencemultiply) {
-                    if (!strScienceNum.equals("")) {
-                        //按下乘键时的响应程序
-                        //将前一个操作数转化为Double，存入num
-                        ScienceNum.add(Double.parseDouble(strScienceNum));
-                        //用strScienceNumTemp暂存操作数
-                        strScienceNumTemp = strScienceNum;
-                        //清除strScienceNum
-                        strScienceNum = "";
-                        //在strScienceOP中存入“*”
-                        strScienceOP += "*";
-                    }
-                } else if (id == R.id.sciencedevide) {
-                    if (!strScienceNum.equals("")) {
-                        ScienceNum.add(Double.parseDouble(strScienceNum));
-                        strScienceNumTemp = strScienceNum;
-                        strScienceNum = "";
-                        strScienceOP += "/";
-                    }
-                } else if (id == R.id.scienceplus) {
-                    if (!strScienceNum.equals("")) {
-                        ScienceNum.add(Double.parseDouble(strScienceNum));
-                        strScienceNumTemp = strScienceNum;
-                        strScienceNum = "";
-                        strScienceOP += "+";
-                    }
-                } else if (id == R.id.scienceclear) {
-                    //按下清零键的响应程序
-                    //清空num中存储的操作数
-                    ScienceNum.clear();
-                    //使strScienceNum，strScienceResultShow，strScienceOP为空
-                    strScienceNum = "";
-                    strScienceResultShow = "";
-                    strScienceOP = "";
-                    //刷新显示
-                    tvScienceResult.setText("");
-                    tvScienceRecord.setText("");
-                }
-                if (id == R.id.scienceequal) {
-                    //按下“=”键时的响应程序
-                    //将最后一个操作数存入ScienceNum
-                    ScienceNum.add(Double.parseDouble(strScienceNum));
-                    //判断是否存在操作符
-                    while ((strScienceOP.indexOf("+") != -1) || (strScienceOP.indexOf("-") != -1) || (strScienceOP.indexOf("*") != -1) || (strScienceOP.indexOf("/") != -1)) {
-                        //先计算乘除运算
-                        while ((strScienceOP.indexOf("*") != -1) || (strScienceOP.indexOf("/") != -1)) {
-                            if (strScienceOP.indexOf("/") == -1) {//当不存在除运算时，说明只存在乘运算
-                                //将乘运算符前后的操作数存入前一个操作数的位置
-                                ScienceNum.set(strScienceOP.indexOf("*"), (Double) ScienceNum.get(strScienceOP.indexOf("*")) * (Double) ScienceNum.get(strScienceOP.indexOf("*") + 1));
-                                //移除第二个操作数
-                                ScienceNum.remove(strScienceOP.indexOf("*") + 1);
-                                //移除用过的乘操作符
-                                if (strScienceOP.indexOf("*") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("*")) + strScienceOP.substring(strScienceOP.indexOf("*") + 1);
-                                } else
-                                    strScienceOP = strScienceOP.substring(strScienceOP.indexOf("*") + 1);
-                            } else if (strScienceOP.indexOf("*") == -1) {
-                                ScienceNum.set(strScienceOP.indexOf("/"), (Double) ScienceNum.get(strScienceOP.indexOf("/")) / (Double) ScienceNum.get(strScienceOP.indexOf("/") + 1));
-                                ScienceNum.remove(strScienceOP.indexOf("/") + 1);
-                                if (strScienceOP.indexOf("/") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("/")) + strScienceOP.substring(strScienceOP.indexOf("/") + 1);
-                                } else
-                                    strScienceOP = strScienceOP.substring(strScienceOP.indexOf("/") + 1);
-                            }
-                            if (strScienceOP.indexOf("*") > strScienceOP.indexOf("/") && strScienceOP.indexOf("/") != -1) {//如果两个运算符都存在，且除在乘前
-                                //计算除前后两个操作数相除后的结果，并保存在第一个操作数的位置
-                                ScienceNum.set(strScienceOP.indexOf("/"), (Double) ScienceNum.get(strScienceOP.indexOf("/")) / (Double) ScienceNum.get(strScienceOP.indexOf("/") + 1));
-                                //移除第二个操作数
-                                ScienceNum.remove(strScienceOP.indexOf("/") + 1);
-                                //移除用过的除运算符
-                                if (strScienceOP.indexOf("/") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("/")) + strScienceOP.substring(strScienceOP.indexOf("/") + 1);
-                                } else
-                                    strScienceOP = strScienceOP.substring(strScienceOP.indexOf("/") + 1);
-                            } else if (strScienceOP.indexOf("*") < strScienceOP.indexOf("/") && strScienceOP.indexOf("*") != -1) {//如果两个运算符都存在，且乘在除前
-                                ScienceNum.set(strScienceOP.indexOf("*"), (Double) ScienceNum.get(strScienceOP.indexOf("*")) * (Double) ScienceNum.get(strScienceOP.indexOf("*") + 1));
-                                ScienceNum.remove(strScienceOP.indexOf("*") + 1);
-                                if (strScienceOP.indexOf("*") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("*")) + strScienceOP.substring(strScienceOP.indexOf("*") + 1);
-                                } else
-                                    strScienceOP = strScienceOP.substring(strScienceOP.indexOf("*") + 1);
-                            }
-
+            if (id == R.id.simpleequal) {
+                //按下“=”键时的响应程序
+                //将最后一个操作数存入simpleNum
+                simpleNum.add(Double.parseDouble(strSimpleNum));
+                //判断是否存在操作符
+                while ((strSimpleOP.indexOf("+") != -1) || (strSimpleOP.indexOf("-") != -1) || (strSimpleOP.indexOf("*") != -1) || (strSimpleOP.indexOf("/") != -1)) {
+                    //先计算乘除运算
+                    while ((strSimpleOP.indexOf("*") != -1) || (strSimpleOP.indexOf("/") != -1)) {
+                        if (strSimpleOP.indexOf("/") == -1) {//当不存在除运算时，说明只存在乘运算
+                            //将乘运算符前后的操作数存入前一个操作数的位置
+                            simpleNum.set(strSimpleOP.indexOf("*"), (Double) simpleNum.get(strSimpleOP.indexOf("*")) * (Double) simpleNum.get(strSimpleOP.indexOf("*") + 1));
+                            //移除第二个操作数
+                            simpleNum.remove(strSimpleOP.indexOf("*") + 1);
+                            //移除用过的乘操作符
+                            if (strSimpleOP.indexOf("*") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("*")) + strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
+                            } else
+                                strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
+                        } else if (strSimpleOP.indexOf("*") == -1) {
+                            simpleNum.set(strSimpleOP.indexOf("/"), (Double) simpleNum.get(strSimpleOP.indexOf("/")) / (Double) simpleNum.get(strSimpleOP.indexOf("/") + 1));
+                            simpleNum.remove(strSimpleOP.indexOf("/") + 1);
+                            if (strSimpleOP.indexOf("/") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("/")) + strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
+                            } else
+                                strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
                         }
-                        while ((strScienceOP.indexOf("+") != -1) || (strScienceOP.indexOf("-") != -1)) {
-                            if (strScienceOP.indexOf("-") == -1) {
-                                ScienceNum.set(strScienceOP.indexOf("+"), (Double) ScienceNum.get(strScienceOP.indexOf("+")) + (Double) ScienceNum.get(strScienceOP.indexOf("+") + 1));
-                                ScienceNum.remove(strScienceOP.indexOf("+") + 1);
-                                if (strScienceOP.indexOf("+") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("+")) + strScienceOP.substring(strScienceOP.indexOf("+") + 1);
-                                } else strScienceOP = strScienceOP.substring(1);
-                            } else if (strScienceOP.indexOf("+") == -1) {
-                                ScienceNum.set(strScienceOP.indexOf("-"), (Double) ScienceNum.get(strScienceOP.indexOf("-")) - (Double) ScienceNum.get(strScienceOP.indexOf("-") + 1));
-                                ScienceNum.remove(strScienceOP.indexOf("-") + 1);
-                                if (strScienceOP.indexOf("-") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("-")) + strScienceOP.substring(strScienceOP.indexOf("-") + 1);
-                                } else
-                                    strScienceOP = strScienceOP.substring(strScienceOP.indexOf("-") + 1);
-                            }
-                            if (strScienceOP.indexOf("+") > strScienceOP.indexOf("-") && strScienceOP.indexOf("-") != -1) {
-                                ScienceNum.set(strScienceOP.indexOf("-"), (Double) ScienceNum.get(strScienceOP.indexOf("-")) - (Double) ScienceNum.get(strScienceOP.indexOf("-") + 1));
-                                ScienceNum.remove(strScienceOP.indexOf("-") + 1);
-                                if (strScienceOP.indexOf("-") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("-")) + strScienceOP.substring(strScienceOP.indexOf("-") + 1);
-                                } else
-                                    strScienceOP = strScienceOP.substring(strScienceOP.indexOf("-") + 1);
-                            } else if (strScienceOP.indexOf("+") < strScienceOP.indexOf("-") && strScienceOP.indexOf("+") != -1) {
-                                ScienceNum.set(strScienceOP.indexOf("+"), (Double) ScienceNum.get(strScienceOP.indexOf("+")) + (Double) ScienceNum.get(strScienceOP.indexOf("+") + 1));
-                                ScienceNum.remove(strScienceOP.indexOf("+") + 1);
-                                if (strScienceOP.indexOf("+") != 0) {
-                                    strScienceOP = strScienceOP.substring(0, strScienceOP.indexOf("+")) + strScienceOP.substring(strScienceOP.indexOf("+") + 1);
-                                } else strScienceOP = strScienceOP.substring(1);
-                            }
+                        if (strSimpleOP.indexOf("*") > strSimpleOP.indexOf("/") && strSimpleOP.indexOf("/") != -1) {//如果两个运算符都存在，且除在乘前
+                            //计算除前后两个操作数相除后的结果，并保存在第一个操作数的位置
+                            simpleNum.set(strSimpleOP.indexOf("/"), (Double) simpleNum.get(strSimpleOP.indexOf("/")) / (Double) simpleNum.get(strSimpleOP.indexOf("/") + 1));
+                            //移除第二个操作数
+                            simpleNum.remove(strSimpleOP.indexOf("/") + 1);
+                            //移除用过的除运算符
+                            if (strSimpleOP.indexOf("/") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("/")) + strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
+                            } else
+                                strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("/") + 1);
+                        } else if (strSimpleOP.indexOf("*") < strSimpleOP.indexOf("/") && strSimpleOP.indexOf("*") != -1) {//如果两个运算符都存在，且乘在除前
+                            simpleNum.set(strSimpleOP.indexOf("*"), (Double) simpleNum.get(strSimpleOP.indexOf("*")) * (Double) simpleNum.get(strSimpleOP.indexOf("*") + 1));
+                            simpleNum.remove(strSimpleOP.indexOf("*") + 1);
+                            if (strSimpleOP.indexOf("*") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("*")) + strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
+                            } else
+                                strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("*") + 1);
+                        }
+
+                    }
+                    while ((strSimpleOP.indexOf("+") != -1) || (strSimpleOP.indexOf("-") != -1)) {
+                        if (strSimpleOP.indexOf("-") == -1) {
+                            simpleNum.set(strSimpleOP.indexOf("+"), (Double) simpleNum.get(strSimpleOP.indexOf("+")) + (Double) simpleNum.get(strSimpleOP.indexOf("+") + 1));
+                            simpleNum.remove(strSimpleOP.indexOf("+") + 1);
+                            if (strSimpleOP.indexOf("+") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("+")) + strSimpleOP.substring(strSimpleOP.indexOf("+") + 1);
+                            } else strSimpleOP = strSimpleOP.substring(1);
+                        } else if (strSimpleOP.indexOf("+") == -1) {
+                            simpleNum.set(strSimpleOP.indexOf("-"), (Double) simpleNum.get(strSimpleOP.indexOf("-")) - (Double) simpleNum.get(strSimpleOP.indexOf("-") + 1));
+                            simpleNum.remove(strSimpleOP.indexOf("-") + 1);
+                            if (strSimpleOP.indexOf("-") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("-")) + strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
+                            } else
+                                strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
+                        }
+                        if (strSimpleOP.indexOf("+") > strSimpleOP.indexOf("-") && strSimpleOP.indexOf("-") != -1) {
+                            simpleNum.set(strSimpleOP.indexOf("-"), (Double) simpleNum.get(strSimpleOP.indexOf("-")) - (Double) simpleNum.get(strSimpleOP.indexOf("-") + 1));
+                            simpleNum.remove(strSimpleOP.indexOf("-") + 1);
+                            if (strSimpleOP.indexOf("-") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("-")) + strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
+                            } else
+                                strSimpleOP = strSimpleOP.substring(strSimpleOP.indexOf("-") + 1);
+                        } else if (strSimpleOP.indexOf("+") < strSimpleOP.indexOf("-") && strSimpleOP.indexOf("+") != -1) {
+                            simpleNum.set(strSimpleOP.indexOf("+"), (Double) simpleNum.get(strSimpleOP.indexOf("+")) + (Double) simpleNum.get(strSimpleOP.indexOf("+") + 1));
+                            simpleNum.remove(strSimpleOP.indexOf("+") + 1);
+                            if (strSimpleOP.indexOf("+") != 0) {
+                                strSimpleOP = strSimpleOP.substring(0, strSimpleOP.indexOf("+")) + strSimpleOP.substring(strSimpleOP.indexOf("+") + 1);
+                            } else strSimpleOP = strSimpleOP.substring(1);
                         }
                     }
-                    //显示结果
-                    tvScienceResult.setText((String) ScienceNum.get(0).toString());
-                    //清空数据
-                    ScienceNum.clear();
-                    strScienceNum = "";
-                    strScienceResultShow = "";
-                    strScienceOP = "";
                 }
-            } else {
-                tvScienceResult.setText("请输入操作数");
-                strScienceResultShow = "";
-                tvScienceRecord.setText(strScienceResultShow);
+                //显示结果
+                tvSimpleResult.setText((String) simpleNum.get(0).toString());
+                //清空数据
+                simpleNum.clear();
+                strSimpleNum = "";
+                strSimpleResultShow = "";
+                strSimpleOP = "";
+            }
+        } else {
+            tvSimpleResult.setText("请输入操作数");
+            strSimpleResultShow = "";
+            tvSimpleRecord.setText(strSimpleResultShow);
+        }
+    }
+
+
+    /********************************试验代码02****************************************************/
+    else if (v.getTag().toString().indexOf("Science") != -1) {
+        strScienceResultShow+=((Button)v).getText().toString();
+        tvScienceRecord.setText(strScienceResultShow);
+        strScienceResult += v.getTag().toString().replace("Science", "");
+        if(id==R.id.scienceequal) {
+            //tvScienceResult.setText(strScienceResult);
+            tvScienceResult.setText(ResolveBracket(strScienceResult));
+        }
+
+    }
+    /********************************试验代码02****************************************************/
+}
+    public String ResolveBracket(String str){
+
+        while(str.indexOf("(")!=-1){
+            String strTemp=str.substring(str.lastIndexOf("(")+1,str.indexOf(")"));
+            str=str.substring(0,str.lastIndexOf("("))+ResolveJJCC(strTemp)+str.substring(str.indexOf(")")+1,str.length());
+        }
+
+       str=ResolveJJCC(str);
+        return str;
+    }
+    ArrayList numList=new ArrayList();
+    public  String ResolveJJCC(String str){
+        String Test="";
+        String strop="";
+        String strnum="";
+        int lastLocation=-1;
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i)=='*'||str.charAt(i)=='/'||str.charAt(i)=='+'||str.charAt(i)=='-'){
+                strop+=str.charAt(i);
             }
         }
+        for(int i=0;i<str.length();i++){
+            if((str.charAt(i)=='*'||str.charAt(i)=='/')||str.charAt(i)=='+'||str.charAt(i)=='-'){
+                strnum=str.substring(lastLocation+1,i);
+                numList.add(Double.parseDouble(strnum));
+               lastLocation=i;
+           }else if(i==str.length()-1){
+               strnum=str.substring(lastLocation+1,i+1);
+               numList.add(Double.parseDouble(strnum));
+           }
+        }
+
+
+        while ((strop.indexOf("*") != -1) || (strop.indexOf("/") != -1)) {
+          for(int i=0;i<strop.length();i++){
+              switch (strop.charAt(i)){
+                  case '*':numList.set(i,(Double)numList.get(i)*(Double)numList.get(i+1));
+                      strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
+                      numList.remove(i+1);
+                      i=i-1;
+                      break;
+                  case '/':
+                      numList.set(i,(Double)numList.get(i)/(Double)numList.get(i+1));
+                      strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
+                      numList.remove(i+1);
+                      i=i-1;
+                      break;
+              }
+          }
+        }
+        while ((strop.indexOf("+") != -1) || (strop.indexOf("-") != -1)) {
+            for(int i=0;i<strop.length();i++){
+                switch (strop.charAt(i)){
+                    case '+':numList.set(i,(Double)numList.get(i)+(Double)numList.get(i+1));
+                        strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
+                        numList.remove(i+1);
+                        i=i-1;
+                        break;
+                    case '-':
+                        numList.set(i,(Double)numList.get(i)-(Double)numList.get(i+1));
+                        strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
+                        numList.remove(i+1);
+                        i=i-1;
+                        break;
+                }
+            }
+        }
+        Test=numList.get(0).toString();
+        //Test= stringTokenizer.nextToken();
+        //Test=((Integer)stringTokenizer.countTokens()).toString();
+        //Test=strnum;
+        //Test=strop;
+        numList.clear();
+        return Test;
     }
 }

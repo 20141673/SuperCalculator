@@ -36,13 +36,13 @@
         <Button
             android:id="@+id/scienceleftbracket"
             android:onClick="clickButton"
-            android:tag="ScienceOP"
+            android:tag="Science("
             android:layout_weight="1"
             android:text="("/>
         <Button
             android:id="@+id/sciencerightbracket"
             android:onClick="clickButton"
-            android:tag="ScienceOP"
+            android:tag="Science)"
             android:layout_weight="1"
             android:text=")"/>
         <Button
@@ -86,7 +86,7 @@
             android:text="@string/returnicon"/>
         <Button
             android:id="@+id/sciencedevide"
-            android:tag="ScienceOP"
+            android:tag="Science/"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="÷"/>
@@ -100,25 +100,25 @@
             android:text="@string/cos"/>
         <Button
             android:id="@+id/scienceseven"
-            android:tag="ScienceNumber"
+            android:tag="Science7"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="7"/>
         <Button
             android:id="@+id/scienceeight"
-            android:tag="ScienceNumber"
+            android:tag="Science8"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="8"/>
         <Button
             android:id="@+id/sciencenine"
-            android:tag="ScienceNumber"
+            android:tag="Science9"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="9"/>
         <Button
             android:id="@+id/sciencemultiply"
-            android:tag="ScienceOP"
+            android:tag="Science*"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="×"/>
@@ -138,19 +138,19 @@
             android:text="4"/>
         <Button
             android:id="@+id/sciencefive"
-            android:tag="ScienceNumber"
+            android:tag="Science5"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="5"/>
         <Button
             android:id="@+id/sciencesix"
-            android:tag="ScienceNumber"
+            android:tag="Science6"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="6"/>
         <Button
             android:id="@+id/scienceminus"
-            android:tag="ScienceOP"
+            android:tag="Science-"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="-"/>
@@ -164,25 +164,25 @@
             android:text="@string/ln"/>
         <Button
             android:id="@+id/scienceone"
-            android:tag="ScienceNumber"
+            android:tag="Science1"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="1"/>
         <Button
             android:id="@+id/sciencetwo"
-            android:tag="ScienceNumber"
+            android:tag="Science2"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="2"/>
         <Button
             android:id="@+id/sciencethree"
-            android:tag="ScienceNumber"
+            android:tag="Science3"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="3"/>
         <Button
             android:id="@+id/scienceplus"
-            android:tag="ScienceOP"
+            android:tag="Science+"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="+"/>
@@ -202,19 +202,19 @@
             android:text="@string/e"/>
         <Button
             android:id="@+id/sciencezero"
-            android:tag="ScienceNumber"
+            android:tag="Science0"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="0"/>
         <Button
             android:id="@+id/sciencepoint"
-            android:tag="ScienceNumber"
+            android:tag="Science."
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="."/>
         <Button
             android:id="@+id/scienceequal"
-            android:tag="ScienceOP"
+            android:tag="Science"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="="/>
