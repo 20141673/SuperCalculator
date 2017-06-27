@@ -383,6 +383,7 @@ public void clickButton(View v) {
                numList.add(Double.parseDouble(strnum));
            }
         }
+
         while ((strop.indexOf("s") != -1)){
             Double dTemp=Math.sin((Double)numList.get(strop.indexOf("s")));
             numList.set(strop.indexOf("s"),dTemp);
@@ -398,7 +399,21 @@ public void clickButton(View v) {
             numList.set(strop.indexOf("t"),dTemp);
             strop=strop.substring(0,strop.indexOf("t"))+strop.substring(strop.indexOf("t")+1,strop.length());
         }
-
+        while ((strop.indexOf("n") != -1)){
+            Double dTemp=Math.log((Double)numList.get(strop.indexOf("n")));
+            numList.set(strop.indexOf("n"),dTemp);
+            strop=strop.substring(0,strop.indexOf("n"))+strop.substring(strop.indexOf("n")+1,strop.length());
+        }
+        while ((strop.indexOf("g") != -1)){
+            Double dTemp=Math.log((Double)numList.get(strop.indexOf("g")))/Math.log(10);
+            numList.set(strop.indexOf("g"),dTemp);
+            strop=strop.substring(0,strop.indexOf("g"))+strop.substring(strop.indexOf("n")+1,strop.length());
+        }
+        while ((strop.indexOf("q") != -1)){
+            Double dTemp=Math.sqrt((Double)numList.get(strop.indexOf("q")));
+            numList.set(strop.indexOf("q"),dTemp);
+            strop=strop.substring(0,strop.indexOf("q"))+strop.substring(strop.indexOf("q")+1,strop.length());
+        }
         while ((strop.indexOf("^") != -1)) {
             Double dTemp=1.0;
             for(int i=0;i<(Double)numList.get(strop.indexOf("^")+1);i++){
@@ -463,6 +478,8 @@ public void clickButton(View v) {
             case 'c':judge=1;break;
             case 't':judge=1;break;
             case 'n':judge=1;break;
+            case 'g':judge=1;break;
+            case 'q':judge=1;break;
         }
         return judge;
     }
