@@ -342,7 +342,7 @@ public void clickButton(View v) {
         tvScienceRecord.setText(strScienceResultShow);
         strScienceResult += v.getTag().toString().replace("Science", "");
         if(id==R.id.scienceequal) {
-            //strScienceResult="2^4";
+            //strScienceResult="pi";
             //tvScienceResult.setText(strScienceResult);
             tvScienceResult.setText(ResolveBracket(strScienceResult));
         }
@@ -374,15 +374,38 @@ public void clickButton(View v) {
             if(IsOP(str.charAt(i))>=0){
                 if(IsOP(str.charAt(i))==0) {
                     strnum = str.substring(lastLocation + 1, i);
-                    numList.add(Double.parseDouble(strnum));
+                    try{
+                        numList.add(Double.parseDouble(strnum));
+                    }catch (Exception e){
+                        if((strnum.charAt(strnum.length()-1))=='%'){
+                            strnum=strnum.substring(0,strnum.length()-1);
+                            numList.add(Double.parseDouble(strnum)*0.01);
+                        }else if(strnum.equals("pi")){
+                            numList.add(Math.PI);
+                        }else if(strnum.equals("e")){
+                            numList.add(Math.E);
+                        }
+                    }
                 }
                     lastLocation = i;
 
            }else if(i==str.length()-1){
                strnum=str.substring(lastLocation+1,i+1);
-               numList.add(Double.parseDouble(strnum));
+                try{
+                    numList.add(Double.parseDouble(strnum));
+                }catch (Exception e) {
+                    if ((strnum.charAt(strnum.length() - 1)) == '%') {
+                        strnum = strnum.substring(0, strnum.length() - 1);
+                        numList.add(Double.parseDouble(strnum) * 0.01);
+                    }else if(strnum.equals("pi")){
+                        numList.add(Math.PI);
+                    }else if(strnum.equals("e")){
+                        numList.add(Math.E);
+                    }
+                }
            }
         }
+
 
         while ((strop.indexOf("s") != -1)){
             Double dTemp=Math.sin((Double)numList.get(strop.indexOf("s")));

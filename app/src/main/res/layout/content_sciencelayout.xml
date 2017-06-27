@@ -31,7 +31,8 @@
     <TableRow>
         <Button
             android:id="@+id/sciencepi"
-            android:tag="Science3.14159"
+            android:onClick="clickButton"
+            android:tag="Sciencepi"
             android:layout_weight="1"
             android:text="@string/pi"/>
         <Button
@@ -49,7 +50,7 @@
         <Button
             android:id="@+id/sciencepercent"
             android:onClick="clickButton"
-            android:tag="SciencePercent"
+            android:tag="Science%"
             android:layout_weight="1"
             android:text="%"/>
         <Button
@@ -197,7 +198,7 @@
             android:text="@string/lg"/>
         <Button
             android:id="@+id/sciencee"
-            android:tag="ScienceOP"
+            android:tag="Sciencee"
             android:onClick="clickButton"
             android:layout_weight="1"
             android:text="@string/e"/>
