@@ -333,6 +333,7 @@ public void clickButton(View v) {
             tvSimpleRecord.setText(strSimpleResultShow);
         }
     }
+<<<<<<< Updated upstream
 
 
     /********************************试验代码02****************************************************/
@@ -541,4 +542,6 @@ public void clickButton(View v) {
         }
         return judge;
     }
+=======
+>>>>>>> Stashed changes
 }
