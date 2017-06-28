@@ -10,7 +10,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             >
         <TextView
             android:layout_width="wrap_content"
@@ -48,13 +48,69 @@
             android:gravity="center_vertical"
             android:textSize="18dp"/>
         <Spinner
+            android:id="@+id/commercialrepaywayspinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/LengthUnit"
+            android:gravity="right"/>
+        </LinearLayout>
+    </TableRow>
+    <TableRow>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="按揭年数："
+            android:gravity="center_vertical"
+            android:textSize="18dp"/>
+        <Spinner
             android:id="@+id/commercialspinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:entries="@array/LengthUnit"
-            android:gravity="right">
-        </Spinner>
+            android:gravity="right"/>
         </LinearLayout>
     </TableRow>
-    <TableRow></TableRow>
+    <TableRow>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="首次还款日期："
+                android:gravity="center_vertical"
+                android:textSize="18dp"/>
+        </LinearLayout>
+    </TableRow>
+    <TableRow>
+        <Spinner
+            android:id="@+id/commercialyear"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="年"/>
+        <Spinner
+            android:id="@+id/"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="月"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="日"/>
+    </TableRow>
 </TableLayout>

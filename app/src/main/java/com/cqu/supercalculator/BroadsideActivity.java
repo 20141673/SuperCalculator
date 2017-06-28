@@ -333,7 +333,6 @@ public void clickButton(View v) {
             tvSimpleRecord.setText(strSimpleResultShow);
         }
     }
-
     /********************************试验代码02****************************************************/
     else if (v.getTag().toString().indexOf("Science") != -1) {
         strScienceResultShow+=((Button)v).getText().toString();
