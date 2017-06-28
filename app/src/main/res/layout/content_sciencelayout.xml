@@ -12,7 +12,7 @@
             android:id="@+id/sciencerecord"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="practice"
+            android:text="0"
             android:layout_weight="1"
             android:gravity="right"
             />
@@ -25,7 +25,7 @@
             android:layout_height="100dp"
             android:gravity="right"
             android:layout_weight="1"
-            android:text="practice"/>
+            android:text="0"/>
     </TableRow>
 
     <TableRow>
