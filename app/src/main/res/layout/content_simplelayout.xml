@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:gravity="bottom">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom">
     <TextView
         android:id="@+id/simplerecord"
         android:layout_height="66dp"
@@ -18,67 +18,67 @@
     <TableRow>
         <Button
             android:id="@+id/simpleclear"
-            android:tag="SimpleEqual"
+            android:tag="SimpleOP"
             android:onClick="clickButton"
             android:text="C"/>
         <Button
             android:id="@+id/simplereturn"
-            android:tag="SimpleReturn"
+            android:tag="Simple"
             android:onClick="clickButton"
             android:text="@string/returnicon"/>
         <Button
             android:id="@+id/simpledevide"
-            android:tag="SimpleOP"
+            android:tag="Simple/"
             android:onClick="clickButton"
             android:text="÷"/>
 
         <Button
             android:id="@+id/simplemultiply"
-            android:tag="SimpleOP"
+            android:tag="Simple*"
             android:onClick="clickButton"
             android:text="×"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/simpleseven"
-            android:tag="SimpleNumber"
+            android:tag="Simple7"
             android:onClick="clickButton"
             android:text="7"/>
         <Button
             android:id="@+id/simpleeight"
-            android:tag="SimpleNumber"
+            android:tag="Simple8"
             android:onClick="clickButton"
             android:text="8"/>
         <Button
             android:id="@+id/simplenine"
-            android:tag="SimpleNumber"
+            android:tag="Simple9"
             android:onClick="clickButton"
             android:text="9"/>
         <Button
             android:id="@+id/simpleminus"
-            android:tag="SimpleOP"
+            android:tag="Simple-"
             android:onClick="clickButton"
             android:text="-"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/simplefour"
-            android:tag="SimpleNumber"
+            android:tag="Simple4"
             android:onClick="clickButton"
             android:text="4"/>
         <Button
             android:id="@+id/simplefive"
-            android:tag="SimpleNumber"
+            android:tag="Simple5"
             android:onClick="clickButton"
             android:text="5"/>
         <Button
             android:id="@+id/simplesix"
-            android:tag="SimpleNumber"
+            android:tag="Simple6"
             android:onClick="clickButton"
             android:text="6"/>
         <Button
             android:id="@+id/simpleplus"
-            android:tag="SimpleOP"
+            android:tag="Simple+"
             android:onClick="clickButton"
             android:text="+"/>
     </TableRow>
@@ -88,17 +88,17 @@
                 <TableRow>
                     <Button
                         android:id="@+id/simpleone"
-                        android:tag="SimpleNumber"
+                        android:tag="Simple1"
                         android:onClick="clickButton"
                         android:text="1"/>
                     <Button
                         android:id="@+id/simpletwo"
-                        android:tag="SimpleNumber"
+                        android:tag="Simple2"
                         android:onClick="clickButton"
                         android:text="2"/>
                     <Button
                         android:id="@+id/simplethree"
-                        android:tag="SimpleNumber"
+                        android:tag="Simple3"
                         android:onClick="clickButton"
                         android:text="3"/>
 
@@ -106,17 +106,17 @@
                 <TableRow>
                     <Button
                         android:id="@+id/simplepercent"
-                        android:tag="SimplePercent"
+                        android:tag="Simple%"
                         android:onClick="clickButton"
                         android:text="%"/>
                     <Button
                         android:id="@+id/simplezero"
-                        android:tag="SimpleNumber"
+                        android:tag="Simple0"
                         android:onClick="clickButton"
                         android:text="0"/>
                     <Button
                         android:id="@+id/simplepoint"
-                        android:tag="SimpleNumber"
+                        android:tag="Simple."
                         android:onClick="clickButton"
                         android:text="."/>
                 </TableRow>
@@ -127,7 +127,7 @@
                 android:layout_height="match_parent">
                 <Button
                     android:id="@+id/simpleequal"
-                    android:tag="SimpleEqual"
+                    android:tag="Simple"
                     android:layout_gravity="fill"
                     android:text="="
                     android:onClick="clickButton"
