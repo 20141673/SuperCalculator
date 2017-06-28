@@ -333,8 +333,6 @@ public void clickButton(View v) {
             tvSimpleRecord.setText(strSimpleResultShow);
         }
     }
-<<<<<<< Updated upstream
-
 
     /********************************试验代码02****************************************************/
     else if (v.getTag().toString().indexOf("Science") != -1) {
@@ -542,6 +540,4 @@ public void clickButton(View v) {
         }
         return judge;
     }
-=======
->>>>>>> Stashed changes
 }
