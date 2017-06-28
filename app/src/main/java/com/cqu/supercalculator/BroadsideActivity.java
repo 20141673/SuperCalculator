@@ -147,13 +147,21 @@ public void clickButton(View v) {
         strSimpleResultShow+=((Button)v).getText().toString();
         tvSimpleRecord.setText(strSimpleResultShow);
         strSimpleResult += v.getTag().toString().replace("Simple", "");
-
+        //判断输入的第一个数是不是双目运算符，是则报错
         if(strSimpleResult.length()==1){
            if(IsOP(strSimpleResult.charAt(0))==0){
                strSimpleResultShow="";
                 tvSimpleRecord.setText("");
                strSimpleResult="";
                tvSimpleResult.setText("请输入操作数");
+            }
+        }else if(!strSimpleResult.isEmpty()){//判断是否连续输入双目运算符
+            if(IsOP(strSimpleResult.charAt(strSimpleResult.length()-1))==0&&IsOP(strSimpleResult.charAt(strSimpleResult.length()-2))==0){
+                int temp=strSimpleResultShow.length()-2;
+                strSimpleResultShow=strSimpleResultShow.substring(0,temp)+strSimpleResultShow.substring(temp+1,temp+2);
+                temp=strSimpleResult.length()-2;
+                strSimpleResult=strSimpleResult.substring(0,temp)+strSimpleResult.substring(temp+1,temp+2);
+                tvSimpleRecord.setText(strSimpleResultShow);
             }
         }
 
@@ -175,9 +183,20 @@ public void clickButton(View v) {
             tvSimpleRecord.setText(strSimpleResultShow);
             simpleNumList.clear();
         }else if(id==R.id.simpleequal) {
+            String temp=strSimpleResult;//暂存数据
             //strSimpleResult="pi";
             //tvSimpleResult.setText(strSimpleResult);
-            tvSimpleResult.setText(ResolveBracket(strSimpleResult,simpleNumList));
+            strSimpleResult=ResolveBracket(strSimpleResult,simpleNumList);
+            tvSimpleResult.setText(strSimpleResult);
+
+            if(!strSimpleResult.equals(strError)) {
+                //保存计算结果
+                strSimpleResultShow=strSimpleResult;
+            }else {
+                strSimpleResult=temp;
+                strSimpleResultShow=strSimpleResultShow.replace("=","");
+            }
+
         }
     }
     /********************************试验代码02****************************************************/
@@ -185,10 +204,34 @@ public void clickButton(View v) {
         strScienceResultShow+=((Button)v).getText().toString();
         tvScienceRecord.setText(strScienceResultShow);
         strScienceResult += v.getTag().toString().replace("Science", "");
+        //判断输入的第一个数是不是双目运算符，是则报错
+        if(strScienceResult.length()==1){
+            if(IsOP(strScienceResult.charAt(0))==0){
+                strScienceResultShow="";
+                tvScienceRecord.setText("");
+                strScienceResult="";
+                tvScienceResult.setText("请输入操作数");
+            }
+        }else if(!strScienceResult.isEmpty()){//判断是否连续输入双目运算符
+            if(IsOP(strScienceResult.charAt(strScienceResult.length()-1))==0&&IsOP(strScienceResult.charAt(strScienceResult.length()-2))==0){
+                int temp=strScienceResultShow.length()-2;
+                strScienceResultShow=strScienceResultShow.substring(0,temp)+strScienceResultShow.substring(temp+1,temp+2);
+                temp=strScienceResult.length()-2;
+                strScienceResult=strScienceResult.substring(0,temp)+strScienceResult.substring(temp+1,temp+2);
+                tvScienceRecord.setText(strScienceResultShow);
+            }
+        }
+
         if(id==R.id.sciencereturn){
-            strScienceResultShow=strScienceResultShow.substring(0,strScienceResultShow.length()-3);
-            strScienceResult=strScienceResult.substring(0,strScienceResult.length()-1);
-            tvScienceRecord.setText(strScienceResultShow);
+            if(!strScienceResult.isEmpty()) {
+                strScienceResultShow = strScienceResultShow.substring(0, strScienceResultShow.length() - 3);
+                strScienceResult = strScienceResult.substring(0, strScienceResult.length() - 1);
+                tvScienceRecord.setText(strScienceResultShow);
+            }else {
+                strScienceResultShow="";
+                tvScienceRecord.setText(strScienceResultShow);
+                tvScienceResult.setText("请输入操作数");
+            }
         }else if(id==R.id.scienceclear){
             strScienceResultShow="";
             strScienceResult="";
@@ -198,26 +241,44 @@ public void clickButton(View v) {
         }else if(id==R.id.scienceequal) {
             //strScienceResult="pi";
             //tvScienceResult.setText(strScienceResult);
-            tvScienceResult.setText(ResolveBracket(strScienceResult,scienceNumList));
+            String temp=strScienceResult;//暂存数据
+
+            strScienceResult=ResolveBracket(strScienceResult,scienceNumList);
+            //strScienceResult=ResolveJJCC(strScienceResult,scienceNumList);
+            tvScienceResult.setText(strScienceResult);
+            if(!strScienceResult.equals(strError)) {
+                strScienceResultShow = strScienceResult;
+            }else {
+                strScienceResult=temp;
+                strScienceResultShow=strScienceResultShow.replace("=","");
+            }
         }
     }
     /********************************试验代码02****************************************************/
 }
 //递归解决括号问题
     public String ResolveBracket(String str,ArrayList numList){
+        String strProcess="";//用于存储过程结果
         //判断是否传入的字符串中是否含有括号，如果有则将最里面的括号中的字符串用ResolveJJCC处理得到运算结果字符串，并去掉最里面的括号
         // 直到字符串中没有字符串则跳出while
         while(str.indexOf("(")!=-1){
             String strTemp=str.substring(str.lastIndexOf("(")+1,str.indexOf(")"));
-            str=str.substring(0,str.lastIndexOf("("))+ResolveJJCC(strTemp,numList)+str.substring(str.indexOf(")")+1,str.length());
+            strProcess=ResolveJJCC(strTemp,numList);
+            if(!strProcess.equals(strError)) {
+                str = str.substring(0, str.lastIndexOf("(")) + strProcess + str.substring(str.indexOf(")") + 1, str.length());
+            }else {
+                str=strError;
+            }
         }
-
-       str=ResolveJJCC(str,numList);
+        if(!str.equals(strError)) {
+            str = ResolveJJCC(str, numList);
+        }
         return str;
     }
-
+    String strError="被除数不能为0";
     //实现运算功能
     public  String ResolveJJCC(String str,ArrayList numList){
+        //判断错误运算
         //保存最终结果
         String FinalResult="";
         //保存操作符
@@ -302,7 +363,7 @@ public void clickButton(View v) {
         while ((strop.indexOf("g") != -1)){
             Double dTemp=Math.log((Double)numList.get(strop.indexOf("g")))/Math.log(10);
             numList.set(strop.indexOf("g"),dTemp);
-            strop=strop.substring(0,strop.indexOf("g"))+strop.substring(strop.indexOf("n")+1,strop.length());
+            strop=strop.substring(0,strop.indexOf("g"))+strop.substring(strop.indexOf("g")+1,strop.length());
         }
         //处理开平方逻辑
         while ((strop.indexOf("q") != -1)){
@@ -331,10 +392,15 @@ public void clickButton(View v) {
                       i=i-1;
                       break;
                   case '/':
-                      numList.set(i,(Double)numList.get(i)/(Double)numList.get(i+1));
-                      strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
-                      numList.remove(i+1);
-                      i=i-1;
+                      if((Double)numList.get(i+1)!=0) {
+                          numList.set(i, (Double) numList.get(i) / (Double) numList.get(i + 1));
+                          strop = strop.substring(0, i) + strop.substring(i + 1, strop.length());
+                          numList.remove(i + 1);
+                          i = i - 1;
+                      }else{
+                          strop="";
+                        FinalResult=strError;
+                      }
                       break;
               }
           }
@@ -358,7 +424,9 @@ public void clickButton(View v) {
             }
         }
         //得到最终结果的字符串表示
-        FinalResult=numList.get(0).toString();
+        if(!FinalResult.equals(strError)) {
+            FinalResult = numList.get(0).toString();
+        }
         //Test= stringTokenizer.nextToken();
         //Test=((Integer)stringTokenizer.countTokens()).toString();
         //Test=strnum;
