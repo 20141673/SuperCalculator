@@ -54,6 +54,8 @@ public class LengthExchangeActivity extends AppCompatActivity {
                 }else if(str.equals("纳米nm")){
                     lengthUpPower=0.00000001;
                 }
+                lengthUpText.setText("0");
+                lengthDownText.setText("0");
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -78,6 +80,8 @@ public class LengthExchangeActivity extends AppCompatActivity {
                 }else if(str.equals("纳米nm")){
                     lengthDownPower=0.00000001;
                 }
+                lengthUpText.setText("0");
+                lengthDownText.setText("0");
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -151,12 +155,14 @@ public class LengthExchangeActivity extends AppCompatActivity {
 
     public void lengthExchange(){
         double lengthrate=lengthUpPower/lengthDownPower;
-        double lastNum=lengthNowNum*lengthrate;
+        double lastNum;
         TextView lengthLastText;                //设置区别于活动窗口的响应窗口文本域
         if(lengthNowText==lengthUpText){
             lengthLastText=lengthDownText;
+            lastNum=lengthNowNum*lengthrate;
         }else{
             lengthLastText=lengthUpText;
+            lastNum=lengthNowNum/lengthrate;
         }
         lengthLastText.setText(String.valueOf(lastNum));
         String lastText=lengthLastText.getText().toString();
