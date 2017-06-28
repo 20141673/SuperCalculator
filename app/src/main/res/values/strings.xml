@@ -13,6 +13,12 @@
     <string name="lg">lg</string>
     <string name="e">e</string>
     <string name="pi">π</string>
+    <string name="strYangLao">养老保险金：</string>
+    <string name="strYiLiao">医疗保险金：</string>
+    <string name="strShiYe">失业保险金：</string>
+    <string name="strGongShang">工伤保险金：</string>
+    <string name="strShengYu">生育保险金：</string>
+    <string name="strZhuFang">住房保险金：</string>
     <string-array name="LengthUnit">
         <item>千米km</item>
         <item>米m</item>
