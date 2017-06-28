@@ -28,15 +28,11 @@ public class BroadsideActivity extends AppCompatActivity
     private TextView tvSimpleRecord;
     //显示计算结果
     private TextView tvSimpleResult;
-    //保存当时操作数
-    String strSimpleNum="";
-    //暂存操作数
-    String strSimpleNumTemp="";
-    //保存所有操作符的字符串
-    String strSimpleOP="";
-    //保存所有操作数的数组
-    ArrayList simpleNum=new ArrayList();
 
+    //存储科学计算器的操作数
+    ArrayList scienceNumList=new ArrayList();
+    //存储简单计算器的操作数
+    ArrayList simpleNumList=new ArrayList();
 
     private String strScienceResult="";
     //保存显示结果字符串
@@ -45,17 +41,8 @@ public class BroadsideActivity extends AppCompatActivity
     private TextView tvScienceRecord;
     //显示计算结果
     private TextView tvScienceResult;
-    //保存当时操作数
-    String strScienceNum="";
-    //暂存操作数
-    String strScienceNumTemp="";
-    //保存所有操作符的字符串
-    String strScienceOP="";
-    //保存所有操作数的数组
-    ArrayList ScienceNum=new ArrayList();
 
-    int MAXLEN=20;
-    double PI=3.14;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,10 +147,27 @@ public void clickButton(View v) {
         strSimpleResultShow+=((Button)v).getText().toString();
         tvSimpleRecord.setText(strSimpleResultShow);
         strSimpleResult += v.getTag().toString().replace("Simple", "");
+
+        if(strSimpleResult.length()==1){
+           if(IsOP(strSimpleResult.charAt(0))==0){
+               strSimpleResultShow="";
+                tvSimpleRecord.setText("");
+               strSimpleResult="";
+               tvSimpleResult.setText("请输入操作数");
+            }
+        }
+
         if(id==R.id.simplereturn){
-            strSimpleResultShow=strSimpleResultShow.substring(0,strSimpleResultShow.length()-3);
-            strSimpleResult=strSimpleResult.substring(0,strSimpleResult.length()-1);
-            tvSimpleRecord.setText(strSimpleResultShow);
+            if(!strSimpleResult.isEmpty()) {
+                strSimpleResultShow = strSimpleResultShow.substring(0, strSimpleResultShow.length() - 3);
+                strSimpleResult = strSimpleResult.substring(0, strSimpleResult.length() - 1);
+                tvSimpleRecord.setText(strSimpleResultShow);
+            }else {
+                strSimpleResultShow="";
+                tvSimpleRecord.setText(strSimpleResultShow);
+                tvSimpleResult.setText("请输入操作数");
+            }
+
         }else if(id==R.id.simpleclear){
             strSimpleResultShow="";
             strSimpleResult="";
@@ -211,9 +215,7 @@ public void clickButton(View v) {
        str=ResolveJJCC(str,numList);
         return str;
     }
-    ArrayList scienceNumList=new ArrayList();
-    ArrayList simpleNumList=new ArrayList();
-    //存储科学计算器的操作数
+
     //实现运算功能
     public  String ResolveJJCC(String str,ArrayList numList){
         //保存最终结果
