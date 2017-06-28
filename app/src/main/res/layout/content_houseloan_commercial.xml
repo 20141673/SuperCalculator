@@ -112,5 +112,30 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:text="日"/>
+
     </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="还款方式："
+            android:gravity="center_vertical"
+            android:textSize="18dp"/>
+        <Spinner
+            android:id="@+id/commercialspinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/LengthUnit"
+            android:gravity="right">
+        </Spinner>
+        </LinearLayout>
+    </TableRow>
+    <TableRow></TableRow>
 </TableLayout>
