@@ -41,6 +41,8 @@ public class BroadsideActivity extends AppCompatActivity
     private TextView tvScienceRecord;
     //显示计算结果
     private TextView tvScienceResult;
+    //错误提示
+    String strError="被除数不能为0";
 
 
     @Override
@@ -116,7 +118,8 @@ public class BroadsideActivity extends AppCompatActivity
             Intent intent=new Intent(BroadsideActivity.this,HouseLoanActivity.class);
             BroadsideActivity.this.startActivity(intent);
         } else if (id == R.id.nav_personincometax) {
-
+            Intent intent=new Intent(BroadsideActivity.this,PersonIncomeTaxActivity.class);
+            BroadsideActivity.this.startActivity(intent);
         } else if (id == R.id.nav_relativescall) {
             Intent intent=new Intent(BroadsideActivity.this,RelativesCallActivity.class);
             BroadsideActivity.this.startActivity(intent);
@@ -275,7 +278,6 @@ public void clickButton(View v) {
         }
         return str;
     }
-    String strError="被除数不能为0";
     //实现运算功能
     public  String ResolveJJCC(String str,ArrayList numList){
         //判断错误运算

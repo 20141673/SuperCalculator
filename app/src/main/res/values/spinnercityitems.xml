@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city">
+        <item>北京</item>
+        <item>上海</item>
+        <item>广州</item>
+        <item>重庆</item>
+        <item>深圳</item>
+        <item>武汉</item>
+        <item>天津</item>
+        <item>西安</item>
+    </string-array>
+    <string-array name="beijing">
+        <item>0.080</item>
+        <item>0.020</item>
+        <item>0.002</item>
+        <item>0.000</item>
+        <item>0.000</item>
+        <item>0.120</item>
+    </string-array>
+    <string-array name="shanghai">
+        <item>0.08</item>
+        <item>0.02</item>
+        <item>0.005</item>
+        <item>0.0</item>
+        <item>0.0</item>
+        <item>0.07</item>
+    </string-array>
+    <string-array name="guangzhou">
+        <item>0.08</item>
+        <item>0.02</item>
+        <item>0.005</item>
+        <item>0.0</item>
+        <item>0.0</item>
+        <item>0.12</item>
+    </string-array>
+    <string-array name="chongqing">
+        <item>0.08</item>
+        <item>0.02</item>
+        <item>0.01</item>
+        <item>0.0</item>
+        <item>0.0</item>
+        <item>0.07</item>
+    </string-array>
+    <string-array name="shenzhen">
+        <item>0.08</item>
+        <item>0.02</item>
+        <item>0.01</item>
+        <item>0.0</item>
+        <item>0.0</item>
+        <item>0.13</item>
+    </string-array>
+    <string-array name="wuhan">
+        <item>0.08</item>
+        <item>0.02</item>
+        <item>0.01</item>
+        <item>0.0</item>
+        <item>0.0</item>
+        <item>0.08</item>
+    </string-array>
+    <string-array name="tianjin">
+        <item>0.08</item>
+        <item>0.02</item>
+        <item>0.01</item>
+        <item>0.0</item>
+        <item>0.0</item>
+        <item>0.11</item>
+    </string-array>
+        <string-array name="xian">
+            <item>0.08</item>
+            <item>0.02</item>
+            <item>0.01</item>
+            <item>0.0</item>
+            <item>0.0</item>
+            <item>0.08</item>
+    </string-array>
+</resources>
