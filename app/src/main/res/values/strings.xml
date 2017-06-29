@@ -28,4 +28,9 @@
         <item>微米um</item>
         <item>纳米nm</item>
     </string-array>
+    <string-array name="HouseRepayWay">
+        <item>等额本息(每月等额还款)</item>
+        <item>等额本金(每月递减还款)</item>
+    </string-array>
+
 </resources>
