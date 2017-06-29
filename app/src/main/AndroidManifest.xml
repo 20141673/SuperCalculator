@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cqu.supercalculator">
+    package="com.cqu.supercalculator">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,36 +15,32 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/> <!-- 这里设置了在桌面上的名称 -->
+                <category android:name="android.intent.category.LAUNCHER" /> <!-- 这里设置了在桌面上的名称 -->
             </intent-filter>
         </activity>
         <activity
             android:name=".ExchageRateActivity"
             android:label="汇率转换"
-            android:parentActivityName=".BroadsideActivity">
-        </activity>
+            android:parentActivityName=".BroadsideActivity"></activity>
         <activity
             android:name=".LengthExchangeActivity"
             android:label="长度转换"
-            android:parentActivityName=".BroadsideActivity">
-        </activity>
+            android:parentActivityName=".BroadsideActivity"></activity>
         <activity
             android:name=".RelativesCallActivity"
             android:label="亲戚称呼"
-            android:parentActivityName=".BroadsideActivity">
-        </activity>
+            android:parentActivityName=".BroadsideActivity"></activity>
         <activity
             android:name=".HouseLoanActivity"
             android:label="房贷计算"
-            android:parentActivityName=".BroadsideActivity">
-        </activity>
+            android:parentActivityName=".BroadsideActivity"></activity>
         <activity
             android:name=".HouseLoanResultActivity"
             android:label="房贷计算结果"
-            android:parentActivityName=".HouseLoanActivity">
-        </activity>
+            android:parentActivityName=".HouseLoanActivity"></activity>
+        <activity android:name=".PersonIncomeTaxActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="所在城市"/>
+    <Spinner
+        android:id="@+id/spiCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/city"></Spinner>
+    <TextView
+        android:id="@+id/tvIncome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="税前月薪"/>
+    <EditText
+        android:id="@+id/editIncome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="五险一金比例(个人部分)"/>
+    <TextView
+        android:id="@+id/tvYangLao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strYangLao"/>
+    <TextView
+        android:id="@+id/tvYiLiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strYiLiao"/>
+    <TextView
+        android:id="@+id/tvShiYe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strShiYe"/>
+    <TextView
+        android:id="@+id/tvGongShang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strGongShang"/>
+    <TextView
+        android:id="@+id/tvShengYu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strShengYu"/>
+    <TextView
+        android:id="@+id/tvZhuFang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strZhuFang"/>
+    <Button
+        android:id="@+id/btnCalculatePersonTax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="计算"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="税后月薪"/>
+    <TextView
+        android:id="@+id/tvIncomeAfterTax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="需缴个人所得税"/>
+    <TextView
+        android:id="@+id/tvTax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
