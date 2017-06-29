@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BroadsideActivity extends AppCompatActivity
@@ -129,6 +128,25 @@ public class BroadsideActivity extends AppCompatActivity
 
         }else if(id==R.id.nav_temperatureexchange){
 
+        }else if(id==R.id.nav_weightexchange){
+            Intent intent=new Intent(BroadsideActivity.this,WeightExchangeActivity.class);
+            BroadsideActivity.this.startActivity(intent);
+        }else if(id==R.id.nav_capitalexchange){
+            Intent intent=new Intent(BroadsideActivity.this,CapitalExchangeActivity.class);
+            BroadsideActivity.this.startActivity(intent);
+        }else if(id==R.id.nav_speedexchange){
+            Intent intent=new Intent(BroadsideActivity.this,SpeedActivity.class);
+            BroadsideActivity.this.startActivity(intent);
+        }
+        else if(id==R.id.nav_temperatureexchange){
+            Intent intent=new Intent(BroadsideActivity.this,TemperatureActivity.class);
+            BroadsideActivity.this.startActivity(intent);
+        }else if(id==R.id.nav_Volumeexchange) {
+            Intent intent=new Intent(BroadsideActivity.this,VolumeExchangeActivity.class);
+            BroadsideActivity.this.startActivity(intent);
+        } else if(id==R.id.nav_Areaexchange) {
+            Intent intent=new Intent(BroadsideActivity.this,AreaExchangeActivity.class);
+            BroadsideActivity.this.startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

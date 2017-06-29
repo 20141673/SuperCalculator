@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cqu.supercalculator.TemperatureActivity">
+
+    <Button
+        android:id="@+id/temperaturezero"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:text="0"
+        tools:layout_editor_absoluteX="7dp"
+        android:onClick="clickButton"
+
+        android:layout_below="@+id/temperaturethree"
+        android:layout_alignParentStart="true" /><Button
+    android:id="@+id/temperatureone"
+    android:layout_width="92dp"
+    android:layout_height="48dp"
+    android:text="1"
+    tools:layout_editor_absoluteX="7dp"
+    android:onClick="clickButton"
+    android:layout_alignBaseline="@+id/temperaturetwo"
+    android:layout_alignBottom="@+id/temperaturetwo"
+    android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/temperaturetwo"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="2"
+        tools:layout_editor_absoluteX="99dp"
+        android:onClick="clickButton"
+        android:layout_below="@+id/temperatureac"
+        android:layout_toEndOf="@+id/temperatureone" />
+    <Button
+        android:id="@+id/temperaturethree"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="3"
+        tools:layout_editor_absoluteX="191dp"
+        android:onClick="clickButton"
+        android:layout_below="@+id/temperatureac"
+        android:layout_toEndOf="@+id/temperaturetwo" />
+    <Button
+        android:id="@+id/temperaturefour"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="4"
+        tools:layout_editor_absoluteX="7dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/temperatureone"
+        android:layout_alignStart="@+id/temperatureone" />
+    <Button
+        android:id="@+id/temperaturefive"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="5"
+        tools:layout_editor_absoluteX="99dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/temperaturetwo"
+        android:layout_toEndOf="@+id/temperatureone" />
+    <Button
+        android:id="@+id/temperaturesix"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="6"
+        tools:layout_editor_absoluteX="191dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/temperaturethree"
+        android:layout_toEndOf="@+id/temperaturefive" />
+    <Button
+        android:id="@+id/temperatureseven"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="7"
+        android:onClick="clickButton"
+        android:layout_above="@+id/temperaturefour"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/temperatureeight"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="8"
+        tools:layout_editor_absoluteX="99dp"
+        android:onClick="clickButton"
+        android:layout_alignBaseline="@+id/temperatureseven"
+        android:layout_alignBottom="@+id/temperatureseven"
+        android:layout_toEndOf="@+id/temperatureseven" />
+    <Button
+        android:id="@+id/temperaturenine"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="9"
+        tools:layout_editor_absoluteX="191dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/temperaturesix"
+        android:layout_toEndOf="@+id/temperatureeight" />
+
+    <Button
+        android:id="@+id/temperatureac"
+        android:layout_width="93dp"
+        android:layout_height="95dp"
+        android:text="AC"
+        android:onClick="clickButton"
+        tools:layout_editor_absoluteY="312dp"
+        android:layout_marginRight="8dp"
+
+        android:layout_above="@+id/temperaturereturn"
+        android:layout_toEndOf="@+id/temperaturethree" />
+    <Button
+        android:id="@+id/temperaturereturn"
+        android:layout_width="93dp"
+        android:layout_height="95dp"
+        android:text="@string/returnicon"
+        android:onClick="clickButton"
+        tools:layout_editor_absoluteY="408dp"
+        android:layout_marginRight="8dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/temperaturethree" />
+
+    <Button
+        android:id="@+id/temperaturepoint"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:text="."
+        tools:layout_editor_absoluteX="142dp"
+        android:onClick="clickButton"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/temperaturereturn" />
+
+    <Spinner
+        android:id="@+id/temperaturedownspinner"
+        android:layout_width="140dp"
+        android:layout_height="155dp"
+
+        android:entries="@array/TemperatureUnit"
+        android:layout_above="@+id/temperatureac"
+        android:layout_alignParentStart="true"
+        />
+
+    <Spinner
+        android:id="@+id/temperatureupspinner"
+        android:layout_width="140dp"
+        android:layout_height="155dp"
+        android:layout_above="@+id/temperaturedownspinner"
+        android:layout_alignParentStart="true"
+        android:entries="@array/TemperatureUnit" />
+
+    <TextView
+        android:id="@+id/temperatureuptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/temperaturedownspinner"
+        android:layout_alignParentEnd="true"
+
+        android:layout_alignTop="@+id/temperatureupspinner"
+        android:layout_toEndOf="@+id/temperaturedownspinner"
+        android:clickable="true"
+        android:ellipsize="start"
+        android:gravity="right|center_vertical"
+        android:maxLines="1"
+        android:onClick="clickText"
+        android:text="0"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/temperaturedowntext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/temperatureeight"
+
+        android:layout_alignEnd="@+id/temperatureuptext"
+        android:layout_below="@+id/temperatureupspinner"
+        android:layout_toEndOf="@+id/temperaturedownspinner"
+        android:clickable="true"
+        android:ellipsize="start"
+        android:gravity="right|center_vertical"
+        android:maxLines="1"
+        android:onClick="clickText"
+        android:text="0"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

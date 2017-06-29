@@ -16,6 +16,30 @@
             android:icon="@drawable/ic_menu_share"
             android:title="个人所得税"/>
         <item
+            android:id="@+id/nav_weightexchange"
+            android:icon="@drawable/ic_menu_share"
+            android:title="重量转换"/>
+        <item
+            android:id="@+id/nav_capitalexchange"
+            android:icon="@drawable/ic_menu_share"
+            android:title="大写数字"/>
+        <item
+            android:id="@+id/nav_speedexchange"
+            android:icon="@drawable/ic_menu_send"
+            android:title="速度换算"/>
+        <item
+            android:id="@+id/nav_rankexchange"
+            android:icon="@drawable/ic_menu_send"
+            android:title="亲戚称呼"/>
+        <item
+            android:id="@+id/nav_Volumeexchange"
+            android:icon="@drawable/ic_menu_send"
+            android:title="体积换算"/>
+        <item
+            android:id="@+id/nav_Areaexchange"
+            android:icon="@drawable/ic_menu_send"
+            android:title="面积换算"/>
+        <item
             android:id="@+id/nav_relativescall"
             android:icon="@drawable/ic_menu_send"
             android:title="亲戚称呼"/>

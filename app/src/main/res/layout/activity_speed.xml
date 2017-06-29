@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cqu.supercalculator.SpeedActivity">
+
+    <Button
+        android:id="@+id/speedzero"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:text="0"
+        tools:layout_editor_absoluteX="7dp"
+        android:onClick="clickButton"
+
+        android:layout_below="@+id/speedthree"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/speedpoint" /><Button
+        android:id="@+id/speedone"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="1"
+        tools:layout_editor_absoluteX="7dp"
+        android:onClick="clickButton"
+        android:layout_alignBaseline="@+id/speedtwo"
+        android:layout_alignBottom="@+id/speedtwo"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/speedtwo"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="2"
+        tools:layout_editor_absoluteX="99dp"
+        android:onClick="clickButton"
+        android:layout_below="@+id/speedac"
+        android:layout_toEndOf="@+id/speedone" />
+    <Button
+        android:id="@+id/speedthree"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="3"
+        tools:layout_editor_absoluteX="191dp"
+        android:onClick="clickButton"
+        android:layout_below="@+id/speedac"
+        android:layout_toEndOf="@+id/speedtwo" />
+    <Button
+        android:id="@+id/speedfour"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="4"
+        tools:layout_editor_absoluteX="7dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/speedone"
+        android:layout_alignStart="@+id/speedone" />
+    <Button
+        android:id="@+id/speedfive"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="5"
+        tools:layout_editor_absoluteX="99dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/speedtwo"
+        android:layout_toEndOf="@+id/speedone" />
+    <Button
+        android:id="@+id/speedsix"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="6"
+        tools:layout_editor_absoluteX="191dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/speedthree"
+        android:layout_toEndOf="@+id/speedfive" />
+    <Button
+        android:id="@+id/speedseven"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="7"
+        android:onClick="clickButton"
+        android:layout_above="@+id/speedfour"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/speedeight"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="8"
+        tools:layout_editor_absoluteX="99dp"
+        android:onClick="clickButton"
+        android:layout_alignBaseline="@+id/speedseven"
+        android:layout_alignBottom="@+id/speedseven"
+        android:layout_toEndOf="@+id/speedseven" />
+    <Button
+        android:id="@+id/speednine"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:text="9"
+        tools:layout_editor_absoluteX="191dp"
+        android:onClick="clickButton"
+        android:layout_above="@+id/speedsix"
+        android:layout_toEndOf="@+id/speedeight" />
+
+    <Button
+        android:id="@+id/speedac"
+        android:layout_width="93dp"
+        android:layout_height="95dp"
+        android:text="AC"
+        android:onClick="clickButton"
+        tools:layout_editor_absoluteY="312dp"
+        android:layout_marginRight="8dp"
+
+        android:layout_above="@+id/speedreturn"
+        android:layout_toEndOf="@+id/speedthree" />
+    <Button
+        android:id="@+id/speedreturn"
+        android:layout_width="93dp"
+        android:layout_height="95dp"
+        android:text="@string/returnicon"
+        android:onClick="clickButton"
+        tools:layout_editor_absoluteY="408dp"
+        android:layout_marginRight="8dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/speedthree" />
+
+    <Button
+        android:id="@+id/speedpoint"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:text="."
+        tools:layout_editor_absoluteX="142dp"
+        android:onClick="clickButton"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/speedreturn" />
+
+    <Spinner
+        android:id="@+id/speeddownspinner"
+        android:layout_width="140dp"
+        android:layout_height="155dp"
+
+        android:entries="@array/SpeedUnit"
+        android:layout_above="@+id/speedac"
+        android:layout_alignParentStart="true"
+       />
+
+    <Spinner
+        android:id="@+id/speedupspinner"
+        android:layout_width="140dp"
+        android:layout_height="155dp"
+        android:layout_above="@+id/speeddownspinner"
+        android:layout_alignParentStart="true"
+        android:entries="@array/SpeedUnit" />
+
+    <TextView
+        android:id="@+id/speeduptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/speeddownspinner"
+
+        android:layout_alignEnd="@+id/speedac"
+        android:layout_alignTop="@+id/speedupspinner"
+        android:layout_toEndOf="@+id/speeddownspinner"
+        android:clickable="true"
+        android:ellipsize="start"
+        android:gravity="right|center_vertical"
+        android:maxLines="1"
+        android:onClick="clickText"
+        android:text="0"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/speeddowntext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/speedeight"
+        android:layout_alignEnd="@+id/speeduptext"
+        android:layout_below="@+id/speedupspinner"
+        android:layout_toEndOf="@+id/speeddownspinner"
+        android:clickable="true"
+        android:ellipsize="start"
+        android:gravity="right|center_vertical"
+        android:maxLines="1"
+        android:onClick="clickText"
+        android:text="0"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

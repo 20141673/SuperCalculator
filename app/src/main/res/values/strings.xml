@@ -32,5 +32,67 @@
         <item>等额本息(每月等额还款)</item>
         <item>等额本金(每月递减还款)</item>
     </string-array>
+    <string-array name="SpeedUnit"
+        >
+        <item>千米/时km/h</item>
+        <item>米/秒m/s</item>
+        <item>英里/时mph</item>
+        <item>海里/时kn</item>
+        <item>千米/秒km/s</item>
+        <item>光速c</item>
+        <item>马赫Ma</item>
+        <item>英寸/秒ips</item>
+    </string-array>
+
+    <string-array name="TemperatureUnit"
+        >
+        <item>开尔文K</item>
+        <item>摄氏度℃</item>
+        <item>华氏度℉</item>
+    </string-array>
+
+    <string-array name="WeightUnit">
+        <item>微克ug</item>
+        <item>毫克mg</item>
+        <item>克g</item>
+        <item>千克kg</item>
+        <item>吨t</item>
+        <item>磅lb</item>
+        <item>盎司oz</item>
+        <item>克拉ct</item>
+        <item>打兰dr</item>
+        <item>格令gr</item>
+        <item>担dan</item>
+        <item>钱qian</item>
+        <item>两liang</item>
+        <item>公担q</item>
+        <item>长吨l.t</item>
+        <item>短吨sh.t</item>
+        <item>英担cwt</item>
+        <item>美担cwt</item>
+        <item>英石uk.st</item>
+    </string-array>
+
+    <string-array name="VolumeUnit">
+        <item>立方米m³</item>
+        <item>升L</item>
+        <item>加仑gal</item>
+        <item>立方英尺cf</item>
+        <item>公石hl</item>
+        <item>立方分米dm³</item>
+        <item>立方厘米cm³</item>
+        <item>毫升ml</item>
+        <item>立方毫米mm³</item>
+    </string-array>
+    <string-array name="AreaUnit">
+        <item>平方米m²</item>
+        <item>平方英尺sf</item>
+        <item>平方分米dm²</item>
+        <item>平方厘米cm²</item>
+        <item>平方毫米mm²</item>
+        <item>平方码sy</item>
+        <item>平方英寸si</item>
+        <item>公顷ha</item>
+    </string-array>
 
 </resources>

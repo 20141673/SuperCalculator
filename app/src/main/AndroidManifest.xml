@@ -23,24 +23,51 @@
         <activity
             android:name=".ExchageRateActivity"
             android:label="汇率转换"
-            android:parentActivityName=".BroadsideActivity"></activity>
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".LengthExchangeActivity"
             android:label="长度转换"
-            android:parentActivityName=".BroadsideActivity"></activity>
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".RelativesCallActivity"
             android:label="亲戚称呼"
-            android:parentActivityName=".BroadsideActivity"></activity>
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".HouseLoanActivity"
             android:label="房贷计算"
-            android:parentActivityName=".BroadsideActivity"></activity>
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".HouseLoanResultActivity"
             android:label="房贷计算结果"
-            android:parentActivityName=".HouseLoanActivity"></activity>
-        <activity android:name=".PersonIncomeTaxActivity"></activity>
+            android:parentActivityName=".HouseLoanActivity"/>
+        <activity
+            android:name=".PersonIncomeTaxActivity"
+            android:label="个人所得税"
+            android:parentActivityName=".BroadsideActivity"/>
+        <activity
+            android:name=".SpeedActivity"
+            android:label="速度转换"
+            android:parentActivityName=".BroadsideActivity" />
+        <activity
+            android:name=".TemperatureActivity"
+            android:label="温度转换"
+            android:parentActivityName=".BroadsideActivity" />
+        <activity
+            android:name=".VolumeExchangeActivity"
+            android:label="体积转换"
+            android:parentActivityName=".BroadsideActivity" />
+        <activity
+            android:name=".AreaExchangeActivity"
+            android:label="面积转换"
+            android:parentActivityName=".BroadsideActivity" />
+        <activity
+            android:name=".WeightExchangeActivity"
+            android:label="重量转换"
+            android:parentActivityName=".BroadsideActivity" />
+        <activity
+            android:name=".CapitalExchangeActivity"
+            android:label="大写数字转换"
+            android:parentActivityName=".BroadsideActivity" />
     </application>
 
 </manifest>
