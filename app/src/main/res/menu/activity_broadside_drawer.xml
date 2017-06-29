@@ -28,10 +28,6 @@
             android:icon="@drawable/ic_menu_send"
             android:title="速度换算"/>
         <item
-            android:id="@+id/nav_rankexchange"
-            android:icon="@drawable/ic_menu_send"
-            android:title="亲戚称呼"/>
-        <item
             android:id="@+id/nav_Volumeexchange"
             android:icon="@drawable/ic_menu_send"
             android:title="体积换算"/>

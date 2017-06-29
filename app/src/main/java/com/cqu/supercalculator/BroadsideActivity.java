@@ -126,8 +126,6 @@ public class BroadsideActivity extends AppCompatActivity
             Intent intent=new Intent(BroadsideActivity.this,LengthExchangeActivity.class);
             BroadsideActivity.this.startActivity(intent);
 
-        }else if(id==R.id.nav_temperatureexchange){
-
         }else if(id==R.id.nav_weightexchange){
             Intent intent=new Intent(BroadsideActivity.this,WeightExchangeActivity.class);
             BroadsideActivity.this.startActivity(intent);
@@ -137,8 +135,7 @@ public class BroadsideActivity extends AppCompatActivity
         }else if(id==R.id.nav_speedexchange){
             Intent intent=new Intent(BroadsideActivity.this,SpeedActivity.class);
             BroadsideActivity.this.startActivity(intent);
-        }
-        else if(id==R.id.nav_temperatureexchange){
+        }else if(id==R.id.nav_temperatureexchange){
             Intent intent=new Intent(BroadsideActivity.this,TemperatureActivity.class);
             BroadsideActivity.this.startActivity(intent);
         }else if(id==R.id.nav_Volumeexchange) {

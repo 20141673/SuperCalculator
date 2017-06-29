@@ -190,5 +190,6 @@ public class HouseLoanActivity extends AppCompatActivity {
         if(!etprofundpercenttime.getText().toString().equals("")){
             profundpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
         }
+        //tvcommercialpercent.setText();
     }
 }

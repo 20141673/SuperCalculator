@@ -105,10 +105,10 @@ public class AreaExchangeActivity extends AppCompatActivity {
         if(areaNowText.getText().toString().equals(".")){  //如果第一位是0，消除第一位
             areaNowText.setText("0.");
         }
-        if(id==R.id.volumeac){                 //AC键和回退键的特殊判断
+        if(id==R.id.areaac){                 //AC键和回退键的特殊判断
             areaUpText.setText("0");
             areaDownText.setText("0");
-        }else if(id==R.id.volumereturn){
+        }else if(id==R.id.areareturn){
            /*字符串的回退处理*/
             if(areaNowText.getText().toString().equals("")){
                 areaNowText.setText("0");
@@ -125,30 +125,30 @@ public class AreaExchangeActivity extends AppCompatActivity {
             id=0;
         }
 
-        if(id==R.id.volumeone){
+        if(id==R.id.areaone){
             areaNowText.append("1");
-        }else if(id==R.id.volumetwo){
+        }else if(id==R.id.areatwo){
             areaNowText.append("2");
-        }else if(id==R.id.volumethree){
+        }else if(id==R.id.areathree){
             areaNowText.append("3");
-        }else if(id==R.id.volumefour){
+        }else if(id==R.id.areafour){
             areaNowText.append("4");
-        }else if(id==R.id.volumefive){
+        }else if(id==R.id.areafive){
             areaNowText.append("5");
-        }else if(id==R.id.volumesix){
+        }else if(id==R.id.areasix){
             areaNowText.append("6");
-        }else if(id==R.id.volumeseven){
+        }else if(id==R.id.areaseven){
             areaNowText.append("7");
-        }else if(id==R.id.volumeeight){
+        }else if(id==R.id.areaeight){
             areaNowText.append("8");
-        }else if(id==R.id.volumenine){
+        }else if(id==R.id.areanine){
             areaNowText.append("9");
-        }else if(id==R.id.volumezero){  //zero需要特殊处理
+        }else if(id==R.id.areazero){  //zero需要特殊处理
             if(!areaNowText.getText().equals("0")){
                 areaNowText.append("0");
             }
         }
-        else if(id==R.id.volumepoint){ //point需要特殊处理
+        else if(id==R.id.areapoint){ //point需要特殊处理
             int i=-2;
             i=areaNowText.getText().toString().indexOf(".");
             if(i<0){
@@ -158,10 +158,10 @@ public class AreaExchangeActivity extends AppCompatActivity {
         try{
             areaNowNum =Double.parseDouble(areaNowText.getText().toString());
         }catch(Exception e){}
-        volumeExchange();                   //对字符处理成数字进行长度转换的运算,对响应窗口进行操作
+        areaExchange();                   //对字符处理成数字进行长度转换的运算,对响应窗口进行操作
     }
 
-    public void volumeExchange(){           //*****
+    public void areaExchange(){           //*****
         double arearate;
         double lastNum;
         TextView areaLastText;                //设置区别于活动窗口的响应窗口文本域
@@ -183,7 +183,7 @@ public class AreaExchangeActivity extends AppCompatActivity {
 
     public void clickText(View v){
         int id=v.getId();
-        if(id==R.id.volumeuptext){
+        if(id==R.id.areauptext){
             areaNowText=areaUpText;
             areaUpText.setTextColor(0xFF64C1C9);
             areaDownText.setTextColor(Color.BLACK);
