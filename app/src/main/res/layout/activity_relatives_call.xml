@@ -37,11 +37,13 @@
                     android:text="AC"/>
                 <Button
                     android:id="@+id/relativehusband"
+                    android:tag="h"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="夫"/>
                 <Button
                     android:id="@+id/relativewife"
+                    android:tag="w"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="妻"/>
@@ -54,11 +56,13 @@
                     android:text="@string/returnicon"/>
                 <Button
                     android:id="@+id/relativefather"
+                    android:tag="f"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="父"/>
                 <Button
                     android:id="@+id/relativemother"
+                    android:tag="m"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="母"/>
@@ -89,16 +93,19 @@
                 android:layout_gravity="fill_horizontal">
                 <Button
                     android:id="@+id/relativeoldbro"
+                    android:tag="ob"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="兄"/>
                 <Button
                     android:layout_weight="1"
+                    android:tag="lb"
                     android:id="@+id/relativelittlebro"
                     android:onClick="clickButton"
                     android:text="弟"/>
                 <Button
                     android:id="@+id/relativeson"
+                    android:tag="s"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="子"/>
@@ -107,15 +114,18 @@
                 android:layout_width="match_parent">
                 <Button
                     android:id="@+id/relativeoldsis"
+                    android:tag="os"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="姐"/>
                 <Button
                     android:id="@+id/relativelittlesis"
+                    android:tag="ls"
                     android:onClick="clickButton"
                     android:text="妹"/>
                 <Button
                     android:id="@+id/relativedaughter"
+                    android:tag="d"
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="女"/>
@@ -128,6 +138,7 @@
             android:layout_height="match_parent">
             <Button
                 android:id="@+id/relativeequal"
+                android:tag=""
                 android:layout_rowSpan="2"
                 android:layout_gravity="fill_vertical"
                 android:onClick="clickButton"

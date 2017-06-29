@@ -13,20 +13,23 @@
         <item>老婆</item>
     </string-array>
     <string-array name="father">
-        <item>爷爷</item>
-        <item>奶奶</item>
+        <item>祖父</item>
+        <item>祖母</item>
+
         <item>我/哥哥/弟弟</item>
         <item>我/姐姐/妹妹</item>
+
         <item>伯父</item>
         <item>叔叔</item>
         <item>姑母</item>
         <item>姑姐</item>
+
         <item>错误</item>
         <item>妈妈</item>
     </string-array>
     <string-array name="mother">
-        <item>外公</item>
-        <item>外婆</item>
+        <item>外祖父</item>
+        <item>外祖母</item>
         <item>我/哥哥/弟弟</item>
         <item>我/姐姐/妹妹</item>
         <item>大舅</item>
@@ -113,10 +116,10 @@
     <item>婆婆</item>
     <item>儿子</item>
     <item>女儿</item>
-    <item>大伯子</item>
-    <item>小叔子</item>
-    <item>大姑子</item>
-    <item>小姑子</item>
+    <item>大伯</item>
+    <item>小叔</item>
+    <item>大姑</item>
+    <item>小姑</item>
     <item>错误</item>
     <item>我</item>
 </string-array>
@@ -125,10 +128,10 @@
         <item>岳母</item>
         <item>儿子</item>
         <item>女儿</item>
-        <item>大舅子</item>
-        <item>小舅子</item>
-        <item>大姨子</item>
-        <item>小姨子</item>
+        <item>大舅</item>
+        <item>小舅</item>
+        <item>大姨</item>
+        <item>小姨</item>
         <item>我</item>
         <item>错误</item>
     </string-array>
