@@ -200,9 +200,9 @@
         app:layout_constraintLeft_toRightOf="@+id/weightzero"
         android:layout_marginLeft="8dp"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/weightreturn"
         android:layout_below="@+id/weighttwo"
-        android:layout_alignEnd="@+id/weightthree" />
+        android:layout_alignEnd="@+id/weightthree"
+        android:layout_toEndOf="@+id/weightone"/>
 
     <Button
         android:id="@+id/weightac"

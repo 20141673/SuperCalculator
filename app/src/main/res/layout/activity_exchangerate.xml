@@ -23,8 +23,8 @@
                 android:gravity="right|center_vertical"
                 android:textColor="@color/skyBlue"
                 android:text="0"
-                android:textSize="35dp"
-                android:ellipsize="start"
+                android:textSize="25dp"
+                android:ellipsize="end"
                 android:maxLines="1"/>
         </LinearLayout>
     </TableRow>
@@ -53,8 +53,8 @@
                 android:layout_gravity="fill_horizontal"
                 android:gravity="right|center_vertical"
                 android:text="0"
-                android:textSize="35dp"
-                android:ellipsize="start"
+                android:textSize="25dp"
+                android:ellipsize="end"
                 android:maxLines="1"/>
         </LinearLayout>
     </TableRow>
@@ -103,6 +103,7 @@
                     <Button
                         android:id="@+id/currencyac"
                         android:layout_gravity="fill"
+                        android:onClick="clickButton"
                         android:text="C"
                         android:layout_height="fill_parent"/>
                 </GridLayout>
@@ -149,6 +150,7 @@
                 <Button
                     android:id="@+id/currencyreturn"
                     android:layout_gravity="fill"
+                    android:onClick="clickButton"
                     android:text="@string/returnicon"
                     android:layout_height="fill_parent"/>
             </GridLayout>

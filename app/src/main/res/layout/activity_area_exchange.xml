@@ -24,7 +24,7 @@
                 android:layout_gravity="fill_horizontal"
                 android:gravity="right|center_vertical"
                 android:text="0"
-                android:textSize="35dp"
+                android:textSize="25dp"
                 android:ellipsize="start"
                 android:clickable="true"
                 android:onClick="clickText"
@@ -61,7 +61,7 @@
                 android:clickable="true"
                 android:onClick="clickText"
                 android:text="0"
-                android:textSize="35dp"
+                android:textSize="25dp"
                 android:ellipsize="start"
                 android:maxLines="1"/>
         </LinearLayout>

@@ -24,8 +24,8 @@
                 android:layout_gravity="fill_horizontal"
                 android:gravity="right|center_vertical"
                 android:text="0"
-                android:textSize="35dp"
-                android:ellipsize="start"
+                android:textSize="25dp"
+                android:ellipsize="end"
                 android:clickable="true"
                 android:onClick="clickText"
                 android:maxLines="1"/>
@@ -59,8 +59,8 @@
                 android:clickable="true"
                 android:onClick="clickText"
                 android:text="0"
-                android:textSize="35dp"
-                android:ellipsize="start"
+                android:textSize="25dp"
+                android:ellipsize="end"
                 android:maxLines="1"/>
         </LinearLayout>
     </TableRow>

@@ -3,6 +3,8 @@ package com.cqu.supercalculator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class HouseLoanActivity extends AppCompatActivity {
-    private EditText etcommercialamount,etcommmercialpercent,etcommercialpercenttime;
+    private EditText etcommercialamount, etcommercialpercent,etcommercialpercenttime;
     private TextView tvcommercialpercent;
 
     private EditText etprofundamount,etprofundpercent,etprofundpercenttime;
@@ -35,7 +37,7 @@ public class HouseLoanActivity extends AppCompatActivity {
     private ArrayList<String> dataMonth = new ArrayList<String>();
     private ArrayList<String> dataDay = new ArrayList<String>();
     private ArrayList<String> countYear=new ArrayList<String>();
-
+    private double showcomper,showcompertime,showproper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +49,75 @@ public class HouseLoanActivity extends AppCompatActivity {
     private void initView(){
         //商业贷款初始化
         etcommercialamount=(EditText)findViewById(R.id.etcommercialamount);
-        etcommmercialpercent=(EditText)findViewById(R.id.etcommercialpercent);
+        etcommercialpercent =(EditText)findViewById(R.id.etcommercialpercent);
         etcommercialpercenttime=(EditText)findViewById(R.id.etcommercialpercenttime);
         tvcommercialpercent=(TextView)findViewById(R.id.tvcommercialpercent);
+        etcommercialpercent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!etcommercialpercent.getText().toString().equals("")){
+                    commercialpercent=Double.parseDouble(etcommercialpercent.getText().toString());
+                }
+                if(!etcommercialpercenttime.getText().toString().equals("")){
+                    commercialpertime=Double.parseDouble(etcommercialpercenttime.getText().toString());
+                }
+                tvcommercialpercent.setText("="+String.valueOf(commercialpercent*commercialpertime)+"%");
+            }
+        });
+        etcommercialpercenttime.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                showcomper=Double.parseDouble(etcommercialpercent.getText().toString());
+                showcompertime=Double.parseDouble(etcommercialpercenttime.getText().toString());
+                tvcommercialpercent.setText(String.valueOf("="+String.valueOf(commercialpercent*commercialpertime)+"%"));
+            }
+        });
 
         //公积金贷款的初始化
         etprofundamount=(EditText)findViewById(R.id.etprofundamount);
         etprofundpercent=(EditText)findViewById(R.id.etprofundpercent);
         etprofundpercenttime=(EditText)findViewById(R.id.etprofundpercenttime);
         tvprofunpercent=(TextView)findViewById(R.id.tvprofundpercent);
+        etprofundpercent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!etcommercialpercent.getText().toString().equals("")){
+                    profundpercent=Double.parseDouble(etprofundpercent.getText().toString());
+                }
+                if(!etcommercialpercenttime.getText().toString().equals("")){
+                    commercialpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
+                }
+                tvcommercialpercent.setText("="+String.valueOf(commercialpercent*commercialpertime)+"%");
+            }
+        });
+        etprofundpercenttime.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!etcommercialpercent.getText().toString().equals("")){
+                    profundpercent=Double.parseDouble(etprofundpercent.getText().toString());
+                }
+                if(!etcommercialpercenttime.getText().toString().equals("")){
+                    commercialpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
+                }
+                tvcommercialpercent.setText("="+String.valueOf(commercialpercent*commercialpertime)+"%");
+            }
+        });
 
     }
 
@@ -178,11 +240,11 @@ public class HouseLoanActivity extends AppCompatActivity {
         if(!etprofundamount.getText().toString().equals("")){
             profundamount=Double.parseDouble(etprofundamount.getText().toString());
         }
-        if(!etcommmercialpercent.getText().toString().equals("")){
-            commercialpercent=Double.parseDouble(etcommmercialpercent.getText().toString());
+        if(!etcommercialpercent.getText().toString().equals("")){
+            commercialpercent=Double.parseDouble(etcommercialpercent.getText().toString());
         }
         if(!etcommercialpercenttime.getText().toString().equals("")){
-            commercialpertime=Double.parseDouble(etcommmercialpercent.getText().toString());
+            commercialpertime=Double.parseDouble(etcommercialpercent.getText().toString());
         }
         if(!etprofundpercent.getText().toString().equals("")){
             profundpercent=Double.parseDouble(etprofundpercent.getText().toString());
@@ -190,6 +252,6 @@ public class HouseLoanActivity extends AppCompatActivity {
         if(!etprofundpercenttime.getText().toString().equals("")){
             profundpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
         }
-        //tvcommercialpercent.setText();
+
     }
 }
