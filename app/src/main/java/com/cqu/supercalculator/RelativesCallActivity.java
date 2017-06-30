@@ -3,6 +3,7 @@ package com.cqu.supercalculator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class RelativesCallActivity extends AppCompatActivity {
@@ -29,24 +30,40 @@ public class RelativesCallActivity extends AppCompatActivity {
         //GetRelationByXml(relation);
         //Try(relation);
     }
-
+    String strRelative="";
+    String strShow="我";
     public void clickButton(View v){
         int id=v.getId();
-        String strRelative="";
-        strRelative +=v.getTag().toString();
-        if(id==R.id.relativeequal){
-            //strRelative="ff";
-            Try(strRelative);
-            //relativeResult.setText(strRelative);
+        //strRelative="";
+       strShow+=v.getTag().toString();
+        relativeRecord.setText(strShow);
+
+        if(id==R.id.relativeac){
+            strShow="我";
             strRelative="";
+            relativeResult.setText(strRelative);
+            relativeRecord.setText(strShow);
+        }else if(id==R.id.relativeequal){
+            //strRelative="ff";
+            //Try(strRelative);
+            relativeResult.setText(strRelative);
+            GetRelationByXml(strRelative);
+            strRelative="";
+
+            //GetRelationByXml(strRelative);
+        }else  {
+            strRelative += ((Button)v).getText();
         }
-        
+
+
     }
 
 
         public void GetRelationByXml(String strRelation){
             int index;
             String[] strTemp;
+            String strTempResult;
+            String strTempProcess="";
             int[] index0={R.array.father, R.array.mother,R.array.son,R.array.daughter,R.array.olderbrother,R.array.youngerbrother,R.array.oldersister,R.array.youngersister,R.array.husband,R.array.wife};
 
             if(strRelation.length()==1){
@@ -54,17 +71,50 @@ public class RelativesCallActivity extends AppCompatActivity {
                 strRelation=strRelation.substring(1,strRelation.length());
                 strTemp=getResources().getStringArray(R.array.me);
                 relativeResult.setText(strTemp[index]);
-            }else if(strRelation.length()==2){
+            }else if(strRelation.length()>=2){
+
+
                 index=GetRelationIndex(strRelation.charAt(0));
                 strTemp=getResources().getStringArray(index0[index]);
 
+
+
                 strRelation=strRelation.substring(1,strRelation.length());
                 index=GetRelationIndex(strRelation.charAt(0));
-                relativeResult.setText(strTemp[index]);
-            }else if(strRelation.length()>2){
+                strTempResult=strTemp[index];
 
+                if(strRelation.length()==1) {
+                    relativeResult.setText(strTempResult);
+                }else {
+
+                    while (strRelation.length()!=1) {
+
+                        //去掉上一次关系的字符
+                        strRelation = strRelation.substring(1, strRelation.length());
+                        index = GetRelationIndex(strRelation.charAt(0));
+                        //如果回到起点或一次关系//
+                        if (strTempResult.indexOf("我") != -1) {
+                            strTempProcess += getResources().getStringArray(R.array.me)[index];
+                        }
+                        for (int i = 0; i < 10; i++) {
+                            if (strTempResult.indexOf(getResources().getStringArray(R.array.me)[i]) != -1) {
+                                strTemp = getResources().getStringArray(index0[i]);
+                                //避免重复
+                                if (strTempProcess.indexOf(strTemp[index]) == -1&&strTemp[index].indexOf(strTempProcess)==-1) {
+                                    strTempProcess += "/" + strTemp[index];
+                                }
+                            }
+                        }
+                        ////
+                    }
+                    if(strTempProcess.isEmpty()){
+                        strTempProcess=ChangetoLetter(strRelative);
+                        strTempProcess=Try(strTempProcess);
+                    }
+                    strRelation=strTempProcess;
+                    relativeResult.setText(strRelation);
+                }
             }
-
 
         }
         public int GetRelationIndex(char cRelation){
@@ -95,21 +145,24 @@ public class RelativesCallActivity extends AppCompatActivity {
             return index;
         }
 
-        public void IsBack(String strRelation){
-
-            if(strRelation.indexOf("夫妻")!=-1){
-               strRelation=strRelation.replace("夫妻","");
-            }else if(strRelation.indexOf("妻夫")!=-1){
-                strRelation=strRelation.replace("妻夫","");
-            }
 
 
+
+public String ChangetoLetter(String str){
+    String[] strBeReplaced={"父","母","子","女","兄","弟","姐","妹","夫","妻"};
+    String[] strReplace={"f","m","s","d","ob","lb","os","ls","h","w"};
+    for(int i=0;i<10;i++) {
+        if (str.indexOf(strBeReplaced[i]) != -1) {
+            str=str.replace(strBeReplaced[i],strReplace[i]);
         }
+    }
+    return str;
+}
 
 
 
-
-    public void Try(String str){
+    public String Try(String str){
+        String strResult="";
         String[] strRelative = {
                 "me",
                 //本族
@@ -257,6 +310,7 @@ public class RelativesCallActivity extends AppCompatActivity {
                 "m",
                 "mf",
                 "mff",
+                "mfw",
                 "mffxb",
                 "mffxbw",
                 "mffxs",
@@ -739,6 +793,7 @@ public class RelativesCallActivity extends AppCompatActivity {
                 "妈妈,母亲,老妈,阿妈,老母,老妈子,娘,娘亲,妈咪",
                 "外公,姥爷,阿公",
                 "外曾祖父,外太祖父,太外祖父,太姥爷,外太公",
+                "外祖母",
                 "外太伯公",
                 "外太伯母",
                 "外太姑婆",
@@ -1093,10 +1148,11 @@ public class RelativesCallActivity extends AppCompatActivity {
         }
     }
     if(!strShow.isEmpty()){
-        relativeResult.setText(strShow);
+        strResult=strShow;
     }else {
-        relativeResult.setText("亲戚关系太远");
+        strResult="亲戚关系太远";
     }
+    return strResult;
     }
 
 
