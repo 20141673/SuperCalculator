@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="me">
+        <item>爸爸</item>
+        <item>妈妈</item>
+        <item>儿子</item>
+        <item>女儿</item>
+        <item>哥哥</item>
+        <item>弟弟</item>
+        <item>姐姐</item>
+        <item>妹妹</item>
+        <item>老公</item>
+        <item>老婆</item>
+    </string-array>
+    <string-array name="father">
+        <item>祖父</item>
+        <item>祖母</item>
+
+        <item>我/哥哥/弟弟</item>
+        <item>我/姐姐/妹妹</item>
+
+        <item>伯父</item>
+        <item>叔叔</item>
+        <item>姑母</item>
+        <item>姑姐</item>
+
+        <item>错误</item>
+        <item>妈妈</item>
+    </string-array>
+    <string-array name="mother">
+        <item>外祖父</item>
+        <item>外祖母</item>
+        <item>我/哥哥/弟弟</item>
+        <item>我/姐姐/妹妹</item>
+        <item>大舅</item>
+        <item>小舅</item>
+        <item>大姨</item>
+        <item>小姨</item>
+        <item>爸爸</item>
+        <item>无</item>
+    </string-array>
+    <string-array name="son">
+        <item>我/老公</item>
+        <item>我/老婆</item>
+        <item>孙子</item>
+        <item>孙女</item>
+        <item>儿子</item>
+        <item>儿子</item>
+        <item>女儿</item>
+        <item>女儿</item>
+        <item>错误</item>
+        <item>儿媳妇</item>
+    </string-array>
+    <string-array name="daughter">
+        <item>我/老公</item>
+        <item>我/老婆</item>
+        <item>外孙</item>
+        <item>外孙女</item>
+        <item>儿子</item>
+        <item>儿子</item>
+        <item>女儿</item>
+        <item>女儿</item>
+        <item>女婿</item>
+        <item>错误</item>
+    </string-array>
+    <string-array name="olderbrother">
+        <item>爸爸</item>
+        <item>妈妈</item>
+        <item>侄子</item>
+        <item>侄女</item>
+        <item>哥哥</item>
+        <item>我/哥哥/弟弟</item>
+        <item>姐姐</item>
+        <item>我/姐姐/妹妹</item>
+        <item>错误</item>
+        <item>嫂子</item>
+    </string-array>
+    <string-array name="youngerbrother">
+        <item>爸爸</item>
+        <item>妈妈</item>
+        <item>侄子</item>
+        <item>侄女</item>
+        <item>我/哥哥/弟弟</item>
+        <item>弟弟</item>
+        <item>我/姐姐/妹妹</item>
+        <item>妹妹</item>
+        <item>错误</item>
+        <item>弟妹</item>
+    </string-array>
+    <string-array name="oldersister">
+        <item>爸爸</item>
+        <item>妈妈</item>
+        <item>外甥</item>
+        <item>外甥女</item>
+        <item>哥哥</item>
+        <item>我/哥哥/弟弟</item>
+        <item>姐姐</item>
+        <item>我/姐姐/妹妹</item>
+        <item>姐夫</item>
+        <item>错误</item>
+    </string-array>
+    <string-array name="youngersister">
+        <item>爸爸</item>
+        <item>妈妈</item>
+        <item>侄子</item>
+        <item>侄女</item>
+        <item>我/哥哥/弟弟</item>
+        <item>弟弟</item>
+        <item>我/姐姐/妹妹</item>
+        <item>妹妹</item>
+        <item>妹夫</item>
+        <item>错误</item>
+    </string-array>
+    <string-array name="husband">
+    <item>公公</item>
+    <item>婆婆</item>
+    <item>儿子</item>
+    <item>女儿</item>
+    <item>大伯</item>
+    <item>小叔</item>
+    <item>大姑</item>
+    <item>小姑</item>
+    <item>错误</item>
+    <item>我</item>
+</string-array>
+    <string-array name="wife">
+        <item>岳父</item>
+        <item>岳母</item>
+        <item>儿子</item>
+        <item>女儿</item>
+        <item>大舅</item>
+        <item>小舅</item>
+        <item>大姨</item>
+        <item>小姨</item>
+        <item>我</item>
+        <item>错误</item>
+    </string-array>
+</resources>
