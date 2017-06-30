@@ -168,12 +168,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="商业贷款利率："
+                android:text="商业贷款利率    ："
                 android:gravity="center_vertical"
                 android:textSize="15dp"/>
             <EditText
                 android:id="@+id/etcommercialpercent"
-                android:layout_width="80dp"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:ellipsize="start"
                 android:digits="1234567890."
@@ -187,7 +187,7 @@
                 android:gravity="center_vertical"/>
             <EditText
                 android:id="@+id/etcommercialpercenttime"
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:ellipsize="start"
                 android:digits="1234567890."
@@ -218,7 +218,7 @@
                 android:textSize="15dp"/>
             <EditText
                 android:id="@+id/etprofundpercent"
-                android:layout_width="80dp"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:ellipsize="start"
                 android:digits="1234567890."
@@ -232,7 +232,7 @@
                 android:gravity="center_vertical"/>
             <EditText
                 android:id="@+id/etprofundpercenttime"
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:ellipsize="start"
                 android:digits="1234567890."

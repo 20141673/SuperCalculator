@@ -20,7 +20,7 @@ public class HouseLoanActivity extends AppCompatActivity {
     private TextView tvcommercialpercent;
 
     private EditText etprofundamount,etprofundpercent,etprofundpercenttime;
-    private TextView tvprofunpercent;
+    private TextView tvprofundpercent;
 
     private Spinner houseloanrepayway,houseloanyearcount,houseloanyear,houseloanmonth,houseloanday;
     private ArrayAdapter repaywayadapter,yearcountadapter;
@@ -75,9 +75,13 @@ public class HouseLoanActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void afterTextChanged(Editable editable) {
-                showcomper=Double.parseDouble(etcommercialpercent.getText().toString());
-                showcompertime=Double.parseDouble(etcommercialpercenttime.getText().toString());
-                tvcommercialpercent.setText(String.valueOf("="+String.valueOf(commercialpercent*commercialpertime)+"%"));
+                if(!etcommercialpercent.getText().toString().equals("")){
+                    commercialpercent=Double.parseDouble(etcommercialpercent.getText().toString());
+                }
+                if(!etcommercialpercenttime.getText().toString().equals("")){
+                    commercialpertime=Double.parseDouble(etcommercialpercenttime.getText().toString());
+                }
+                tvcommercialpercent.setText("="+String.valueOf(commercialpercent*commercialpertime)+"%");
             }
         });
 
@@ -85,7 +89,7 @@ public class HouseLoanActivity extends AppCompatActivity {
         etprofundamount=(EditText)findViewById(R.id.etprofundamount);
         etprofundpercent=(EditText)findViewById(R.id.etprofundpercent);
         etprofundpercenttime=(EditText)findViewById(R.id.etprofundpercenttime);
-        tvprofunpercent=(TextView)findViewById(R.id.tvprofundpercent);
+        tvprofundpercent =(TextView)findViewById(R.id.tvprofundpercent);
         etprofundpercent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -93,13 +97,13 @@ public class HouseLoanActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!etcommercialpercent.getText().toString().equals("")){
+                if(!etprofundpercent.getText().toString().equals("")){
                     profundpercent=Double.parseDouble(etprofundpercent.getText().toString());
                 }
-                if(!etcommercialpercenttime.getText().toString().equals("")){
-                    commercialpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
+                if(!etprofundpercenttime.getText().toString().equals("")){
+                    profundpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
                 }
-                tvcommercialpercent.setText("="+String.valueOf(commercialpercent*commercialpertime)+"%");
+                tvprofundpercent.setText("="+String.valueOf(profundpercent*profundpertime)+"%");
             }
         });
         etprofundpercenttime.addTextChangedListener(new TextWatcher() {
@@ -109,13 +113,13 @@ public class HouseLoanActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!etcommercialpercent.getText().toString().equals("")){
+                if(!etprofundpercent.getText().toString().equals("")){
                     profundpercent=Double.parseDouble(etprofundpercent.getText().toString());
                 }
-                if(!etcommercialpercenttime.getText().toString().equals("")){
-                    commercialpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
+                if(!etprofundpercenttime.getText().toString().equals("")){
+                    profundpertime=Double.parseDouble(etprofundpercenttime.getText().toString());
                 }
-                tvcommercialpercent.setText("="+String.valueOf(commercialpercent*commercialpertime)+"%");
+                tvprofundpercent.setText("="+String.valueOf(profundpercent*profundpertime)+"%");
             }
         });
 

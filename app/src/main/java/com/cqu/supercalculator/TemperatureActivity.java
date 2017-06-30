@@ -44,8 +44,8 @@ public class TemperatureActivity extends AppCompatActivity {
                 }else if(str.equals("华氏度℉")){
                     temperatureUpPower=5;
                 }
-                temperatureUpText.setText("0");
-                temperatureDownText.setText("0");
+                temperatureUpText.setText("");
+                temperatureDownText.setText("");
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
