@@ -14,7 +14,7 @@
             android:layout_height="100dp"
             android:text="0"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="right|center_vertical"
             />
     </TableRow>
 
@@ -23,7 +23,7 @@
             android:id="@+id/scienceresult"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:gravity="right"
+            android:gravity="right|center_vertical"
             android:layout_weight="1"
             android:text="0"/>
     </TableRow>
