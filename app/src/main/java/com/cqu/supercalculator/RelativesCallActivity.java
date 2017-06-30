@@ -15,21 +15,7 @@ public class RelativesCallActivity extends AppCompatActivity {
         setContentView(R.layout.activity_relatives_call);
         relativeRecord = (TextView) findViewById(R.id.relativerecord);
         relativeResult = (TextView) findViewById(R.id.relativeresult);
-        //String relation="父子";
-        /******************************************/
-        /*
-        if(relation.charAt(0)=='父') {
-            Person first = new Person(relation, 0, 0);
-        }else if(relation.charAt(0)=='母'){
-            Person first = new Person(relation, 0, 1);
-        }
-        //relativeResult.setText(first);
-        */
-        /**********************************************/
-        //String relation="妻夫";
-        //String relation="ffw";
-        //GetRelationByXml(relation);
-        //Try(relation);
+
     }
 
     String strRelative = "";
@@ -40,18 +26,20 @@ public class RelativesCallActivity extends AppCompatActivity {
         //strRelative="";
         strShow += v.getTag().toString();
         relativeRecord.setText(strShow);
-        if (id == R.id.relativereturn) {
+        if (id == R.id.relativereturn) {//按下返回键，消除上一次输入
             if (strShow.length() >= 4) {
+                //去掉strShow即显示的字符中的上一次输入
                 strShow = strShow.substring(0, strShow.length() - 3);
+                //去掉strRelative即查询的字符中的上一次输入
                 strRelative = strRelative.substring(0, strRelative.length() - 1);
                 relativeRecord.setText(strShow);
             }
-        } else if (id == R.id.relativeac) {
+        } else if (id == R.id.relativeac) {//按下清空键，消除relativeResult即查询字符中的数据，并将strShow改为我
             strShow = "我";
             strRelative = "";
             relativeResult.setText(strRelative);
             relativeRecord.setText(strShow);
-        } else if (id == R.id.relativeequal) {
+        } else if (id == R.id.relativeequal) {//按下等于，调用GetRelationByXml计算结果
             //strRelative="ff";
             //Try(strRelative);
             relativeResult.setText(strRelative);
@@ -179,10 +167,12 @@ public class RelativesCallActivity extends AppCompatActivity {
 
 
     public String Try(String str) {
+
         String strResult = "";
         //将父亲的妻子(fw)关系转化为母亲(m)关系
         str=str.replace("fw","m");
         str=str.replace("fs","xb");
+        str=str.replace("ms","xb");
 
         String[] strRelative = {
                 "me",
@@ -1152,21 +1142,20 @@ public class RelativesCallActivity extends AppCompatActivity {
         };
 
         String strShow = "";
-
+//遍历strRelative数组，查询是否有匹配
         for (int i = 0; i < strRelative.length; i++) {
             String strTemp = strRelative[i];
-
+//如果有匹配则保存在strShow中
             if (str.equals(strRelative[i])) {
                 strShow = strRelativeTrue[i];
+            }else {
+                if (strTemp.equals(str.replace("x", "o"))) {
+                    strShow += strRelativeTrue[i] + "/";
+                }
+                if (strTemp.equals(str.replace("x", "l"))) {
+                    strShow += strRelativeTrue[i];
+                }
             }
-//将x
-            if (strTemp.indexOf("x") != -1 && strTemp.equals(str.replace("x", "o"))) {
-                strShow += strRelativeTrue[i]+"/";
-            }
-            if (strTemp.indexOf("x") != -1 && strTemp.equals(str.replace("x", "l"))) {
-                strShow += strRelativeTrue[i];
-            }
-
 
         }
         if (!strShow.isEmpty()) {
