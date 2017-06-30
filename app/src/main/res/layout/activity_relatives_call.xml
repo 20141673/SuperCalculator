@@ -53,6 +53,7 @@
             <TableRow>
                 <Button
                     android:id="@+id/relativereturn"
+                    android:tag=""
                     android:layout_weight="1"
                     android:onClick="clickButton"
                     android:text="@string/returnicon"/>
@@ -79,7 +80,6 @@
                 android:id="@+id/relativecorrelate"
                 android:layout_rowSpan="2"
                 android:layout_gravity="fill_vertical"
-                android:onClick="clickButton"
                 android:text="互查"/>
         </GridLayout>
     </TableRow>
