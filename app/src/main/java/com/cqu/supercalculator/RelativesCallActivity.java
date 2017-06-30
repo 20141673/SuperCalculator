@@ -7,13 +7,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class RelativesCallActivity extends AppCompatActivity {
-    private TextView relativeRecord,relativeResult;
+    private TextView relativeRecord, relativeResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatives_call);
-        relativeRecord=(TextView)findViewById(R.id.relativerecord);
-        relativeResult=(TextView)findViewById(R.id.relativeresult);
+        relativeRecord = (TextView) findViewById(R.id.relativerecord);
+        relativeResult = (TextView) findViewById(R.id.relativeresult);
         //String relation="父子";
         /******************************************/
         /*
@@ -30,139 +31,159 @@ public class RelativesCallActivity extends AppCompatActivity {
         //GetRelationByXml(relation);
         //Try(relation);
     }
-    String strRelative="";
-    String strShow="我";
-    public void clickButton(View v){
-        int id=v.getId();
-        //strRelative="";
-       strShow+=v.getTag().toString();
-        relativeRecord.setText(strShow);
 
-        if(id==R.id.relativeac){
-            strShow="我";
-            strRelative="";
+    String strRelative = "";
+    String strShow = "我";
+
+    public void clickButton(View v) {
+        int id = v.getId();
+        //strRelative="";
+        strShow += v.getTag().toString();
+        relativeRecord.setText(strShow);
+        if (id == R.id.relativereturn) {
+            if (strShow.length() >= 4) {
+                strShow = strShow.substring(0, strShow.length() - 3);
+                strRelative = strRelative.substring(0, strRelative.length() - 1);
+                relativeRecord.setText(strShow);
+            }
+        } else if (id == R.id.relativeac) {
+            strShow = "我";
+            strRelative = "";
             relativeResult.setText(strRelative);
             relativeRecord.setText(strShow);
-        }else if(id==R.id.relativeequal){
+        } else if (id == R.id.relativeequal) {
             //strRelative="ff";
             //Try(strRelative);
             relativeResult.setText(strRelative);
             GetRelationByXml(strRelative);
-            strRelative="";
+            strRelative = "";
 
             //GetRelationByXml(strRelative);
-        }else  {
-            strRelative += ((Button)v).getText();
+        } else {
+            strRelative += ((Button) v).getText();
         }
 
 
     }
 
 
-        public void GetRelationByXml(String strRelation){
-            int index;
-            String[] strTemp;
-            String strTempResult;
-            String strTempProcess="";
-            int[] index0={R.array.father, R.array.mother,R.array.son,R.array.daughter,R.array.olderbrother,R.array.youngerbrother,R.array.oldersister,R.array.youngersister,R.array.husband,R.array.wife};
+    public void GetRelationByXml(String strRelation) {
+        int index;
+        String[] strTemp;
+        String strTempResult;
+        String strTempProcess = "";
+        int[] index0 = {R.array.father, R.array.mother, R.array.son, R.array.daughter, R.array.olderbrother, R.array.youngerbrother, R.array.oldersister, R.array.youngersister, R.array.husband, R.array.wife};
 
-            if(strRelation.length()==1){
-                index=GetRelationIndex(strRelation.charAt(0));
-                strRelation=strRelation.substring(1,strRelation.length());
-                strTemp=getResources().getStringArray(R.array.me);
-                relativeResult.setText(strTemp[index]);
-            }else if(strRelation.length()>=2){
-
-
-                index=GetRelationIndex(strRelation.charAt(0));
-                strTemp=getResources().getStringArray(index0[index]);
+        if (strRelation.length() == 1) {
+            index = GetRelationIndex(strRelation.charAt(0));
+            strRelation = strRelation.substring(1, strRelation.length());
+            strTemp = getResources().getStringArray(R.array.me);
+            relativeResult.setText(strTemp[index]);
+        } else if (strRelation.length() >= 2) {
 
 
+            index = GetRelationIndex(strRelation.charAt(0));
+            strTemp = getResources().getStringArray(index0[index]);
 
-                strRelation=strRelation.substring(1,strRelation.length());
-                index=GetRelationIndex(strRelation.charAt(0));
-                strTempResult=strTemp[index];
 
-                if(strRelation.length()==1) {
-                    relativeResult.setText(strTempResult);
-                }else {
+            strRelation = strRelation.substring(1, strRelation.length());
+            index = GetRelationIndex(strRelation.charAt(0));
+            strTempResult = strTemp[index];
 
-                    while (strRelation.length()!=1) {
+            if (strRelation.length() == 1) {
+                relativeResult.setText(strTempResult);
+            } else {
 
-                        //去掉上一次关系的字符
-                        strRelation = strRelation.substring(1, strRelation.length());
-                        index = GetRelationIndex(strRelation.charAt(0));
-                        //如果回到起点或一次关系//
-                        if (strTempResult.indexOf("我") != -1) {
-                            strTempProcess += getResources().getStringArray(R.array.me)[index];
-                        }
-                        for (int i = 0; i < 10; i++) {
-                            if (strTempResult.indexOf(getResources().getStringArray(R.array.me)[i]) != -1) {
-                                strTemp = getResources().getStringArray(index0[i]);
-                                //避免重复
-                                if (strTempProcess.indexOf(strTemp[index]) == -1&&strTemp[index].indexOf(strTempProcess)==-1) {
-                                    strTempProcess += "/" + strTemp[index];
-                                }
+                while (strRelation.length() != 1) {
+
+                    //去掉上一次关系的字符
+                    strRelation = strRelation.substring(1, strRelation.length());
+                    index = GetRelationIndex(strRelation.charAt(0));
+                    //如果回到起点或一次关系//
+                    if (strTempResult.indexOf("我") != -1) {
+                        strTempProcess += getResources().getStringArray(R.array.me)[index];
+                    }
+                    for (int i = 0; i < 10; i++) {
+                        if (strTempResult.indexOf(getResources().getStringArray(R.array.me)[i]) != -1) {
+                            strTemp = getResources().getStringArray(index0[i]);
+                            //避免重复
+                            if (strTempProcess.indexOf(strTemp[index]) == -1 && strTemp[index].indexOf(strTempProcess) == -1) {
+                                strTempProcess += "/" + strTemp[index];
                             }
                         }
-                        ////
                     }
-                    if(strTempProcess.isEmpty()){
-                        strTempProcess=ChangetoLetter(strRelative);
-                        strTempProcess=Try(strTempProcess);
-                    }
-                    strRelation=strTempProcess;
-                    relativeResult.setText(strRelation);
+                    ////
                 }
+                //如果在三代以内未找到，则在更远的关系里寻找
+                if (strTempProcess.isEmpty()) {
+                    strTempProcess = ChangetoLetter(strRelative);
+                    strTempProcess = Try(strTempProcess);
+                }
+                strRelation = strTempProcess;
+                relativeResult.setText(strRelation);
             }
-
-        }
-        public int GetRelationIndex(char cRelation){
-            int index=0;
-            switch (cRelation){
-                case '父':index=0;
-                    break;
-                case '母':index=1;
-                    break;
-                case '子':index=2;
-                    break;
-                case '女':index=3;
-                    break;
-                case '兄':index=4;
-                    break;
-                case '弟':index=5;
-                    break;
-                case '姐':index=6;
-                    break;
-                case '妹':index=7;
-                    break;
-                case '夫':index=8;
-                    break;
-                case '妻':index=9;
-                    break;
-
-            }
-            return index;
         }
 
-
-
-
-public String ChangetoLetter(String str){
-    String[] strBeReplaced={"父","母","子","女","兄","弟","姐","妹","夫","妻"};
-    String[] strReplace={"f","m","s","d","ob","lb","os","ls","h","w"};
-    for(int i=0;i<10;i++) {
-        if (str.indexOf(strBeReplaced[i]) != -1) {
-            str=str.replace(strBeReplaced[i],strReplace[i]);
-        }
     }
-    return str;
-}
+
+    public int GetRelationIndex(char cRelation) {
+        int index = 0;
+        switch (cRelation) {
+            case '父':
+                index = 0;
+                break;
+            case '母':
+                index = 1;
+                break;
+            case '子':
+                index = 2;
+                break;
+            case '女':
+                index = 3;
+                break;
+            case '兄':
+                index = 4;
+                break;
+            case '弟':
+                index = 5;
+                break;
+            case '姐':
+                index = 6;
+                break;
+            case '妹':
+                index = 7;
+                break;
+            case '夫':
+                index = 8;
+                break;
+            case '妻':
+                index = 9;
+                break;
+
+        }
+        return index;
+    }
 
 
+    //将字符转换成代码
+    public String ChangetoLetter(String str) {
+        String[] strBeReplaced = {"父", "母", "子", "女", "兄", "弟", "姐", "妹", "夫", "妻"};
+        String[] strReplace = {"f", "m", "s", "d", "ob", "lb", "os", "ls", "h", "w"};
+        for (int i = 0; i < 10; i++) {
+            if (str.indexOf(strBeReplaced[i]) != -1) {
+                str = str.replace(strBeReplaced[i], strReplace[i]);
+            }
+        }
+        return str;
+    }
 
-    public String Try(String str){
-        String strResult="";
+
+    public String Try(String str) {
+        String strResult = "";
+        //将父亲的妻子(fw)关系转化为母亲(m)关系
+        str=str.replace("fw","m");
+        str=str.replace("fs","xb");
+
         String[] strRelative = {
                 "me",
                 //本族
@@ -177,55 +198,55 @@ public String ChangetoLetter(String str){
                 "fffobw",
                 "ffflb",
                 "ffflbw",
-                "fffxbs&o",
-                "fffxbs&ow",
-                "fffxbs&l",
-                "fffxbs&lw",
-                "fffxbss&o",
-                "fffxbss&ow",
-                "fffxbss&l",
-                "fffxbss&lw",
-                "fffxbsss&o",
-                "fffxbsss&l",
+                "fffxbs",
+                "fffxbsw",
+                "fffxbs",
+                "fffxbsw",
+                "fffxbss",
+                "fffxbssw",
+                "fffxbss",
+                "fffxbssw",
+                "fffxbsss",
+                "fffxbsss",
                 "fffxs",
                 "fffxsh",
-                "fffxss&o",
-                "fffxss&ow",
-                "fffxss&l",
-                "fffxss&lw",
+                "fffxss",
+                "fffxssw",
+                "fffxss",
+                "fffxssw",
                 "ffm",
                 "ffmxb",
                 "ffmxbw",
-                "ffmxbs&o",
-                "ffmxbs&ow",
-                "ffmxbs&l",
-                "ffmxbs&lw",
+                "ffmxbs",
+                "ffmxbsw",
+                "ffmxbs",
+                "ffmxbsw",
                 "ffmxs",
                 "ffmxsh",
-                "ffmxss&o",
-                "ffmxss&ow",
-                "ffmxss&l",
-                "ffmxss&lw",
+                "ffmxss",
+                "ffmxssw",
+                "ffmxss",
+                "ffmxssw",
                 "ffxb",
                 "ffxbw",
-                "ffxbs&o",
-                "ffxbs&ow",
-                "ffxbs&l",
+                "ffxbs",
                 "ffxbsw",
-                "ffxbss&o",
-                "ffxbss&ow",
-                "ffxbss&l",
-                "ffxbss&lw",
+                "ffxbs",
+                "ffxbsw",
+                "ffxbss",
+                "ffxbssw",
+                "ffxbss",
+                "ffxbssw",
                 "ffxbsss",
                 "ffxbsssw",
                 "ffxbssss",
                 "ffxbsssd",
                 "ffxbssd",
                 "ffxbssdh",
-                "ffxbsd&o",
-                "ffxbsd&oh",
-                "ffxbsd&l",
-                "ffxbsd&lh",
+                "ffxbsd",
+                "ffxbsdh",
+                "ffxbsd",
+                "ffxbsdh",
                 "ffxbd",
                 "ffxbdh",
                 "ffob",
@@ -234,10 +255,10 @@ public String ChangetoLetter(String str){
                 "fflbw",
                 "ffxs",
                 "ffxsh",
-                "ffxss&o",
-                "ffxss&ow",
-                "ffxss&l",
-                "ffxss&lw",
+                "ffxss",
+                "ffxssw",
+                "ffxss",
+                "ffxssw",
                 "ffxsd",
                 "ffxsdh",
                 "fm",
@@ -245,24 +266,24 @@ public String ChangetoLetter(String str){
                 "fmm",
                 "fmxb",
                 "fmxbw",
-                "fmxbs&o",
-                "fmxbs&ow",
-                "fmxbs&l",
-                "fmxbs&lw",
+                "fmxbs",
+                "fmxbsw",
+                "fmxbs",
+                "fmxbsw",
                 "fmxbd",
                 "fmxbdh",
                 "fmxs",
                 "fmxsh",
-                "fmxss&o",
-                "fmxss&ow",
-                "fmxss&l",
-                "fmxss&lw",
+                "fmxss",
+                "fmxssw",
+                "fmxss",
+                "fmxssw",
                 "fmxsd",
                 "fmxsdh",
-                "fxbs&o",
-                "fxbs&ow",
-                "fxbs&l",
-                "fxbs&lw",
+                "fxbs",
+                "fxbsw",
+                "fxbs",
+                "fxbsw",
                 "fxbss",
                 "fxbssw",
                 "fxbsss",
@@ -271,10 +292,10 @@ public String ChangetoLetter(String str){
                 "fxbssdh",
                 "fxbsd",
                 "fxbsdh",
-                "fxbd&o",
-                "fxbd&oh",
-                "fxbd&l",
-                "fxbd&lh",
+                "fxbd",
+                "fxbdh",
+                "fxbd",
+                "fxbdh",
                 "fxbds",
                 "fxbdd",
                 "fob",
@@ -284,10 +305,10 @@ public String ChangetoLetter(String str){
                 //
                 "fxs",
                 "fxsh",
-                "fxss&o",
-                "fxss&ow",
-                "fxss&l",
-                "fxss&lw",
+                "fxss",
+                "fxssw",
+                "fxss",
+                "fxssw",
                 "fxsss",
                 "fxssss",
                 "fxssssw",
@@ -298,10 +319,10 @@ public String ChangetoLetter(String str){
                 "fxssdsw",
                 "fxssdd",
                 "fxssddh",
-                "fxsd&o",
-                "fxsd&oh",
-                "fxsd&l",
-                "fxsd&lh",
+                "fxsd",
+                "fxsdh",
+                "fxsd",
+                "fxsdh",
                 "fxsds",
                 "fxsdd",
                 "fos",
@@ -315,10 +336,10 @@ public String ChangetoLetter(String str){
                 "mffxbw",
                 "mffxs",
                 "mffxsh",
-                "mffxss&o",
-                "mffxss&ow",
-                "mffxss&l",
-                "mffxss&lw",
+                "mffxss",
+                "mffxssw",
+                "mffxss",
+                "mffxssw",
                 "mfm",
                 "mfmxb",
                 "mfmxbw",
@@ -357,10 +378,10 @@ public String ChangetoLetter(String str){
                 //
                 "mxb",
                 "mxbw",
-                "mxbs&o",
-                "mxbs&ow",
-                "mxbs&l",
-                "mxbs&lw",
+                "mxbs",
+                "mxbsw",
+                "mxbs",
+                "mxbsw",
                 "mxbss",
                 "mxbsss",
                 "mxbsssw",
@@ -371,10 +392,10 @@ public String ChangetoLetter(String str){
                 "mxbsdsw",
                 "mxbsdd",
                 "mxbsddh",
-                "mxbd&o",
-                "mxbd&oh",
-                "mxbd&l",
-                "mxbd&lh",
+                "mxbd",
+                "mxbdh",
+                "mxbd",
+                "mxbdh",
                 "mxbds",
                 "mxbdd",
                 "mob",
@@ -384,10 +405,10 @@ public String ChangetoLetter(String str){
                 //
                 "mxs",
                 "mxsh",
-                "mxss&o",
-                "mxss&ow",
-                "mxss&l",
-                "mxss&lw",
+                "mxss",
+                "mxssw",
+                "mxss",
+                "mxssw",
                 "mxsss",
                 "mxssss",
                 "mxssssw",
@@ -398,10 +419,10 @@ public String ChangetoLetter(String str){
                 "mxssdsw",
                 "mxssdd",
                 "mxssddh",
-                "mxsd&o",
-                "mxsd&oh",
-                "mxsd&l",
-                "mxsd&lh",
+                "mxsd",
+                "mxsdh",
+                "mxsd",
+                "mxsdh",
                 "mxsds",
                 "mxsdd",
                 "mos",
@@ -419,10 +440,10 @@ public String ChangetoLetter(String str){
                 "hfobw",
                 "hflb",
                 "hflbw",
-                "hfxbs&o",
-                "hfxbs&ow",
-                "hfxbs&l",
-                "hfxbs&lw",
+                "hfxbs",
+                "hfxbsw",
+                "hfxbs",
+                "hfxbsw",
                 "hm",
                 "hmxb",
                 "hmxbw",
@@ -476,10 +497,10 @@ public String ChangetoLetter(String str){
                 "wffobw",
                 "wfflb",
                 "wfflbw",
-                "wffxbs&o",
-                "wffxbs&ow",
-                "wffxbs&l",
-                "wffxbs&lw",
+                "wffxbs",
+                "wffxbsw",
+                "wffxbs",
+                "wffxbsw",
                 "wffxs",
                 "wffxsh",
                 "wfm",
@@ -487,34 +508,34 @@ public String ChangetoLetter(String str){
                 "wfmxbw",
                 "wfmxs",
                 "wfmxsh",
-                "wfxbs&o",
-                "wfxbs&l",
-                "wfxbd&o",
-                "wfxbd&l",
+                "wfxbs",
+                "wfxbs",
+                "wfxbd",
+                "wfxbd",
                 "wfob",
                 "wfobw",
                 "wflb",
                 "wflbw",
                 "wfxs",
-                "wfxss&o",
-                "wfxss&l",
-                "wfxsd&o",
-                "wfxsd&l",
+                "wfxss",
+                "wfxss",
+                "wfxsd",
+                "wfxsd",
                 "wm",
                 "wmf",
                 "wmm",
                 "wmxb",
                 "wmxbw",
-                "wmxbs&o",
-                "wmxbs&l",
-                "wmxbd&o",
-                "wmxbd&l",
+                "wmxbs",
+                "wmxbs",
+                "wmxbd",
+                "wmxbd",
                 "wmxs",
                 "wmxsh",
-                "wmxss&o",
-                "wmxss&l",
-                "wmxsd&o",
-                "wmxsd&l",
+                "wmxss",
+                "wmxss",
+                "wmxsd",
+                "wmxsd",
                 "wxbs",
                 "wxbsw",
                 "wxbss",
@@ -711,7 +732,7 @@ public String ChangetoLetter(String str){
                 "从妹夫",
                 "堂姑",
                 "堂姑丈",
-                "伯祖父",
+                "伯祖父，叔祖父",
                 "伯祖母",
                 "叔祖父",
                 "叔祖母",
@@ -1128,161 +1149,32 @@ public String ChangetoLetter(String str){
                 "太姻姆",
                 "姻兄",
                 "姻弟"
-    };
-    String strShow="";
-    for(int i=0;i<strRelative.length;i++){
-        String strTemp=strRelative[i];
+        };
 
-        if(str.equals(strRelative[i])){
-            strShow=strRelativeTrue[i];
-        }
-        if(strTemp.indexOf("x")!=-1&&str.equals(strTemp.replace("x","o"))){
-            strShow=strRelativeTrue[i];
-        }else if(strTemp.indexOf("x")!=-1&&str.equals(strTemp.replace("x","l"))){
-            strShow=strRelativeTrue[i];
-        }
-        if(strTemp.indexOf("&")!=-1&&str.equals(strTemp.substring(0,strTemp.indexOf("&"))+strTemp.substring(strTemp.indexOf("&")+2,strTemp.length()))){
-            strShow=strRelativeTrue[i];
-        }else if(strTemp.indexOf("&")!=-1&&str.equals(strTemp.substring(0,strTemp.indexOf("&")-1)+strTemp.substring(strTemp.indexOf("&")+1,strTemp.length()))){
-            strShow=strRelativeTrue[i];
-        }
-    }
-    if(!strShow.isEmpty()){
-        strResult=strShow;
-    }else {
-        strResult="亲戚关系太远";
-    }
-    return strResult;
-    }
+        String strShow = "";
 
+        for (int i = 0; i < strRelative.length; i++) {
+            String strTemp = strRelative[i];
 
-    /***************************************************************************************/
-    /*
-    class Person{
-        int position=0;
-        int fOrm=0;
-        String calls;
-
-
-        Person(){
-             position=0;
-
-        }
-        Person(int Position){
-            position=Position;
-        }
-        Person(String strRelation,int Pos,int fOrm){
-            int ForM=fOrm;
-            position=Pos;
-            char cRelation=strRelation.charAt(0);
-            strRelation=strRelation.substring(1,strRelation.length());
-            switch (position) {
-                case 0:
-                    if (cRelation == '父') {
-                        calls = "爸爸";
-                        if (strRelation.isEmpty()) {
-                            relativeResult.setText(getCalls());
-                        }else {
-                            position+=1;
-                            new Person(strRelation,position,0);
-                        }
-                    }
-                    if(cRelation=='母'){
-                        calls = "妈妈";
-                        if (strRelation.isEmpty()) {
-                            relativeResult.setText(getCalls());
-                        }else {
-                            position+=1;
-                            new Person(strRelation,position,1);
-                        }
-                    }
-                    if(cRelation=='兄'){
-                        calls = "哥哥";
-                        if (strRelation.isEmpty()) {
-                            relativeResult.setText(getCalls());
-                        }else {
-                            position+=0;
-                            new Person(strRelation,position,1);
-                        }
-                    }
-
-                break;
-                case 1:
-                    if(ForM==0) {
-                        if (cRelation == '父') {
-                            calls = "爷爷";
-                            if (strRelation.isEmpty()) {
-                                relativeResult.setText(getCalls());
-                            } else {
-                                position += 1;
-                                new Person(strRelation, position, 0);
-                            }
-                        }
-                        if (cRelation == '母') {
-                            calls = "奶奶";
-                            if (strRelation.isEmpty()) {
-                                relativeResult.setText(getCalls());
-                            } else {
-                                position += 1;
-                                new Person(strRelation, position, 1);
-                            }
-                        }
-                    }else {
-                        if (cRelation == '父') {
-                            calls = "外公";
-                            if (strRelation.isEmpty()) {
-                                relativeResult.setText(getCalls());
-                            } else {
-                                position += 1;
-                                new Person(strRelation, position, 0);
-                            }
-                        }
-                        if (cRelation == '母') {
-                            calls = "外婆";
-                            if (strRelation.isEmpty()) {
-                                relativeResult.setText(getCalls());
-                            } else {
-                                position += 1;
-                                new Person(strRelation, position, 1);
-                            }
-                        }
-                    }
+            if (str.equals(strRelative[i])) {
+                strShow = strRelativeTrue[i];
             }
-        }
-
-        public String getCalls(){
-            return calls;
-        }
-
-    }
-    */
-/********************************************************************************************/
-/*
-    public void GetRelationCall(String strRelation){
-            int beiFen=CalculateBeiFen(strRelation);
-
-        }
-        public int CalculateBeiFen(String strRelation){
-            int beifen=0;
-            while (!strRelation.isEmpty()) {
-                switch (strRelation.charAt(0)) {
-                    case '父':
-                    case '母':beifen++;
-                        break;
-                    case '兄':
-                    case '弟':
-                    case '姐':
-                    case '妹':
-                    case '妻':
-                    case '夫':beifen+=0;
-                        break;
-                    case '子':
-                    case '女':beifen--;
-                        break;
-                }
+//将x
+            if (strTemp.indexOf("x") != -1 && strTemp.equals(str.replace("x", "o"))) {
+                strShow += strRelativeTrue[i]+"/";
             }
-            return beifen;
+            if (strTemp.indexOf("x") != -1 && strTemp.equals(str.replace("x", "l"))) {
+                strShow += strRelativeTrue[i];
+            }
+
+
         }
-*/
-    /***************************************************************************/
+        if (!strShow.isEmpty()) {
+            strResult = strShow;
+        } else {
+            strResult = "亲戚关系太远";
+        }
+        return strResult;
+    }
+
 }
