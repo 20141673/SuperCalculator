@@ -68,8 +68,14 @@
             android:name=".CapitalExchangeActivity"
             android:label="大写数字转换"
             android:parentActivityName=".BroadsideActivity"/>
-        <activity android:name=".HexExchageActivity"
+        <activity
+            android:name=".HexExchageActivity"
             android:label="进制转化"
+            android:parentActivityName=".BroadsideActivity">
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="关于"
             android:parentActivityName=".BroadsideActivity">
         </activity>
     </application>

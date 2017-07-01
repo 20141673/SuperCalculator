@@ -98,6 +98,8 @@ public class BroadsideActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
+            Intent intent=new Intent(BroadsideActivity.this,AboutActivity.class);
+            startActivity(intent);
             return true;
         }
 
