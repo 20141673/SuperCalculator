@@ -41,7 +41,7 @@ public class BroadsideActivity extends AppCompatActivity
     //显示计算结果
     private TextView tvScienceResult;
     //错误提示
-    String strError="被除数不能为0";
+    String strError="被除数或lnx中的x不能为0或开平方下的数不能为负数";
 
 
     @Override
@@ -165,6 +165,11 @@ public void clickButton(View v) {
         strSimpleResultShow+=((Button)v).getText().toString();
         tvSimpleRecord.setText(strSimpleResultShow);
         strSimpleResult += v.getTag().toString().replace("Simple", "");
+        if(id==R.id.simpleminus){
+            if(strSimpleResult.length()==1){
+                strSimpleResult="0"+strSimpleResult;
+            }
+        }
         //判断输入的第一个数是不是双目运算符，是则报错
         if(strSimpleResult.length()==1){
            if(IsOP(strSimpleResult.charAt(0))==0){
@@ -222,6 +227,11 @@ public void clickButton(View v) {
         strScienceResultShow+=((Button)v).getText().toString();
         tvScienceRecord.setText(strScienceResultShow);
         strScienceResult += v.getTag().toString().replace("Science", "");
+        if(id==R.id.scienceminus){
+            if(strScienceResult.length()==1){
+                strScienceResult="0"+strScienceResult;
+            }
+        }
         //判断输入的第一个数是不是双目运算符，是则报错
         if(strScienceResult.length()==1){
             if(IsOP(strScienceResult.charAt(0))==0){
@@ -240,6 +250,20 @@ public void clickButton(View v) {
             }
         }
 
+        if(id==R.id.sciencepi){
+
+           char cLastTemp=strScienceResult.charAt(strScienceResult.length()-3);
+            if(IsOP(cLastTemp)==-1&&cLastTemp!='('){
+                strScienceResult=strScienceResult.substring(0,strScienceResult.length()-2)+"*"+strScienceResult.substring(strScienceResult.length()-2,strScienceResult.length());
+                //tvScienceResult.setText("请输入操作符");
+                //tvScienceResult.setText(strScienceResult);
+            }
+
+        }else if(id==R.id.sciencesin||id==R.id.sciencecos||id==R.id.sciencetan){
+            strScienceResultShow=strScienceResultShow+"(";
+            strScienceResult=strScienceResult+"(";
+            tvScienceRecord.setText(strScienceResultShow);
+        }
         if(id==R.id.sciencereturn){
             if(!strScienceResult.isEmpty()) {
                 strScienceResultShow = strScienceResultShow.substring(0, strScienceResultShow.length() - 3);
@@ -261,7 +285,31 @@ public void clickButton(View v) {
             //tvScienceResult.setText(strScienceResult);
             String temp=strScienceResult;//暂存数据
 
-            strScienceResult=ResolveBracket(strScienceResult,scienceNumList);
+            int fbracket=0;
+            int bbracket=0;
+           for(int i=0;i<strScienceResult.length();i++){
+               if(strScienceResult.charAt(i)=='('){
+                    fbracket+=1;
+               }else if(strScienceResult.charAt(i)=='('){
+                   bbracket+=1;
+               }
+           }
+
+           if(fbracket<bbracket){
+               strScienceResult="前括号个数不能小于后括号个数";
+
+           }else if(fbracket>bbracket){
+               int inumTemp=fbracket-bbracket;
+               for(int i=0;i<inumTemp;i++){
+                   strScienceResult+=")";
+                   strScienceResultShow+=")";
+               }
+               tvScienceRecord.setText(strScienceResultShow);
+           }
+
+            strScienceResult = ResolveBracket(strScienceResult, scienceNumList);
+
+
             //strScienceResult=ResolveJJCC(strScienceResult,scienceNumList);
             tvScienceResult.setText(strScienceResult);
             if(!strScienceResult.equals(strError)) {
@@ -304,6 +352,7 @@ public void clickButton(View v) {
         String strnum="";
         //记录操作数的起点
         int lastLocation=-1;
+        try{
         //调用IsOP函数，得到操作数字符串
         for(int i=0;i<str.length();i++){
             if(IsOP(str.charAt(i))>=0){
@@ -351,94 +400,120 @@ public void clickButton(View v) {
            }
         }
 
-        /*************************************************************处理运算逻辑************************************************************/
-        //处理sin()逻辑
-        while ((strop.indexOf("s") != -1)){
-            Double dTemp=Math.sin((Double)numList.get(strop.indexOf("s")));
-            numList.set(strop.indexOf("s"),dTemp);
-            strop=strop.substring(0,strop.indexOf("s"))+strop.substring(strop.indexOf("s")+1,strop.length());
-        }
-        //处理cos()逻辑
-        while ((strop.indexOf("c") != -1)){
-            Double dTemp=Math.cos((Double)numList.get(strop.indexOf("c")));
-            numList.set(strop.indexOf("c"),dTemp);
-            strop=strop.substring(0,strop.indexOf("c"))+strop.substring(strop.indexOf("c")+1,strop.length());
-        }
-        //处理tan()逻辑
-        while ((strop.indexOf("t") != -1)){
-            Double dTemp=Math.tan((Double)numList.get(strop.indexOf("t")));
-            numList.set(strop.indexOf("t"),dTemp);
-            strop=strop.substring(0,strop.indexOf("t"))+strop.substring(strop.indexOf("t")+1,strop.length());
-        }
-        //处理ln()逻辑
-        while ((strop.indexOf("n") != -1)){
-            Double dTemp=Math.log((Double)numList.get(strop.indexOf("n")));
-            numList.set(strop.indexOf("n"),dTemp);
-            strop=strop.substring(0,strop.indexOf("n"))+strop.substring(strop.indexOf("n")+1,strop.length());
-        }
-        //处理lg()逻辑
-        while ((strop.indexOf("g") != -1)){
-            Double dTemp=Math.log((Double)numList.get(strop.indexOf("g")))/Math.log(10);
-            numList.set(strop.indexOf("g"),dTemp);
-            strop=strop.substring(0,strop.indexOf("g"))+strop.substring(strop.indexOf("g")+1,strop.length());
-        }
-        //处理开平方逻辑
-        while ((strop.indexOf("q") != -1)){
-            Double dTemp=Math.sqrt((Double)numList.get(strop.indexOf("q")));
-            numList.set(strop.indexOf("q"),dTemp);
-            strop=strop.substring(0,strop.indexOf("q"))+strop.substring(strop.indexOf("q")+1,strop.length());
-        }
-        //处理乘方逻辑
-        while ((strop.indexOf("^") != -1)) {
-            Double dTemp=1.0;
-            for(int i=0;i<(Double)numList.get(strop.indexOf("^")+1);i++){
-                dTemp=dTemp*(Double)numList.get(strop.indexOf("^"));
+            /*************************************************************处理运算逻辑************************************************************/
+            //处理sin()逻辑
+            while ((strop.indexOf("s") != -1)) {
+                Double dTemp = Math.sin((Double) numList.get(strop.indexOf("s")));
+
+                if (Math.abs(dTemp) < Math.pow(10, -15)) {
+                    dTemp = 0.0;
+                }
+
+                numList.set(strop.indexOf("s"), dTemp);
+                strop = strop.substring(0, strop.indexOf("s")) + strop.substring(strop.indexOf("s") + 1, strop.length());
             }
-            numList.set(strop.indexOf("^"),dTemp);
-            numList.remove(strop.indexOf("^")+1);
-            strop=strop.substring(0,strop.indexOf("^"))+strop.substring(strop.indexOf("^")+1,strop.length());
-        }
-        //处理四则运算逻辑
-        //先处理乘除逻辑
-        while ((strop.indexOf("*") != -1) || (strop.indexOf("/") != -1)) {
-          for(int i=0;i<strop.length();i++){
-              switch (strop.charAt(i)){
-                  case '*':numList.set(i,(Double)numList.get(i)*(Double)numList.get(i+1));
-                      strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
-                      numList.remove(i+1);
-                      i=i-1;
-                      break;
-                  case '/':
-                      if((Double)numList.get(i+1)!=0) {
-                          numList.set(i, (Double) numList.get(i) / (Double) numList.get(i + 1));
-                          strop = strop.substring(0, i) + strop.substring(i + 1, strop.length());
-                          numList.remove(i + 1);
-                          i = i - 1;
-                      }else{
-                          strop="";
-                        FinalResult=strError;
-                      }
-                      break;
-              }
-          }
-        }
-        //处理完乘除逻辑后再处理加减逻辑
-        while ((strop.indexOf("+") != -1) || (strop.indexOf("-") != -1)) {
-            for(int i=0;i<strop.length();i++){
-                switch (strop.charAt(i)){
-                    case '+':numList.set(i,(Double)numList.get(i)+(Double)numList.get(i+1));
-                        strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
-                        numList.remove(i+1);
-                        i=i-1;
-                        break;
-                    case '-':
-                        numList.set(i,(Double)numList.get(i)-(Double)numList.get(i+1));
-                        strop=strop.substring(0,i)+strop.substring(i+1,strop.length());
-                        numList.remove(i+1);
-                        i=i-1;
-                        break;
+            //处理cos()逻辑
+            while ((strop.indexOf("c") != -1)) {
+                Double dTemp = Math.cos((Double) numList.get(strop.indexOf("c")));
+
+                if (Math.abs(dTemp) < Math.pow(10, -15)) {
+                    dTemp = 0.0;
+                }
+
+                numList.set(strop.indexOf("c"), dTemp);
+                strop = strop.substring(0, strop.indexOf("c")) + strop.substring(strop.indexOf("c") + 1, strop.length());
+            }
+            //处理tan()逻辑
+            while ((strop.indexOf("t") != -1)) {
+                Double dTemp = Math.tan((Double) numList.get(strop.indexOf("t")));
+
+                if (Math.abs(dTemp) < Math.pow(10, -15)) {
+                    dTemp = 0.0;
+                }
+
+                numList.set(strop.indexOf("t"), dTemp);
+                strop = strop.substring(0, strop.indexOf("t")) + strop.substring(strop.indexOf("t") + 1, strop.length());
+            }
+            //处理ln()逻辑
+            while ((strop.indexOf("n") != -1)) {
+                Double dTemp = 0.0;
+                if ((Double) numList.get(strop.indexOf("n")) > 0.0) {
+                    dTemp = Math.log((Double) numList.get(strop.indexOf("n")));
+                } else {
+                    FinalResult = strError;
+                }
+                numList.set(strop.indexOf("n"), dTemp);
+                strop = strop.substring(0, strop.indexOf("n")) + strop.substring(strop.indexOf("n") + 1, strop.length());
+            }
+            //处理lg()逻辑
+            while ((strop.indexOf("g") != -1)) {
+                Double dTemp = Math.log((Double) numList.get(strop.indexOf("g"))) / Math.log(10);
+                numList.set(strop.indexOf("g"), dTemp);
+                strop = strop.substring(0, strop.indexOf("g")) + strop.substring(strop.indexOf("g") + 1, strop.length());
+            }
+            //处理开平方逻辑
+            while ((strop.indexOf("q") != -1)) {
+                Double dTemp = Math.sqrt((Double) numList.get(strop.indexOf("q")));
+
+                numList.set(strop.indexOf("q"), dTemp);
+                strop = strop.substring(0, strop.indexOf("q")) + strop.substring(strop.indexOf("q") + 1, strop.length());
+            }
+            //处理乘方逻辑
+            while ((strop.indexOf("^") != -1)) {
+                Double dTemp = 1.0;
+                for (int i = 0; i < (Double) numList.get(strop.indexOf("^") + 1); i++) {
+                    dTemp = dTemp * (Double) numList.get(strop.indexOf("^"));
+                }
+                numList.set(strop.indexOf("^"), dTemp);
+                numList.remove(strop.indexOf("^") + 1);
+                strop = strop.substring(0, strop.indexOf("^")) + strop.substring(strop.indexOf("^") + 1, strop.length());
+            }
+            //处理四则运算逻辑
+            //先处理乘除逻辑
+            while ((strop.indexOf("*") != -1) || (strop.indexOf("/") != -1)) {
+                for (int i = 0; i < strop.length(); i++) {
+                    switch (strop.charAt(i)) {
+                        case '*':
+                            numList.set(i, (Double) numList.get(i) * (Double) numList.get(i + 1));
+                            strop = strop.substring(0, i) + strop.substring(i + 1, strop.length());
+                            numList.remove(i + 1);
+                            i = i - 1;
+                            break;
+                        case '/':
+                            if ((Double) numList.get(i + 1) != 0) {
+                                numList.set(i, (Double) numList.get(i) / (Double) numList.get(i + 1));
+                                strop = strop.substring(0, i) + strop.substring(i + 1, strop.length());
+                                numList.remove(i + 1);
+                                i = i - 1;
+                            } else {
+                                strop = "";
+                                FinalResult = strError;
+                            }
+                            break;
+                    }
                 }
             }
+            //处理完乘除逻辑后再处理加减逻辑
+            while ((strop.indexOf("+") != -1) || (strop.indexOf("-") != -1)) {
+                for (int i = 0; i < strop.length(); i++) {
+                    switch (strop.charAt(i)) {
+                        case '+':
+                            numList.set(i, (Double) numList.get(i) + (Double) numList.get(i + 1));
+                            strop = strop.substring(0, i) + strop.substring(i + 1, strop.length());
+                            numList.remove(i + 1);
+                            i = i - 1;
+                            break;
+                        case '-':
+                            numList.set(i, (Double) numList.get(i) - (Double) numList.get(i + 1));
+                            strop = strop.substring(0, i) + strop.substring(i + 1, strop.length());
+                            numList.remove(i + 1);
+                            i = i - 1;
+                            break;
+                    }
+                }
+            }
+        }catch (Exception e){
+            FinalResult=strError;
         }
         //得到最终结果的字符串表示
         if(!FinalResult.equals(strError)) {
