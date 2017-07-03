@@ -41,7 +41,7 @@ public class BroadsideActivity extends AppCompatActivity
     //显示计算结果
     private TextView tvScienceResult;
     //错误提示
-    String strError="被除数或lnx中的x不能为0或开平方下的数不能为负数";
+    String strError="输入错误";
 
 
     @Override
@@ -263,7 +263,27 @@ public void clickButton(View v) {
             strScienceResultShow=strScienceResultShow+"(";
             strScienceResult=strScienceResult+"(";
             tvScienceRecord.setText(strScienceResultShow);
+        }else if(id==R.id.sciencepercent){
+            if(strScienceResult.length()==1){
+                strScienceResult="";
+                strScienceResultShow="";
+                tvScienceRecord.setText(strScienceResultShow);
+            }
         }
+
+        //判断百分号后面是不是数字
+        if(strScienceResult.lastIndexOf("%")!=-1) {
+            if(strScienceResult.length()>strScienceResult.lastIndexOf("%")+1) {
+                char cAfterPercent = strScienceResult.charAt(strScienceResult.lastIndexOf("%") + 1);
+                if(cAfterPercent!='+'&&cAfterPercent!='-'&&cAfterPercent!='*'&&cAfterPercent!='/'&&cAfterPercent!=')') {
+                    strScienceResult =strScienceResult.substring(0,strScienceResult.lastIndexOf("%")+1);
+                    strScienceResultShow=strScienceResultShow.substring(0,strScienceResultShow.lastIndexOf("%")+1);
+                    tvScienceRecord.setText(strScienceResultShow);
+                }
+            }
+
+        }
+
         if(id==R.id.sciencereturn){
             if(!strScienceResult.isEmpty()) {
                 strScienceResultShow = strScienceResultShow.substring(0, strScienceResultShow.length() - 3);
