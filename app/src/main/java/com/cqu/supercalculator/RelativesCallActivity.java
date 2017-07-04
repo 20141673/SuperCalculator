@@ -27,12 +27,14 @@ public class RelativesCallActivity extends AppCompatActivity {
         strShow += v.getTag().toString();
         relativeRecord.setText(strShow);
         if (id == R.id.relativereturn) {//按下返回键，消除上一次输入
-            if (strShow.length() >= 4) {
-                //去掉strShow即显示的字符中的上一次输入
-                strShow = strShow.substring(0, strShow.length() - 3);
-                //去掉strRelative即查询的字符中的上一次输入
-                strRelative = strRelative.substring(0, strRelative.length() - 1);
-                relativeRecord.setText(strShow);
+            if(strRelative.length()>0) {
+                if (strShow.length() >= 4) {
+                    //去掉strShow即显示的字符中的上一次输入
+                    strShow = strShow.substring(0, strShow.length() - 3);
+                    //去掉strRelative即查询的字符中的上一次输入
+                    strRelative = strRelative.substring(0, strRelative.length() - 1);
+                    relativeRecord.setText(strShow);
+                }
             }
         } else if (id == R.id.relativeac) {//按下清空键，消除relativeResult即查询字符中的数据，并将strShow改为我
             strShow = "我";
@@ -44,7 +46,7 @@ public class RelativesCallActivity extends AppCompatActivity {
             //Try(strRelative);
             relativeResult.setText(strRelative);
             GetRelationByXml(strRelative);
-            strRelative = "";
+            //strRelative = "";
 
             //GetRelationByXml(strRelative);
         } else {

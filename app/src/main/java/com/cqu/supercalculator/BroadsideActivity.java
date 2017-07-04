@@ -314,7 +314,7 @@ public void clickButton(View v) {
                    bbracket+=1;
                }
            }
-
+/*
            if(fbracket<bbracket){
                strScienceResult="前括号个数不能小于后括号个数";
 
@@ -326,7 +326,7 @@ public void clickButton(View v) {
                }
                tvScienceRecord.setText(strScienceResultShow);
            }
-
+*/
             strScienceResult = ResolveBracket(strScienceResult, scienceNumList);
 
 
