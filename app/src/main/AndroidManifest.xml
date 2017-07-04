@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cqu.supercalculator">
+          package="com.cqu.supercalculator">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -15,9 +15,9 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" /> <!-- 这里设置了在桌面上的名称 -->
+                <category android:name="android.intent.category.LAUNCHER"/> <!-- 这里设置了在桌面上的名称 -->
             </intent-filter>
         </activity>
         <activity
@@ -47,27 +47,37 @@
         <activity
             android:name=".SpeedActivity"
             android:label="速度转换"
-            android:parentActivityName=".BroadsideActivity" />
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".TemperatureActivity"
             android:label="温度转换"
-            android:parentActivityName=".BroadsideActivity" />
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".VolumeExchangeActivity"
             android:label="体积转换"
-            android:parentActivityName=".BroadsideActivity" />
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".AreaExchangeActivity"
             android:label="面积转换"
-            android:parentActivityName=".BroadsideActivity" />
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".WeightExchangeActivity"
             android:label="重量转换"
-            android:parentActivityName=".BroadsideActivity" />
+            android:parentActivityName=".BroadsideActivity"/>
         <activity
             android:name=".CapitalExchangeActivity"
             android:label="大写数字转换"
-            android:parentActivityName=".BroadsideActivity" />
+            android:parentActivityName=".BroadsideActivity"/>
+        <activity
+            android:name=".HexExchageActivity"
+            android:label="进制转化"
+            android:parentActivityName=".BroadsideActivity">
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="关于"
+            android:parentActivityName=".BroadsideActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -116,7 +116,7 @@ public class LengthExchangeActivity extends AppCompatActivity {
                }
            }
         }
-        if(lengthNowText.length()>=10){
+        if(lengthNowText.getText().toString().length()>=10){
             id=0;
         }else if(id==R.id.lengthone){
             lengthNowText.append("1");

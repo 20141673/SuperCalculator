@@ -97,7 +97,9 @@ public class BroadsideActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            Intent intent=new Intent(BroadsideActivity.this,AboutActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -144,6 +146,9 @@ public class BroadsideActivity extends AppCompatActivity
         } else if(id==R.id.nav_Areaexchange) {
             Intent intent=new Intent(BroadsideActivity.this,AreaExchangeActivity.class);
             BroadsideActivity.this.startActivity(intent);
+        }else if(id==R.id.nav_hexexchange){
+            Intent intent=new Intent(BroadsideActivity.this,HexExchageActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
